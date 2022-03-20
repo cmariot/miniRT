@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/03/20 16:13:42 by cmariot          ###   ########.fr        #
+#    Updated: 2022/03/20 18:10:25 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ else
 
 	MLX			 = mlx_linux
 	INCLUDES	+= -I /usr/include -O3
-	LIBRAIRY	+= -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11
+	LIBRAIRY	+= -L mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11
 
 endif
 

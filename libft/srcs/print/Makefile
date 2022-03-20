@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/02/05 13:54:34 by cmariot          ###   ########.fr        #
+#    Updated: 2022/03/20 18:18:53 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,13 @@ DIROBJS		= $(addprefix $(DIROBJ), $(OBJ))
 SRCS		= $(addprefix $(SRC_DIR), $(SRC))
 
 
+DEPENDANCES	= ../../objs/ft_strlen.o \
+			  ../../objs/ft_strdup.o \
+			  ../../objs/ft_itoa.o \
+			  ../../objs/ft_isdigit.o \
+			  ../../objs/ft_strjoin.o \
+			  ../../objs/ft_calloc.o
+
 # **************************************************************************** #
 #                                COLORS                                        #
 # **************************************************************************** #
@@ -88,7 +95,7 @@ $(NAME)	: $(DIROBJS)
 		@printf "$(CYAN)"
 		@printf "\nLINKING\n"
 		@printf "$(RC)"
-		ar rcs $(NAME) $(DIROBJS)
+		ar rcs $(NAME) $(DIROBJS) $(DEPENDANCES)
 
 clean :
 		@rm -rf $(DIROBJ)
