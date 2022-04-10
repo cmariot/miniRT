@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraylen.c                                      :+:      :+:    :+:   */
+/*   free_structure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 10:19:05 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/07 20:57:56 by cmariot          ###   ########.fr       */
+/*   Created: 2022/04/07 20:29:31 by cmariot           #+#    #+#             */
+/*   Updated: 2022/04/08 16:14:04 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-int	ft_arraylen(char **array)
+void	free_structure(t_scene *rt_scene, t_counter elements)
 {
-	int	len;
-
-	len = 0;
-	if (array == NULL)
-		return (0);
-	else
-		while (array[len] != NULL)
-			len++;
-	return (len);
+	if (elements.nb_sphere && rt_scene->sphere)
+		free(rt_scene->sphere);
+	if (elements.nb_plan && rt_scene->plan)
+		free(rt_scene->plan);
+	if (elements.nb_cylinder && rt_scene->cylinder)
+		free(rt_scene->cylinder);
 }

@@ -6,14 +6,75 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/03/20 16:12:28 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/09 18:26:20 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "libft.h"
 # include <math.h>
+# include <fcntl.h>
+# include <limits.h>
+
+# include "libft.h"
+# include "scene_structure.h"
+# include "mlx_structure.h"
+
+/* ************************************************************************** */
+/*                              Main directory                                */
+/* ************************************************************************** */
+
+int		rt_error(char const *error_message);
+
+/* ************************************************************************** */
+/*                               Mlx directory                                */
+/* ************************************************************************** */
+
+int		open_window(t_scene *rt_scene);
+int		key_hook(int keycode, t_scene *scene);
+int		close_window(t_scene *scene);
+
+/* ************************************************************************** */
+/*                             Parsing directory                              */
+/* ************************************************************************** */
+
+int		parse_scene(const char *scene, t_scene *rt_scene);
+int		check_extension(const char *filename, const char *extension);
+int		check_reading_access(const char *filename);
+int		count_elements(const char *filename, t_scene *rt_scene);
+int		alloc_structure(t_scene *rt_scene, t_counter elements);
+int		fill_structure(t_scene *rt_scene, const char *file);
+int		set_double(char *str, double *to_fill, double min, double max);
+int		set_point(t_3d *coordinates, char *str);
+int		set_orientation(t_3d *orientation, char *str);
+int		set_colors(char *rgb, int *colors);
+int		fill_ambient_light(char **array, t_ambient_light *ambient_light);
+int		fill_camera(char **array, t_camera *camera);
+int		fill_light(char **array, t_light *light);
+int		fill_sphere(char **array, size_t *index, t_sphere *sphere);
+int		fill_cylinder(char **array, size_t *index, t_cylinder *cylinder);
+int		fill_plan(char **array, size_t *index, t_plan *plan);
+void	print_structure(t_scene *rt_scene);
+void	free_structure(t_scene *rt_scene, t_counter elements);
+
+/* ************************************************************************** */
+/*                          Raytracinging directory                           */
+/* ************************************************************************** */
+
+void	draw_circle(t_scene *scene);
+bool	intersection(t_scene *scene, t_sphere sphere);
+
+/* ************************************************************************** */
+/*                              Vector directory                              */
+/* ************************************************************************** */
+
+t_3d	add_vector(t_3d a, t_3d b);
+t_3d	sub_vector(t_3d a, t_3d b);
+t_3d	div_vector(t_3d a, double b);
+t_3d	mul_vector(double a, t_3d b);
+double	scalar_product(t_3d a, t_3d b);
+double	norm_square(t_3d a);
+t_3d	normalize(t_3d a);
 
 #endif

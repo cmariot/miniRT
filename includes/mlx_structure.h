@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraylen.c                                      :+:      :+:    :+:   */
+/*   mlx_structure.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 10:19:05 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/07 20:57:56 by cmariot          ###   ########.fr       */
+/*   Created: 2022/04/08 17:21:32 by cmariot           #+#    #+#             */
+/*   Updated: 2022/04/09 03:08:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef MLX_STRUCTURE_H
+# define MLX_STRUCTURE_H
 
-int	ft_arraylen(char **array)
+# include <mlx.h>
+
+# define SIZE_X 1440
+# define SIZE_Y 872
+
+# define ESC_KEY 53
+
+# define PI 3.14159265359
+
+typedef struct s_mlx
 {
-	int	len;
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_mlx;
 
-	len = 0;
-	if (array == NULL)
-		return (0);
-	else
-		while (array[len] != NULL)
-			len++;
-	return (len);
-}
+#endif

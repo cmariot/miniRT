@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraylen.c                                      :+:      :+:    :+:   */
+/*   close_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 10:19:05 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/07 20:57:56 by cmariot          ###   ########.fr       */
+/*   Created: 2022/04/09 11:26:19 by cmariot           #+#    #+#             */
+/*   Updated: 2022/04/09 11:26:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-int	ft_arraylen(char **array)
+int	close_window(t_scene *scene)
 {
-	int	len;
-
-	len = 0;
-	if (array == NULL)
-		return (0);
-	else
-		while (array[len] != NULL)
-			len++;
-	return (len);
+	free_structure(scene, scene->elements);
+	mlx_clear_window(scene->mlx.mlx_ptr, scene->mlx.win_ptr);
+	mlx_destroy_window(scene->mlx.mlx_ptr, scene->mlx.win_ptr);
+	free(scene->mlx.mlx_ptr);
+	exit(EXIT_SUCCESS);
+	return (1);
 }

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraylen.c                                      :+:      :+:    :+:   */
+/*   add_vector.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 10:19:05 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/07 20:57:56 by cmariot          ###   ########.fr       */
+/*   Created: 2022/04/09 01:28:37 by cmariot           #+#    #+#             */
+/*   Updated: 2022/04/09 11:12:47 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-int	ft_arraylen(char **array)
+t_3d	add_vector(t_3d a, t_3d b)
 {
-	int	len;
+	t_3d	c;
 
-	len = 0;
-	if (array == NULL)
-		return (0);
-	else
-		while (array[len] != NULL)
-			len++;
-	return (len);
+	c.x = a.x + b.x;
+	c.y = a.y + b.y;
+	c.z = a.z + b.z;
+	return (c);
 }

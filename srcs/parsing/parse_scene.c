@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/19 21:57:45 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/08 17:18:04 by cmariot          ###   ########.fr       */
+/*   Created: 2022/04/07 15:33:43 by cmariot           #+#    #+#             */
+/*   Updated: 2022/04/08 17:59:49 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	rt_error(char const *error_message)
+int	parse_scene(const char *filename, t_scene *rt_scene)
 {
-	red();
-	print(2, "Error\n");
-	print(2, "%s\n", error_message);
-	reset_color();
-	return (1);
-}
-
-int	main(int argc, char **argv)
-{
-	t_scene	rt_scene;
-
-	if (argc == 2)
+	if (check_extension(filename, ".rt"))
+		return (1);
+	if (check_reading_access(filename))
+		return (1);
+	if (count_elements(filename, rt_scene))
+		return (1);
+	if (alloc_structure(rt_scene, rt_scene->elements))
+		return (1);
+	if (fill_structure(rt_scene, filename))
 	{
-		if (parse_scene(argv[1], &rt_scene))
-			return (1);
-		if (open_window(&rt_scene))
-			return (1);
-		return (0);
+		free_structure(rt_scene, rt_scene->elements);
+		return (1);
 	}
-	else
-		return (rt_error("Wrong number of arguments."));
+	print_structure(rt_scene);
+	return (0);
 }

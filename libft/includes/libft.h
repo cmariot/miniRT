@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:34:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/02/03 19:25:43 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/09 11:21:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/types.h>
 # include <dirent.h>
 # include <stdbool.h>
+# include <math.h>
 
 typedef struct s_list
 {
@@ -34,7 +35,8 @@ typedef struct s_list
 }				t_list;
 
 /* LIBFT */
-int			ft_array_len(char **array);
+int			ft_arraylen(char **array);
+double		ft_atodouble(char *str, bool *error);
 int			ft_atoi(const char *str);
 void		ft_bzero(void *b, size_t n);
 void		*ft_calloc(size_t count, size_t size);
@@ -99,5 +101,9 @@ char		*gnl_without_bn(int fd);
 
 /* PRINT */
 int			print(int fd, const char *format, ...);
+
+void		red(void);
+void		green(void);
+void		reset_color(void);
 
 #endif

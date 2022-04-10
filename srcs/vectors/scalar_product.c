@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraylen.c                                      :+:      :+:    :+:   */
+/*   scalar_product.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 10:19:05 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/07 20:57:56 by cmariot          ###   ########.fr       */
+/*   Created: 2022/04/09 01:44:54 by cmariot           #+#    #+#             */
+/*   Updated: 2022/04/09 11:21:00 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-int	ft_arraylen(char **array)
+double	scalar_product(t_3d a, t_3d b)
 {
-	int	len;
+	double	c;
 
-	len = 0;
-	if (array == NULL)
-		return (0);
-	else
-		while (array[len] != NULL)
-			len++;
-	return (len);
+	c = (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
+	return (c);
 }

@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/03/20 18:10:25 by cmariot          ###   ########.fr        #
+#    Updated: 2022/04/09 11:32:24 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@
 
 
 NAME			 = miniRT
-
 
 
 # **************************************************************************** #
@@ -85,9 +84,42 @@ LIBRAIRY		+= -L $(MLX) -lmlx
 
 DIRSRC		= srcs/
 
+PARSING		= parse_scene.c \
+			  check_extension.c \
+			  check_reading_access.c \
+			  count_elements.c \
+			  alloc_structure.c \
+			  fill_structure.c \
+			  fill_ambient_light.c \
+			  fill_camera.c \
+			  fill_light.c \
+			  fill_sphere.c \
+			  fill_plan.c \
+			  fill_cylinder.c \
+			  fill_utils.c \
+			  print_structure.c \
+			  free_structure.c
 
-SRC			= main.c
+RAYTRACING	= draw_circle.c \
+			  intersection.c
 
+MLX_DIR		= open_window.c \
+			  key_hook.c \
+			  close_window.c
+
+VECTORS		= add_vector.c \
+			  div_vector.c \
+			  mul_vector.c \
+			  normalize.c \
+			  norm_square.c \
+			  scalar_product.c \
+			  sub_vector.c
+
+SRC			= main.c \
+			$(addprefix parsing/, $(PARSING)) \
+			$(addprefix raytracing/, $(RAYTRACING)) \
+			$(addprefix mlx/, $(MLX_DIR)) \
+			$(addprefix vectors/, $(VECTORS))
 
 SRCS		= $(addprefix $(DIRSRC), $(SRC))
 
@@ -100,6 +132,10 @@ SRCS		= $(addprefix $(DIRSRC), $(SRC))
 
 DIROBJ		= objs/
 
+SUB_OBJ_DIR = objs/parsing \
+			  objs/raytracing \
+			  objs/mlx \
+			  objs/vectors
 
 OBJ			= $(SRC:.c=.o)
 
@@ -133,13 +169,16 @@ all : header $(NAME) footer
 
 
 $(DIROBJ)%.o: $(DIRSRC)%.c
-		@mkdir -p $(DIROBJ)
+		@mkdir -p $(SUB_OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 
 $(NAME)	: $(DIROBJS)
-		@make -C libft
+		@printf "$(CYAN)"
+		@printf "\nMLX COMPILATION\n"
+		@printf "$(RESET)"
 		@make -C $(MLX)
+		@make -C libft
 		$(CC) $(LFLAGS) $(DIROBJS) $(LIBRAIRY) -o $(NAME)
 		@printf "\n"
 
@@ -147,9 +186,11 @@ $(NAME)	: $(DIROBJS)
 leaks :	all
 		valgrind --leak-check=full ./$(NAME)
 
+test :	all
+		./miniRT scenes/minimaliste.rt
 
 norm :
-		@norminette
+		@norminette srcs includes
 
 
 clean :
