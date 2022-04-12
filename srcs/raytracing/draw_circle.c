@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:27:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 18:25:32 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/11 08:39:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ void	draw_circle(t_scene *scene)
 {
 	int			i;
 	int			j;
+	t_3d		p;
+	t_3d		n;
+	t_3d		intensite_pixel;
+	double		intensite_lumiere;
 
+	intensite_lumiere = 1000000;
 	i = 0;
 	while (i < SIZE_Y - 1)
 	{
@@ -40,12 +45,20 @@ void	draw_circle(t_scene *scene)
 		while (j < SIZE_X - 1)
 		{
 			scene->camera.ray_direction = get_ray(i, j, scene);
-			if (intersection(scene, scene->sphere[0]))
+			intensite_pixel.x = 0;
+			intensite_pixel.y = 0;
+			intensite_pixel.z = 0;
+			if (intersection(scene, scene->sphere[0], &p, &n))
+			{
+				intensite_pixel = mul_vector(-intensite_lumiere * scalar_product(normalize(sub_vector(scene->light.point, p)), n)
+						/ norm_square(sub_vector(scene->light.point, p)), scene->sphere[0].color);
+				printf("x = %f, y = %f, z = %f\n", intensite_pixel.x, intensite_pixel.y, intensite_pixel.z);
 				mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
-					j, i, scene->sphere[0].color);
+					j, i, trgb_color(0, intensite_pixel.x, intensite_pixel.y, intensite_pixel.z));
+			}
 			else
 				mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
-					j, i, scene->ambient_light.color);
+					j, i, trgb_color(0, intensite_pixel.x, intensite_pixel.y, intensite_pixel.z));
 			j++;
 		}
 		i++;

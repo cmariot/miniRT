@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 18:26:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/11 08:32:24 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 /*                              Main directory                                */
 /* ************************************************************************** */
 
-int		rt_error(char const *error_message);
+int		rt_error(char const *error_message, bool DISPLAY_ERROR);
 
 /* ************************************************************************** */
 /*                               Mlx directory                                */
@@ -48,7 +48,8 @@ int		fill_structure(t_scene *rt_scene, const char *file);
 int		set_double(char *str, double *to_fill, double min, double max);
 int		set_point(t_3d *coordinates, char *str);
 int		set_orientation(t_3d *orientation, char *str);
-int		set_colors(char *rgb, int *colors);
+int		set_colors(char *rgb, t_3d *colors);
+int		trgb_color(int t, int r, int g, int b);
 int		fill_ambient_light(char **array, t_ambient_light *ambient_light);
 int		fill_camera(char **array, t_camera *camera);
 int		fill_light(char **array, t_light *light);
@@ -63,7 +64,7 @@ void	free_structure(t_scene *rt_scene, t_counter elements);
 /* ************************************************************************** */
 
 void	draw_circle(t_scene *scene);
-bool	intersection(t_scene *scene, t_sphere sphere);
+bool	intersection(t_scene *scene, t_sphere sphere, t_3d *p, t_3d *n);
 
 /* ************************************************************************** */
 /*                              Vector directory                              */

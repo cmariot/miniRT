@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 22:04:53 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 11:19:27 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/11 08:35:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	fill_camera(char **array, t_camera *camera)
 	if (ft_arraylen(array) != 4)
 	{
 		ft_free_array(array);
-		return (rt_error("Syntax error : Camera number of arguments."));
+		return (rt_error("Syntax error : Camera number of arguments.", true));
 	}
 	if (set_point(&(camera->pov), array[1]))
 	{
@@ -32,7 +32,7 @@ int	fill_camera(char **array, t_camera *camera)
 	if (set_double(array[3], &(camera->fov), 0.0, 180.0))
 	{
 		ft_free_array(array);
-		return (rt_error("Syntax error : Camera FOV"));
+		return (rt_error("Syntax error : Camera FOV", true));
 	}
 	ft_free_array(array);
 	return (0);

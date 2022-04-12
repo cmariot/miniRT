@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 01:24:49 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 11:19:33 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/11 08:35:37 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	fill_cylinder(char **array, size_t *index, t_cylinder *cylinder)
 	if (ft_arraylen(array) != 6)
 	{
 		ft_free_array(array);
-		return (rt_error("Syntax error : Cylinder number of arguments."));
+		return (rt_error("Syntax error : Cylinder number of arguments.", true));
 	}
 	if (set_point(&(cylinder->center), array[1])
 		|| set_orientation(&(cylinder->orientation), array[2]))
@@ -29,7 +29,7 @@ int	fill_cylinder(char **array, size_t *index, t_cylinder *cylinder)
 		|| set_double(array[4], &(cylinder->heigth), 0.0, INT_MAX))
 	{
 		ft_free_array(array);
-		return (rt_error("Syntax error : Ambient light ratio"));
+		return (rt_error("Syntax error : Ambient light ratio", true));
 	}
 	if (set_colors(array[5], &(cylinder->color)))
 	{

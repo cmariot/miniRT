@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:28:57 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/08 16:28:18 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/11 08:34:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_line_content(char *line, t_scene *rt_scene)
 
 	splitted_line = ft_split(line, ' ');
 	if (!splitted_line)
-		return (rt_error("Split failed."));
+		return (rt_error("Split failed.", true));
 	if (ft_strcmp(splitted_line[0], "A") == 0)
 		return (fill_ambient_light(splitted_line, &rt_scene->ambient_light));
 	else if (ft_strcmp(splitted_line[0], "C") == 0)
@@ -48,7 +48,7 @@ int	fill_structure(t_scene *rt_scene, const char *filename)
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
-		return (rt_error("Could not open the scene."));
+		return (rt_error("Could not open the scene.", true));
 	while (1)
 	{
 		line = gnl_without_bn(file_descriptor);

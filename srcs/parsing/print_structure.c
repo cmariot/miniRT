@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:17:59 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 10:41:34 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/10 19:21:08 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	print_cylinders(t_scene *rt_scene, t_cylinder *cylinder)
 			cylinder[i].orientation.y, cylinder[i].orientation.z);
 		printf("\tDiameter : %f\n", cylinder[i].diameter);
 		printf("\tHeigth : %f\n", cylinder[i].heigth);
-		printf("\tColor RGB : %d\n\n", cylinder[i].color);
 		i++;
 	}
 }
@@ -45,7 +44,6 @@ void	print_plans(t_scene *rt_scene, t_plan *plan)
 			plan[i].center.y, plan[i].center.z);
 		printf("\tOrientation : %f, %f, %f\n", plan[i].orientation.x,
 			plan[i].orientation.y, plan[i].orientation.z);
-		printf("\tColor RGB : %d\n\n", plan[i].color);
 		i++;
 	}
 }
@@ -61,7 +59,6 @@ void	print_spheres(t_scene *rt_scene, t_sphere *sphere)
 		printf("\tCenter : %f, %f, %f\n", sphere[i].center.x,
 			sphere[i].center.y, sphere[i].center.z);
 		printf("\tDiameter : %f\n", sphere[i].diameter);
-		printf("\tColor RGB : %d\n\n", sphere[i].color);
 		i++;
 	}
 }
@@ -72,7 +69,6 @@ void	print_main_elements(t_scene *rt_scene)
 {
 	print(1, "Ambient light :\n");
 	printf("\tRatio : %f\n", rt_scene->ambient_light.ratio);
-	printf("\tColor RGB : %d\n\n", rt_scene->ambient_light.color);
 	print(1, "Camera :\n");
 	printf("\tPOV coordinates : %f, %f, %f\n", rt_scene->camera.pov.x,
 		rt_scene->camera.pov.y, rt_scene->camera.pov.z);
@@ -83,7 +79,6 @@ void	print_main_elements(t_scene *rt_scene)
 	printf("\tPOL coordinates : %f, %f, %f\n", rt_scene->light.point.x,
 		rt_scene->light.point.y, rt_scene->light.point.z);
 	printf("\tRatio : %f\n", rt_scene->light.ratio);
-	printf("\tColor RGB : %d\n\n", rt_scene->light.color);
 }
 
 void	print_structure(t_scene *rt_scene)
