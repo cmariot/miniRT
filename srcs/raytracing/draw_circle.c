@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:27:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:39:21 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/12 19:39:47 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ void	draw_circle(t_scene *scene)
 	t_3d		p;
 	t_3d		n;
 	t_3d		intensite_pixel;
-	double		intensite_lumiere;
 
-	intensite_lumiere = 1000000;
 	i = 0;
 	while (i < SIZE_Y - 1)
 	{
@@ -50,7 +48,7 @@ void	draw_circle(t_scene *scene)
 			intensite_pixel.z = 0;
 			if (intersection(scene, scene->sphere[0], &p, &n))
 			{
-				intensite_pixel = mul_vector(-intensite_lumiere * scalar_product(normalize(sub_vector(scene->light.point, p)), n)
+				intensite_pixel = mul_vector(-10000 * scalar_product(normalize(sub_vector(scene->light.point, p)), n)
 						/ norm_square(sub_vector(scene->light.point, p)), scene->sphere[0].color);
 				printf("x = %f, y = %f, z = %f\n", intensite_pixel.x, intensite_pixel.y, intensite_pixel.z);
 				mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
