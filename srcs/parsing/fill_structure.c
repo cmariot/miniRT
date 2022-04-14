@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:28:57 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:34:55 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/14 16:33:39 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,23 @@ int	fill_structure(t_scene *rt_scene, const char *filename)
 {
 	int		file_descriptor;
 	char	*line;
+	bool	error;
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
 		return (rt_error("Could not open the scene.", true));
+	error = false;
 	while (1)
 	{
 		line = gnl_without_bn(file_descriptor);
 		if (!line)
 			break ;
-		if (get_line_content(line, rt_scene))
-		{
-			free(line);
-			close(file_descriptor);
-			return (1);
-		}
+		if (error == false && get_line_content(line, rt_scene))
+			error = true;
 		free(line);
 	}
 	close(file_descriptor);
+	if (error == true)
+		return (1);
 	return (0);
 }

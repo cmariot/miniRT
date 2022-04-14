@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:59:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:36:56 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/14 16:36:25 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,24 @@ int	count_elements(const char *filename, t_scene *rt_scene)
 {
 	int		file_descriptor;
 	char	*line;
+	bool	error;
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
 		return (rt_error("Could not open the scene.", true));
 	init_scene(rt_scene);
+	error = false;
 	while (1)
 	{
 		line = gnl_without_bn(file_descriptor);
 		if (!line)
 			break ;
-		if (get_element_type(line, rt_scene))
-		{
-			free(line);
-			close(file_descriptor);
-			return (1);
-		}
+		if (error == false && get_element_type(line, rt_scene))
+			error = true;
 		free(line);
 	}
 	close(file_descriptor);
-	if (check_nb_elements(rt_scene))
+	if (error == true || check_nb_elements(rt_scene))
 		return (1);
 	return (0);
 }

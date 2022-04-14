@@ -47,9 +47,9 @@ $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ)
-	ar -r $(NAME) $(OBJ)
-	ranlib $(NAME)
-	cp $(NAME) $(NAME_UNAME)
+	@ar -rcs $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@cp $(NAME) $(NAME_UNAME)
 
 check: all
 	@test/run_tests.sh
@@ -63,6 +63,6 @@ show:
 	@printf "OBJ		:\n	$(OBJ)\n"
 
 clean	:
-	rm -rf $(OBJ_DIR)/ $(NAME) $(NAME_UNAME) *~ core *.core
+	@rm -rf $(OBJ_DIR)/ $(NAME) $(NAME_UNAME) *~ core *.core
 
 .PHONY: all check show clean

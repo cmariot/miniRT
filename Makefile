@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/04/09 11:32:24 by cmariot          ###   ########.fr        #
+#    Updated: 2022/04/14 16:55:42 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ NAME			 = miniRT
 CC				 = clang
 
 
-CFLAGS			 = -Wall -Wextra -Werror
+CFLAGS			 = -Wall -Wextra -Werror -g3
 
 
 INCLUDES		 = -I includes
@@ -39,7 +39,7 @@ INCLUDES		+= -I libft/includes
 # **************************************************************************** #
 
 
-LFLAGS			 = -Wall -Wextra -Werror
+LFLAGS			 = -Wall -Wextra -Werror -g3
 
 
 LIBRAIRY		 = -L ./libft -lft
@@ -177,14 +177,14 @@ $(NAME)	: $(DIROBJS)
 		@printf "$(CYAN)"
 		@printf "\nMLX COMPILATION\n"
 		@printf "$(RESET)"
-		@make -C $(MLX)
-		@make -C libft
+		@make -C $(MLX) --no-print-directory
+		@make -C libft --no-print-directory
 		$(CC) $(LFLAGS) $(DIROBJS) $(LIBRAIRY) -o $(NAME)
 		@printf "\n"
 
 
 leaks :	all
-		valgrind --leak-check=full ./$(NAME)
+		valgrind --leak-check=full ./$(NAME) scenes/minimaliste.rt
 
 test :	all
 		./miniRT scenes/minimaliste.rt
@@ -205,8 +205,8 @@ clean :
 fclean :
 		@-rm -f $(NAME)
 		@-rm -rf $(DIROBJ)
-		@make fclean -C libft
-		@make clean -C $(MLX)
+		@make fclean -C libft --no-print-directory
+		@make clean -C $(MLX) --no-print-directory
 		@printf "$(RED)"
 		@printf "Binary and object files removed\n"
 		@printf "$(RESET)"

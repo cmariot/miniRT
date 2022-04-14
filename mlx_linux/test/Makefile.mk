@@ -40,6 +40,6 @@ show:
 	@printf "OBJ		:\n	$(OBJ)\n"
 
 clean:
-	rm -f $(NAME) $(OBJ) *~ core *.core
+	@rm -f $(NAME) $(OBJ) *~ core *.core
 
 re: clean all
