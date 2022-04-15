@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:27:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 16:39:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 17:32:17 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_3d	get_camera_ray(int i, int j, t_scene *scene)
 
 void	draw_circle(t_scene *scene)
 {
-	bool		has_intersection;
 	int			i;
 	int			j;
 	size_t		k;
@@ -49,19 +48,14 @@ void	draw_circle(t_scene *scene)
 			k = 0;
 			while (k < scene->elements.nb_sphere)
 			{
-				has_intersection = intersection(scene, scene->sphere[0], &p, &n);
-				if (has_intersection == true)
+				if (intersection(scene, scene->sphere[k], &p, &n))
 				{
 					mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
-						j, i, trgb_color(0, scene->sphere[0].color.x, scene->sphere[0].color.y,
-							scene->sphere[0].color.z));
+						j, i, trgb_color(0, scene->sphere[k].color.x, scene->sphere[k].color.y,
+							scene->sphere[k].color.z));
 				}
 				k++;
 			}
-			if (has_intersection == false)
-				mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
-					j, i, trgb_color(0, intensite_pixel.x, intensite_pixel.y,
-						intensite_pixel.z));
 			j++;
 		}
 		i++;
