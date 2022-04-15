@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:59:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/14 16:36:25 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 12:24:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@
 int	check_nb_elements(t_scene *rt_scene)
 {
 	if (rt_scene->elements.nb_ambient_light != 1)
-		return (rt_error("The scene must have one ambient light declaration.",
-				true));
+		return (rt_error("The scene must have one ambient light."));
 	else if (rt_scene->elements.nb_camera != 1)
-		return (rt_error("The scene must have one camera declaration.", true));
+		return (rt_error("The scene must have one camera."));
 	else if (rt_scene->elements.nb_light != 1)
-		return (rt_error("The scene must have one light declaration.", true));
+		return (rt_error("The scene must have one light."));
 	return (0);
 }
 
@@ -37,7 +36,7 @@ int	get_element_type(char *line, t_scene *rt_scene)
 
 	splitted_line = ft_split(line, ' ');
 	if (!splitted_line)
-		return (rt_error("Could not split the line.", true));
+		return (rt_error("Could not split the line."));
 	if (ft_strcmp(splitted_line[0], "A") == 0)
 		rt_scene->elements.nb_ambient_light++;
 	else if (ft_strcmp(splitted_line[0], "C") == 0)
@@ -53,7 +52,7 @@ int	get_element_type(char *line, t_scene *rt_scene)
 	else if (splitted_line[0] != NULL)
 	{
 		ft_free_array(splitted_line);
-		return (rt_error("Syntax error in the scene file.", true));
+		return (rt_error("Unknown object in the scene file."));
 	}
 	ft_free_array(splitted_line);
 	return (0);
@@ -83,7 +82,7 @@ int	count_elements(const char *filename, t_scene *rt_scene)
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
-		return (rt_error("Could not open the scene.", true));
+		return (rt_error("Could not open the scene."));
 	init_scene(rt_scene);
 	error = false;
 	while (1)

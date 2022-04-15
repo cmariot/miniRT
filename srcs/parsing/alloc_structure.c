@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:03:03 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:37:45 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 13:07:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,20 @@ int	alloc_structure(t_scene *rt_scene, t_counter elements)
 	{
 		rt_scene->sphere = malloc(elements.nb_sphere * sizeof(t_sphere));
 		if (!rt_scene->sphere)
-			return (rt_error("Memory allocation failed during the parsing.",
-					true));
+			return (rt_error("Memory allocation failed during the parsing."));
 	}
 	if (elements.nb_plan)
 	{
 		rt_scene->plan = malloc(elements.nb_plan * sizeof(t_plan));
 		if (!rt_scene->plan)
-			return (rt_error("Memory allocation failed during the parsing.",
-					true));
+			return (rt_error("Memory allocation failed during the parsing."));
 	}
 	if (elements.nb_cylinder)
 	{
 		rt_scene->cylinder
 			= malloc(elements.nb_cylinder * sizeof(t_cylinder));
 		if (!rt_scene->cylinder)
-			return (rt_error("Memory allocation failed during the parsing.",
-					true));
+			return (rt_error("Memory allocation failed during the parsing."));
 	}
 	return (0);
 }

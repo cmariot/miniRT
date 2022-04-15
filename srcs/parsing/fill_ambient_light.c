@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:56:26 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/12 18:11:57 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 12:26:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@ int	fill_ambient_light(char **array, t_ambient_light *ambient_light)
 	if (ft_arraylen(array) != 3)
 	{
 		ft_free_array(array);
-		return (rt_error("Syntax error : Ambient light number of arguments.",
-				true));
+		return (rt_error("Wrong line syntax for the ambient."));
 	}
 	if (set_double(array[1], &(ambient_light->ratio), 0.0, 1.0))
 	{
 		ft_free_array(array);
-		return (rt_error("Syntax error : Ambient light ratio", false));
+		return (second_line_error("Ambient light ratio."));
 	}
 	if (set_colors(array[2], &(ambient_light->color)))
 	{
 		ft_free_array(array);
-		return (1);
+		return (second_line_error("Ambient light color"));
 	}
 	ft_free_array(array);
 	return (0);

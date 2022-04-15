@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/04/15 09:12:08 by cmariot          ###   ########.fr        #
+#    Updated: 2022/04/15 13:39:06 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ PARSING		= parse_scene.c \
 			  check_reading_access.c \
 			  count_elements.c \
 			  alloc_structure.c \
+			  error.c \
 			  fill_structure.c \
 			  fill_ambient_light.c \
 			  fill_camera.c \
@@ -112,7 +113,7 @@ VECTORS		= new_vector.c \
 			  div_vector.c \
 			  mul_vector.c \
 			  normalize.c \
-			  norm_square.c \
+			  norm.c \
 			  scalar_product.c \
 			  sub_vector.c
 
@@ -169,6 +170,9 @@ RESET		= \033[0m
 all : header $(NAME) footer
 
 
+bonus : all
+
+
 $(DIROBJ)%.o: $(DIRSRC)%.c
 		@mkdir -p $(SUB_OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -185,13 +189,13 @@ $(NAME)	: $(DIROBJS)
 
 
 leaks :	all
-		valgrind --leak-check=full ./$(NAME) scenes/minimaliste.rt
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) scenes/minimaliste.rt
 
 test :	all
 		./miniRT scenes/minimaliste.rt
 
 norm :
-		@norminette srcs includes
+		@norminette srcs includes libft
 
 
 clean :

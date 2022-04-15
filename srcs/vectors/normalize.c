@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:58:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/10 16:42:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 16:00:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 t_3d	normalize(t_3d a)
 {
 	t_3d		b;
-	double		norm;
+	double		normalized;
 
-	norm = sqrt(norm_square(a));
-	b.x = a.x / norm;
-	b.y = a.y / norm;
-	b.z = a.z / norm;
+	normalized = 1 / fast_sqrt(norm_square(a));
+	b.x = a.x * normalized;
+	b.y = a.y * normalized;
+	b.z = a.z * normalized;
 	return (b);
 }

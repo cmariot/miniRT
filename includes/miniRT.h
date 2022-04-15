@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 09:19:33 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 16:00:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 /* ************************************************************************** */
 
 int		main(int argc, char **argv);
-int		rt_error(char const *error_message, bool DISPLAY_ERROR);
 
 /* ************************************************************************** */
 /*                             Parsing directory                              */
@@ -51,6 +50,8 @@ int		fill_cylinder(char **array, size_t *index, t_cylinder *cylinder);
 int		fill_plan(char **array, size_t *index, t_plan *plan);
 void	print_structure(t_scene *rt_scene);
 void	free_structure(t_scene *rt_scene, t_counter elements);
+int		rt_error(char const *error_message);
+int		second_line_error(char const *error_message);
 
 /* ************************************************************************** */
 /*                               Mlx directory                                */
@@ -74,8 +75,11 @@ t_3d	sub_vector(t_3d a, t_3d b);
 t_3d	div_vector(t_3d a, double b);
 t_3d	mul_vector(double a, t_3d b);
 double	scalar_product(t_3d a, t_3d b);
+double	norm(t_3d a);
 double	norm_square(t_3d a);
 t_3d	normalize(t_3d a);
+
+float	fast_sqrt(float number);
 
 /* ************************************************************************** */
 /*                          Raytracinging directory                           */

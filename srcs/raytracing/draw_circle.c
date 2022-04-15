@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:27:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/12 19:39:47 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 16:39:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * If this vector hits a sphere, color this pixel with
  * the color of the sphere. */
 
-t_3d	get_ray(int i, int j, t_scene *scene)
+t_3d	get_camera_ray(int i, int j, t_scene *scene)
 {
 	t_3d	direction;
 
@@ -30,8 +30,10 @@ t_3d	get_ray(int i, int j, t_scene *scene)
 
 void	draw_circle(t_scene *scene)
 {
+	bool		has_intersection;
 	int			i;
 	int			j;
+	size_t		k;
 	t_3d		p;
 	t_3d		n;
 	t_3d		intensite_pixel;
@@ -42,21 +44,24 @@ void	draw_circle(t_scene *scene)
 		j = 0;
 		while (j < SIZE_X - 1)
 		{
-			scene->camera.ray_direction = get_ray(i, j, scene);
-			intensite_pixel.x = 0;
-			intensite_pixel.y = 0;
-			intensite_pixel.z = 0;
-			if (intersection(scene, scene->sphere[0], &p, &n))
+			scene->camera.ray_direction = get_camera_ray(i, j, scene);
+			intensite_pixel = new_vector(0, 0, 0);
+			k = 0;
+			while (k < scene->elements.nb_sphere)
 			{
-				intensite_pixel = mul_vector(-10000 * scalar_product(normalize(sub_vector(scene->light.point, p)), n)
-						/ norm_square(sub_vector(scene->light.point, p)), scene->sphere[0].color);
-				printf("x = %f, y = %f, z = %f\n", intensite_pixel.x, intensite_pixel.y, intensite_pixel.z);
-				mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
-					j, i, trgb_color(0, intensite_pixel.x, intensite_pixel.y, intensite_pixel.z));
+				has_intersection = intersection(scene, scene->sphere[0], &p, &n);
+				if (has_intersection == true)
+				{
+					mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
+						j, i, trgb_color(0, scene->sphere[0].color.x, scene->sphere[0].color.y,
+							scene->sphere[0].color.z));
+				}
+				k++;
 			}
-			else
+			if (has_intersection == false)
 				mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
-					j, i, trgb_color(0, intensite_pixel.x, intensite_pixel.y, intensite_pixel.z));
+					j, i, trgb_color(0, intensite_pixel.x, intensite_pixel.y,
+						intensite_pixel.z));
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:21:32 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 03:08:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 10:37:16 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define SIZE_X 1440
 # define SIZE_Y 872
 
-# define ESC_KEY 53
+//# define ESC_KEY 53
 
 # define PI 3.14159265359
 

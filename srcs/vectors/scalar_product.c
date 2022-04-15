@@ -6,16 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:44:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 11:21:00 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 16:02:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+/* */
 double	scalar_product(t_3d a, t_3d b)
 {
-	double	c;
-
-	c = (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
-	return (c);
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
