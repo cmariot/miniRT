@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 22:04:53 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:35:48 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 09:05:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	fill_camera(char **array, t_camera *camera)
 		ft_free_array(array);
 		return (rt_error("Syntax error : Camera number of arguments.", true));
 	}
-	if (set_point(&(camera->pov), array[1]))
+	if (set_point(&(camera->point), array[1]))
 	{
 		ft_free_array(array);
 		return (1);
 	}
-	if (set_orientation(&(camera->orientation), array[2]))
+	if (set_orientation(&(camera->direction), array[2]))
 	{
 		ft_free_array(array);
 		return (1);

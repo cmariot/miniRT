@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 01:24:49 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:35:37 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 09:05:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	fill_cylinder(char **array, size_t *index, t_cylinder *cylinder)
 		ft_free_array(array);
 		return (rt_error("Syntax error : Cylinder number of arguments.", true));
 	}
-	if (set_point(&(cylinder->center), array[1])
-		|| set_orientation(&(cylinder->orientation), array[2]))
+	if (set_point(&(cylinder->point), array[1])
+		|| set_orientation(&(cylinder->direction), array[2]))
 	{
 		ft_free_array(array);
 		return (1);

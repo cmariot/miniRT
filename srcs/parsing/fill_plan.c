@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 01:25:19 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:35:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 09:05:27 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	fill_plan(char **array, size_t *index, t_plan *plan)
 		ft_free_array(array);
 		return (rt_error("Syntax error : Plan number of arguments.", true));
 	}
-	if (set_point(&(plan->center), array[1]))
+	if (set_point(&(plan->point), array[1]))
 	{
 		ft_free_array(array);
 		return (1);
 	}
-	if (set_orientation(&(plan->orientation), array[2]))
+	if (set_orientation(&(plan->direction), array[2]))
 	{
 		ft_free_array(array);
 		return (1);

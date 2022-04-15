@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:32:24 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 09:19:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,8 @@
 /*                              Main directory                                */
 /* ************************************************************************** */
 
+int		main(int argc, char **argv);
 int		rt_error(char const *error_message, bool DISPLAY_ERROR);
-
-/* ************************************************************************** */
-/*                               Mlx directory                                */
-/* ************************************************************************** */
-
-int		open_window(t_scene *rt_scene);
-int		key_hook(int keycode, t_scene *scene);
-int		close_window(t_scene *scene);
 
 /* ************************************************************************** */
 /*                             Parsing directory                              */
@@ -60,16 +53,22 @@ void	print_structure(t_scene *rt_scene);
 void	free_structure(t_scene *rt_scene, t_counter elements);
 
 /* ************************************************************************** */
-/*                          Raytracinging directory                           */
+/*                               Mlx directory                                */
 /* ************************************************************************** */
 
-void	draw_circle(t_scene *scene);
-bool	intersection(t_scene *scene, t_sphere sphere, t_3d *p, t_3d *n);
+int		open_window(t_scene *rt_scene);
+int		key_hook(int keycode, t_scene *scene);
+int		close_window(t_scene *scene);
 
 /* ************************************************************************** */
 /*                              Vector directory                              */
 /* ************************************************************************** */
 
+/* t_3d structure stores vectors (3D direction) or points (3D position).
+ * Points and vectors can be transformed using linear transformations,
+ * translation and rotation are examples of linear transformation.*/
+
+t_3d	new_vector(float x, float y, float z);
 t_3d	add_vector(t_3d a, t_3d b);
 t_3d	sub_vector(t_3d a, t_3d b);
 t_3d	div_vector(t_3d a, double b);
@@ -77,5 +76,12 @@ t_3d	mul_vector(double a, t_3d b);
 double	scalar_product(t_3d a, t_3d b);
 double	norm_square(t_3d a);
 t_3d	normalize(t_3d a);
+
+/* ************************************************************************** */
+/*                          Raytracinging directory                           */
+/* ************************************************************************** */
+
+void	draw_circle(t_scene *scene);
+bool	intersection(t_scene *scene, t_sphere sphere, t_3d *p, t_3d *n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 01:25:13 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/11 08:35:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 09:05:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	fill_sphere(char **array, size_t *index, t_sphere *sphere)
 		ft_free_array(array);
 		return (rt_error("Syntax error : Sphere number of arguments.", true));
 	}
-	if (set_point(&(sphere->center), array[1]))
+	if (set_point(&(sphere->point), array[1]))
 	{
 		ft_free_array(array);
 		return (1);

@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/04/14 16:55:42 by cmariot          ###   ########.fr        #
+#    Updated: 2022/04/15 09:12:08 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,8 @@ MLX_DIR		= open_window.c \
 			  key_hook.c \
 			  close_window.c
 
-VECTORS		= add_vector.c \
+VECTORS		= new_vector.c \
+			  add_vector.c \
 			  div_vector.c \
 			  mul_vector.c \
 			  normalize.c \

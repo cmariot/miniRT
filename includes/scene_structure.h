@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:48:55 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/10 19:15:35 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 09:04:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 /* Definition of the structure used to store the scene informations for
  * the miniRT project */
 
+/* The t_3d structure is used to store positions and directions in
+ * three dimensional space. */
 typedef struct s_3d
 {
 	double			x;
@@ -33,8 +35,8 @@ typedef struct s_ambient_light
 
 typedef struct s_camera
 {
-	t_3d			pov;
-	t_3d			orientation;
+	t_3d			point;
+	t_3d			direction;
 	t_3d			ray_direction;
 	double			fov;
 }	t_camera;
@@ -48,22 +50,22 @@ typedef struct s_light
 
 typedef struct s_sphere
 {
-	t_3d			center;
+	t_3d			point;
 	double			diameter;
 	t_3d			color;
 }	t_sphere;
 
 typedef struct s_plan
 {
-	t_3d			center;
-	t_3d			orientation;
+	t_3d			point;
+	t_3d			direction;
 	t_3d			color;
 }	t_plan;
 
 typedef struct s_cylinder
 {
-	t_3d			center;
-	t_3d			orientation;
+	t_3d			point;
+	t_3d			direction;
 	double			diameter;
 	double			heigth;
 	t_3d			color;
