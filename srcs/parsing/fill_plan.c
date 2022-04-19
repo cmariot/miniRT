@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 01:25:19 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 11:20:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:50:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	fill_plan(char **array, size_t *index, t_plan *plan)
 		ft_free_array(array);
 		return (1);
 	}
-	if (set_colors(array[3], &(plan->color)))
+	if (set_colors(array[3], &(plan->color), &(plan->trgb_color)))
 	{
 		ft_free_array(array);
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 16:00:41 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 13:10:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		fill_structure(t_scene *rt_scene, const char *file);
 int		set_double(char *str, double *to_fill, double min, double max);
 int		set_point(t_3d *coordinates, char *str);
 int		set_orientation(t_3d *orientation, char *str);
-int		set_colors(char *rgb, t_3d *colors);
+int		set_colors(char *rgb, t_3d *colors, int *trgb);
 int		trgb_color(int t, int r, int g, int b);
 int		fill_ambient_light(char **array, t_ambient_light *ambient_light);
 int		fill_camera(char **array, t_camera *camera);
@@ -85,7 +85,7 @@ float	fast_sqrt(float number);
 /*                          Raytracinging directory                           */
 /* ************************************************************************** */
 
-void	draw_circle(t_scene *scene);
+void	rendering(t_scene *scene);
 bool	intersection(t_scene *scene, t_sphere sphere, t_3d *p, t_3d *n);
 
 #endif

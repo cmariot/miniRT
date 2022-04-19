@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:15:07 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 10:51:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 13:10:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	open_window(t_scene *scene)
 			"miniRT");
 	if (scene->mlx.win_ptr == NULL)
 		return (rt_error("MLX: mlx_open_window() failed."));
-	draw_circle(scene);
+	rendering(scene);
 	mlx_key_hook(scene->mlx.win_ptr, key_hook, scene);
 	mlx_hook(scene->mlx.win_ptr, 33, 1L << 5, close_window, scene);
 	mlx_loop(scene->mlx.mlx_ptr);

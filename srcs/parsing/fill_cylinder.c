@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 01:24:49 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 12:22:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:46:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	fill_cylinder(char **array, size_t *index, t_cylinder *cylinder)
 		ft_free_array(array);
 		return (second_line_error("Syntax error : Cylinder size"));
 	}
-	if (set_colors(array[5], &(cylinder->color)))
+	if (set_colors(array[5], &(cylinder->color), &(cylinder->trgb_color)))
 	{
 		ft_free_array(array);
 		return (1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_circle.c                                      :+:      :+:    :+:   */
+/*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:27:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 17:32:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:42:23 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,43 +21,41 @@ t_3d	get_camera_ray(int i, int j, t_scene *scene)
 {
 	t_3d	direction;
 
-	direction.x = j - SIZE_X / 2;
-	direction.y = i - SIZE_Y / 2;
-	direction.z = -SIZE_X / (2 * tan((scene->camera.fov * PI / 180) / 2));
-	direction = normalize(direction);
-	return (direction);
+	direction.x = j - SIZE_X * 0.5;
+	direction.y = i - SIZE_Y * 0.5;
+	direction.z = -SIZE_X / (2 * tan((scene->camera.fov) * 0.5));
+	return (normalize(direction));
 }
 
-void	draw_circle(t_scene *scene)
+/* Pour chaque pixel de coordonnees (x, y),
+ * Obtenir la direction du rayon partant du pixel
+ * et se dirigeant vers les objets de la scene (Backward Tracking) */
+void	rendering(t_scene *scene)
 {
-	int			i;
-	int			j;
-	size_t		k;
+	size_t		pixel_y;
+	size_t		pixel_x;
+	size_t		index_sphere;
 	t_3d		p;
 	t_3d		n;
-	t_3d		intensite_pixel;
 
-	i = 0;
-	while (i < SIZE_Y - 1)
+	pixel_y = 0;
+	while (pixel_y < SIZE_Y)
 	{
-		j = 0;
-		while (j < SIZE_X - 1)
+		pixel_x = 0;
+		while (pixel_x < SIZE_X)
 		{
-			scene->camera.ray_direction = get_camera_ray(i, j, scene);
-			intensite_pixel = new_vector(0, 0, 0);
-			k = 0;
-			while (k < scene->elements.nb_sphere)
+			scene->camera.ray_direction
+				= get_camera_ray(pixel_y, pixel_x, scene);
+			index_sphere = 0;
+			while (index_sphere < scene->elements.nb_sphere)
 			{
-				if (intersection(scene, scene->sphere[k], &p, &n))
-				{
+				if (intersection(scene, scene->sphere[index_sphere], &p, &n))
 					mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
-						j, i, trgb_color(0, scene->sphere[k].color.x, scene->sphere[k].color.y,
-							scene->sphere[k].color.z));
-				}
-				k++;
+						pixel_x, pixel_y, scene->sphere[index_sphere].trgb_color);
+				index_sphere++;
 			}
-			j++;
+			pixel_x++;
 		}
-		i++;
+		pixel_y++;
 	}
 }

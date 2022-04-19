@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 22:04:53 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 11:35:31 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:57:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	fill_camera(char **array, t_camera *camera)
 		ft_free_array(array);
 		return (rt_error("Syntax error : Camera FOV"));
 	}
+	camera->fov = camera->fov * PI / 180;
 	ft_free_array(array);
 	return (0);
 }

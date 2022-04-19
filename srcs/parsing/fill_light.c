@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 01:11:16 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 11:44:45 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:48:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	fill_light(char **array, t_light *light)
 		ft_free_array(array);
 		return (second_line_error("Syntax error : Light ratio"));
 	}
-	if (set_colors(array[3], &(light->color)))
+	if (set_colors(array[3], &(light->color), &(light->trgb_color)))
 	{
 		ft_free_array(array);
 		return (1);
