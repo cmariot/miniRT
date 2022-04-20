@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:48:55 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 09:04:21 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:34:46 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_ambient_light
 {
 	double			ratio;
 	t_3d			color;
+	int				trgb_color;
 }	t_ambient_light;
 
 typedef struct s_camera
@@ -46,6 +47,7 @@ typedef struct s_light
 	t_3d			point;
 	double			ratio;
 	t_3d			color;
+	int				trgb_color;
 }	t_light;
 
 typedef struct s_sphere
@@ -53,6 +55,7 @@ typedef struct s_sphere
 	t_3d			point;
 	double			diameter;
 	t_3d			color;
+	int				trgb_color;
 }	t_sphere;
 
 typedef struct s_plan
@@ -60,6 +63,7 @@ typedef struct s_plan
 	t_3d			point;
 	t_3d			direction;
 	t_3d			color;
+	int				trgb_color;
 }	t_plan;
 
 typedef struct s_cylinder
@@ -69,6 +73,7 @@ typedef struct s_cylinder
 	double			diameter;
 	double			heigth;
 	t_3d			color;
+	int				trgb_color;
 }	t_cylinder;
 
 typedef struct s_counter

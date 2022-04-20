@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:56:26 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 12:26:03 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:46:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	fill_ambient_light(char **array, t_ambient_light *ambient_light)
 		ft_free_array(array);
 		return (second_line_error("Ambient light ratio."));
 	}
-	if (set_colors(array[2], &(ambient_light->color)))
+	if (set_colors(array[2], &(ambient_light->color), &(ambient_light->trgb_color)))
 	{
 		ft_free_array(array);
 		return (second_line_error("Ambient light color"));

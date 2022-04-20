@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/04/20 11:43:10 by cmariot          ###   ########.fr        #
+#    Updated: 2022/04/20 11:48:56 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ PARSING		= parse_scene.c \
 			  print_structure.c \
 			  free_structure.c
 
-RAYTRACING	= draw_circle.c \
+RAYTRACING	= rendering.c \
 			  intersection.c
 
 MLX_DIR		= open_window.c \

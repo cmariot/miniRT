@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 02:16:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 18:29:47 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/20 11:48:18 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ double	get_delta(t_3d ray_direction, t_3d ray_origin, t_sphere sphere)
 	b = 2 * scalar_product(ray_direction,
 			sub_vector(sphere.point, ray_origin));
 	c = norm_square(sub_vector(sphere.point, ray_origin))
-		- (sphere.diameter / 2) * (sphere.diameter / 2);
+		- (sphere.diameter * 0.5) * (sphere.diameter * 0.5);
 	delta = b * b - 4 * (a * c);
 	return (delta);
 }
@@ -70,12 +70,12 @@ bool	intersection(t_scene *scene, t_sphere sphere, t_3d *p, t_3d *n)
 	delta = get_delta(scene->camera.ray_direction, scene->camera.point, sphere);
 	if (delta < 0)
 		return (false);
-	t1 = get_t1(delta, scene->camera.ray_direction, sphere.point,
-			scene->camera.point);
 	t2 = get_t2(delta, scene->camera.ray_direction, sphere.point,
 			scene->camera.point);
 	if (t2 < 0)
 		return (false);
+	t1 = get_t1(delta, scene->camera.ray_direction, sphere.point,
+			scene->camera.point);
 	if (t1 > 0)
 		t = t1;
 	else

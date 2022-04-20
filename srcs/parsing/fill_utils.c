@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 01:21:20 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 13:07:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:49:23 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	trgb_color(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	set_colors(char *rgb, t_3d *color)
+int	set_colors(char *rgb, t_3d *color, int *trgb)
 {
 	char	**array;
 
@@ -36,6 +36,7 @@ int	set_colors(char *rgb, t_3d *color)
 		ft_free_array(array);
 		return (second_line_error("Syntax error : Invalid color,"));
 	}
+	*trgb = trgb_color(0, color->x, color->y, color->z);
 	ft_free_array(array);
 	return (0);
 }
@@ -73,6 +74,7 @@ int	set_orientation(t_3d *orientation, char *str)
 		ft_free_array(array);
 		return (1);
 	}
+	*orientation = normalize(*orientation);
 	ft_free_array(array);
 	return (0);
 }

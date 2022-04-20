@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:53:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 18:23:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/20 11:48:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ float	fast_sqrt(float number)
  * lentgh of a vector. */
 double	norm(t_3d a)
 {
-	return (sqrt(norm_square(a)));
+	return (fast_sqrt(norm_square(a)));
 }
 
 /* Return the square of a vector norm */
