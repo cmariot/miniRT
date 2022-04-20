@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:27:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/20 11:46:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/20 23:25:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	rendering(t_scene *scene)
 	size_t		index_sphere;
 	t_3d		p;
 	t_3d		n;
+	double		object_distance;
+	bool		has_intersection = false;
 
 	pixel_y = 0;
 	while (pixel_y < SIZE_Y)
@@ -47,13 +49,30 @@ void	rendering(t_scene *scene)
 			scene->camera.ray_direction
 				= get_camera_ray(pixel_y, pixel_x, scene);
 			index_sphere = 0;
+			object_distance = 100000000000000000;
+			bool print_background = true;
 			while (index_sphere < scene->elements.nb_sphere)
 			{
-				if (intersection(scene, scene->sphere[index_sphere], &p, &n))
+				has_intersection = intersection(scene, scene->sphere[index_sphere], &p, &n);
+				if (has_intersection)
+				{
+					print_background = false;
+					double distance_cam = distance(scene->camera.point, p);
+					if (distance_cam > object_distance)
+					{
+						index_sphere++;
+						continue ;
+					}
+					object_distance = distance_cam;
 					mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
 						pixel_x, pixel_y, scene->sphere[index_sphere].trgb_color);
+				}
 				index_sphere++;
 			}
+			if (print_background == true)
+				mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
+					pixel_x, pixel_y, scene->ambient_light.trgb_color);
+
 			pixel_x++;
 		}
 		pixel_y++;

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 02:16:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/20 11:48:18 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/20 22:43:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ bool	intersection(t_scene *scene, t_sphere sphere, t_3d *p, t_3d *n)
 		t = t1;
 	else
 		t = t2;
-	*p = add_vector(scene->camera.point, mul_vector(t, scene->camera.ray_direction));
+	*p = add_vector(scene->camera.point,
+			mul_vector(t, scene->camera.ray_direction));
 	*n = normalize(sub_vector(*p, sphere.point));
 	return (true);
 }

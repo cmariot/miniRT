@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/20 11:46:58 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/20 22:56:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ double	norm(t_3d a);
 double	norm_square(t_3d a);
 t_3d	normalize(t_3d a);
 t_3d	cross_product(t_3d a, t_3d b);
+double	distance(t_3d point_a, t_3d point_b);
 
 float	fast_sqrt(float number);
 
