@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/27 18:57:32 by cmariot           #+#    #+#              #
-#    Updated: 2022/03/20 23:32:43 by cmariot          ###   ########.fr        #
+#    Updated: 2022/04/20 11:41:22 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ DIROBJ		= objs/
 
 SRC			= colors.c \
 			  ft_arraylen.c \
-			  ft_atofloat.c \
+			  ft_atodouble.c \
 			  ft_atoi.c \
 			  ft_atoi_base.c \
 			  ft_bzero.c \

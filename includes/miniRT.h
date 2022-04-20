@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 16:00:41 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/15 19:22:19 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include "libft.h"
 # include "scene_structure.h"
 # include "mlx_structure.h"
+
+typedef struct s_matrix
+{
+	float	**matrix;
+	size_t	rows;
+	size_t	columns;
+}	t_matrix;
 
 /* ************************************************************************** */
 /*                              Main directory                                */
@@ -78,9 +85,12 @@ double	scalar_product(t_3d a, t_3d b);
 double	norm(t_3d a);
 double	norm_square(t_3d a);
 t_3d	normalize(t_3d a);
+t_3d	cross_product(t_3d a, t_3d b);
 
 float	fast_sqrt(float number);
 
+struct s_matrix	create_matrix(size_t rows, size_t columns);
+t_matrix	matrix_multiplication(t_matrix m1, t_matrix m2);
 /* ************************************************************************** */
 /*                          Raytracinging directory                           */
 /* ************************************************************************** */

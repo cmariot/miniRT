@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/04/15 13:39:06 by cmariot          ###   ########.fr        #
+#    Updated: 2022/04/20 11:43:10 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ NAME			 = miniRT
 CC				 = clang
 
 
-CFLAGS			 = -Wall -Wextra -Werror -g3
+CFLAGS			 = -Wall -Wextra -Werror -O3 -g3
 
 
 INCLUDES		 = -I includes
@@ -39,7 +39,7 @@ INCLUDES		+= -I libft/includes
 # **************************************************************************** #
 
 
-LFLAGS			 = -Wall -Wextra -Werror -g3
+LFLAGS			 = -Wall -Wextra -Werror -O3 -g3
 
 
 LIBRAIRY		 = -L ./libft -lft
@@ -118,6 +118,7 @@ VECTORS		= new_vector.c \
 			  sub_vector.c
 
 SRC			= main.c \
+			  matrix/create_matrix.c \
 			$(addprefix parsing/, $(PARSING)) \
 			$(addprefix raytracing/, $(RAYTRACING)) \
 			$(addprefix mlx/, $(MLX_DIR)) \
@@ -137,7 +138,8 @@ DIROBJ		= objs/
 SUB_OBJ_DIR = objs/parsing \
 			  objs/raytracing \
 			  objs/mlx \
-			  objs/vectors
+			  objs/vectors \
+			  objs/matrix
 
 OBJ			= $(SRC:.c=.o)
 
