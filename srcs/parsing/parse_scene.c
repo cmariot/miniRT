@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:33:43 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/08 17:59:49 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/21 22:55:13 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	parse_scene(const char *filename, t_scene *rt_scene)
 		free_structure(rt_scene, rt_scene->elements);
 		return (1);
 	}
-	print_structure(rt_scene);
+	//print_structure(rt_scene);
 	return (0);
 }

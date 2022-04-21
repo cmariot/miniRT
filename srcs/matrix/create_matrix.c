@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:49:00 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 19:23:49 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/21 23:19:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ t_matrix	matrix_multiplication(t_matrix m1, t_matrix m2)
 		while (j < m1.columns)
 		{
 			m.matrix[i][j] = m1.matrix[i][j] * m2.matrix[i][j];
-			printf("%f ", m.matrix[i][j]);
 			j++;
 		}
-		printf("\n");
 		i++;
 	}
 	return (m);

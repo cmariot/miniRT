@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:27:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/20 23:25:54 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/20 23:48:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	rendering(t_scene *scene)
 			if (print_background == true)
 				mlx_pixel_put(scene->mlx.mlx_ptr, scene->mlx.win_ptr,
 					pixel_x, pixel_y, scene->ambient_light.trgb_color);
-
 			pixel_x++;
 		}
 		pixel_y++;
