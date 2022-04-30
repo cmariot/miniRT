@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_mouse_hook.c                                   :+:      :+:    :+:   */
+/*   norm_square.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gicamerl <gicamerl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 16:12:17 by gicamerl          #+#    #+#             */
-/*   Updated: 2018/04/26 16:12:46 by gicamerl         ###   ########.fr       */
+/*   Created: 2022/04/30 19:26:32 by cmariot           #+#    #+#             */
+/*   Updated: 2022/04/30 19:27:01 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_int.h"
+#include "miniRT.h"
 
-int	mlx_mouse_hook(t_win_list *win, int (*funct)(), void *param)
+/* Return the square of a vector norm */
+double	norm_square(t_3d a)
 {
-	win->hooks[ButtonPress].hook = funct;
-	win->hooks[ButtonPress].param = param;
-	win->hooks[ButtonPress].mask = ButtonPressMask;
-	return (0);
+	return (a.x * a.x + a.y * a.y + a.z * a.z);
 }

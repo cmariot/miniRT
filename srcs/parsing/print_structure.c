@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:17:59 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/30 09:07:23 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/01 00:10:47 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_cylinders(t_scene *rt_scene, t_cylinder *cylinder)
 		printf("\tDiameter : %.3f\n", cylinder[i].diameter);
 		printf("\tHeigth : %.3f\n", cylinder[i].heigth);
 		printf("\tColor : R = %.f, G = %.f, B = %.f\n\n", cylinder[i].color.x,
-				cylinder[i].color.y, cylinder[i].color.x);
+			cylinder[i].color.y, cylinder[i].color.x);
 		i++;
 	}
 }
@@ -47,7 +47,7 @@ void	print_plans(t_scene *rt_scene, t_plan *plan)
 		printf("\tOrientation : %.3f, %.3f, %.3f\n", plan[i].direction.x,
 			plan[i].direction.y, plan[i].direction.z);
 		printf("\tColor : R = %.f, G = %.f, B = %.f\n\n", plan[i].color.x,
-				plan[i].color.y, plan[i].color.x);
+			plan[i].color.y, plan[i].color.x);
 		i++;
 	}
 }
@@ -64,7 +64,7 @@ void	print_spheres(t_scene *rt_scene, t_sphere *sphere)
 			sphere[i].point.y, sphere[i].point.z);
 		printf("\tDiameter : %.3f\n", sphere[i].diameter);
 		printf("\tColor : R = %.f, G = %.f, B = %.f\n\n", sphere[i].color.x,
-				sphere[i].color.y, sphere[i].color.x);
+			sphere[i].color.y, sphere[i].color.x);
 		i++;
 	}
 }
@@ -74,20 +74,23 @@ void	print_main_elements(t_scene *rt_scene)
 {
 	print(1, "Ambient light :\n");
 	printf("\tRatio : %.3f\n", rt_scene->ambient_light.ratio);
-	printf("\tColor : R = %.f, G = %.f, B = %.f\n\n", rt_scene->ambient_light.color.x,
-			rt_scene->ambient_light.color.y, rt_scene->ambient_light.color.x);
+	printf("\tColor : R = %.f, G = %.f, B = %.f\n\n",
+		rt_scene->ambient_light.color.x, rt_scene->ambient_light.color.y,
+		rt_scene->ambient_light.color.x);
 	print(1, "Camera :\n");
 	printf("\tPOV coordinates : %.3f, %.3f, %.3f\n", rt_scene->camera.point.x,
 		rt_scene->camera.point.y, rt_scene->camera.point.z);
-	printf("\tOrientation vector : %.3f, %.3f, %.3f\n", rt_scene->camera.direction.x,
-		rt_scene->camera.direction.y, rt_scene->camera.direction.z);
-	printf("\tFOV : %.1f (degres) %f (radians)\n\n", rt_scene->camera.fov * (180 / PI), rt_scene->camera.fov);
+	printf("\tOrientation vector : %.3f, %.3f, %.3f\n",
+		rt_scene->camera.direction.x, rt_scene->camera.direction.y,
+		rt_scene->camera.direction.z);
+	printf("\tFOV : %.1f (degres) %f (radians)\n\n",
+		rt_scene->camera.fov * (180 / PI), rt_scene->camera.fov);
 	print(1, "Light :\n");
 	printf("\tPOL coordinates : %.3f, %.3f, %.3f\n", rt_scene->light.point.x,
 		rt_scene->light.point.y, rt_scene->light.point.z);
 	printf("\tRatio : %.3f\n", rt_scene->light.ratio);
 	printf("\tColor : R = %.f, G = %.f, B = %.f\n\n", rt_scene->light.color.x,
-			rt_scene->light.color.y, rt_scene->light.color.x);
+		rt_scene->light.color.y, rt_scene->light.color.x);
 }
 
 void	print_structure(t_scene *rt_scene)

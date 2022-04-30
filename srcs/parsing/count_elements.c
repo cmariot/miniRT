@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:59:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 12:24:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/01 00:16:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	init_scene(t_scene *rt_scene)
 	rt_scene->elements.nb_ambient_light = 0;
 	rt_scene->elements.nb_camera = 0;
 	rt_scene->elements.nb_light = 0;
+	rt_scene->elements.current_sphere = 0;
 	rt_scene->elements.nb_sphere = 0;
 	rt_scene->elements.nb_plan = 0;
 	rt_scene->elements.nb_cylinder = 0;

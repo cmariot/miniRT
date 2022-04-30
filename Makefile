@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/04/30 08:44:16 by cmariot          ###   ########.fr        #
+#    Updated: 2022/04/30 19:46:47 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,8 @@ PARSING		= parse_scene.c \
 			  print_structure.c \
 			  free_structure.c
 
-RAYTRACING	= rendering.c
+RAYTRACING	= rendering.c \
+			  intersection.c
 
 MLX_DIR		= open_window.c \
 			  key_hook.c \
@@ -110,9 +111,11 @@ MLX_DIR		= open_window.c \
 VECTORS		= new_vector.c \
 			  add_vector.c \
 			  div_vector.c \
+			  length.c \
 			  mul_vector.c \
 			  normalize.c \
 			  norm.c \
+			  norm_square.c \
 			  scalar_product.c \
 			  sub_vector.c
 

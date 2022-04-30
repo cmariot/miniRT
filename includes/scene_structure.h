@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:48:55 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/19 12:34:46 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/01 00:15:04 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_sphere
 {
 	t_3d			point;
 	double			diameter;
+	double			radius;
 	t_3d			color;
 	int				trgb_color;
 }	t_sphere;
@@ -81,6 +82,7 @@ typedef struct s_counter
 	size_t			nb_ambient_light;
 	size_t			nb_camera;
 	size_t			nb_light;
+	size_t			current_sphere;
 	size_t			nb_sphere;
 	size_t			index_sphere;
 	size_t			nb_plan;

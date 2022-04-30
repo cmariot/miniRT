@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:34:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 11:21:21 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/30 19:23:44 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		ft_putstr(char *s);
 void		ft_putstr_fd(char *s, int fd);
 char		*ft_realloc(void *previous, char *new);
 char		**ft_split(char const *s, char c);
+float		ft_sqrt(float number);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strdel(char **adr_str);
 char		*ft_strdup(const char *s1);

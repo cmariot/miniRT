@@ -6,14 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:35:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 18:40:37 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/04/30 19:20:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 /* The result of the cross product is another vector which is orthogonal
- * to the other two. */
+ * from a and b. */
 
 t_3d	cross_product(t_3d a, t_3d b)
 {

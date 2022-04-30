@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/30 08:39:54 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/01 01:29:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@
 # include "libft.h"
 # include "scene_structure.h"
 # include "mlx_structure.h"
-
-typedef struct s_matrix
-{
-	float	**matrix;
-	size_t	rows;
-	size_t	columns;
-}	t_matrix;
 
 /* ************************************************************************** */
 /*                              Main directory                                */
@@ -76,28 +69,23 @@ int		close_window(t_scene *scene);
  * Points and vectors can be transformed using linear transformations,
  * translation and rotation are examples of linear transformation.*/
 
-t_3d	new_vector(float x, float y, float z);
 t_3d	add_vector(t_3d a, t_3d b);
-t_3d	sub_vector(t_3d a, t_3d b);
+t_3d	cross_product(t_3d a, t_3d b);
 t_3d	div_vector(t_3d a, double b);
+double	length(t_3d point_a, t_3d point_b);
 t_3d	mul_vector(double a, t_3d b);
-double	scalar_product(t_3d a, t_3d b);
+t_3d	new_vector(float x, float y, float z);
 double	norm(t_3d a);
 double	norm_square(t_3d a);
 t_3d	normalize(t_3d a);
-t_3d	cross_product(t_3d a, t_3d b);
-double	distance(t_3d point_a, t_3d point_b);
-
-float	fast_sqrt(float number);
-
-struct s_matrix		create_matrix(size_t rows, size_t columns);
-t_matrix			matrix_multiplication(t_matrix m1, t_matrix m2);
+double	scalar_product(t_3d a, t_3d b);
+t_3d	sub_vector(t_3d a, t_3d b);
 
 /* ************************************************************************** */
 /*                          Raytracinging directory                           */
 /* ************************************************************************** */
 
 void	rendering(t_scene *scene);
-bool	intersection(t_scene *scene, t_sphere sphere, t_3d *p, t_3d *n);
+bool	intersection(t_scene *scene, t_sphere sphere);
 
 #endif
