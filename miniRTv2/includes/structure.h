@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 09:23:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 12:35:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_cam {
 	t_3d			direction;
 	double			fov_horizontal;
 	double			fov_vertical;
-	size_t			screen_size_y;
-	size_t			screen_size_x;
+	double			screen_size_y;
+	double			screen_size_x;
 	t_image			image;
 }	t_cam;
 
@@ -46,13 +46,13 @@ typedef struct s_light {
 	double			ratio;
 }	t_light;
 
-typedef struct t_ambient {
+typedef struct t_amb {
 	t_color			color;
 	double			ratio;
-}	t_ambient;
+}	t_amb;
 
 typedef struct s_light_list {
-	t_ambient		ambient;
+	t_amb			ambient;
 	t_light			*spot_light;
 }	t_light_list;
 

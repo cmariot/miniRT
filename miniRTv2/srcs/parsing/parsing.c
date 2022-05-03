@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:03:29 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 09:26:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 10:44:30 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	parsing(t_world *world, const char *filename)
 		return (1);
 	if (fill_world(world, filename))
 		return (1);
-	//print_structure(world, world->obj_list.objs);
-	//free(world->obj_list.objs);
+	print_structure(world, &world->obj_list);
+	free(world->obj_list.objs);
+	free(world->camera);
+	free(world->light_list.spot_light);
 	return (0);
 }

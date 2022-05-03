@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/03 09:20:17 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/03 12:16:40 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,6 +97,8 @@ PARSING		= parsing.c \
 			  new_plan.c \
 			  new_cylinder.c \
 			  new_camera.c \
+			  new_ambient.c \
+			  new_light.c \
 			  utils.c \
 #			  count_elements.c \
 #			  alloc_structure.c \
@@ -203,7 +205,7 @@ $(NAME)	: $(DIROBJS)
 
 
 leaks :	all
-		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) scenes/minimaliste.rt
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) scenes/00_minimaliste.rt
 
 test :	all
 		./miniRT scenes/minimaliste.rt

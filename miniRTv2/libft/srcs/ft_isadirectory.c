@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 14:52:22 by cmariot           #+#    #+#             */
-/*   Updated: 2022/01/10 12:32:11 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 10:27:52 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ bool	ft_isadirectory(char *path)
 	fd_dir = opendir(path);
 	if (fd_dir == NULL)
 	{
-		return (FALSE);
+		return (false);
 	}
 	else
 	{
 		closedir(fd_dir);
-		return (TRUE);
+		return (true);
 	}
 }

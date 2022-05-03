@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:34:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 01:15:04 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 10:25:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define LIBFT_H
 
 # define BUFFER_SIZE 50
-
-# define TRUE 1
-# define FALSE 0
 
 # include <string.h>
 # include <stdlib.h>
