@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 16:21:45 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 16:57:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,16 @@ typedef struct s_obj_list {
 	t_obj			*objs;
 }	t_obj_list;
 
+typedef struct s_mlx {
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_mlx;
+
 typedef struct s_world {
 	t_cam			*camera;
 	t_obj_list		obj_list;
 	t_light_list	light_list;
+	t_mlx			mlx;
 }	t_world;
 
 #endif

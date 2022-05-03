@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:11:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 16:25:03 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 16:51:42 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ t_light	new_light(char **array, int *error)
 {
 	t_light	light;
 
-	light.ratio = 0;
 	if (ft_arraylen(array) != 4)
+	{
 		*error = rt_error("Too much arguments in light declaration.");
+		light.ratio = 0;
+	}
 	else if (set_position(&(light.position), array[1]))
 		*error = second_line_error("Spot light position");
 	else if (set_double(&(light.ratio), array[2], 0.0, 1.0))

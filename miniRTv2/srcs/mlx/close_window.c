@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   close_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 22:21:02 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 17:05:05 by cmariot          ###   ########.fr       */
+/*   Created: 2022/04/09 11:26:19 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/03 17:02:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	main(int argc, char **argv)
+int	close_window(t_world *world)
 {
-	t_world		world;
-
-	if (argc == 2)
-	{
-		if (parsing(&world, argv[1]))
-			return (1);
-		if (open_window(&world))
-			return (1);
-		return (0);
-	}
-	else
-		return (rt_error("Wrong number of arguments."));
+	free_world(world);
+	mlx_clear_window(world->mlx.mlx_ptr, world->mlx.win_ptr);
+	mlx_destroy_window(world->mlx.mlx_ptr, world->mlx.win_ptr);
+	mlx_destroy_display(world->mlx.mlx_ptr);
+	free(world->mlx.mlx_ptr);
+	exit(EXIT_SUCCESS);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 14:06:33 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 17:08:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "libft.h"
 # include "vector3.h"
 # include "structure.h"
+# include "mlx.h"
 
 /* ************************************************************************** */
 /*                              Main directory                                */
@@ -58,6 +59,10 @@ void	print_cylinder(t_obj cylinder);
 /* ************************************************************************** */
 /*                               Mlx directory                                */
 /* ************************************************************************** */
+
+int		close_window(t_world *world);
+int		open_window(t_world *world);
+int		key_hook(int keycode, t_world *world);
 
 /* ************************************************************************** */
 /*                          Raytracinging directory                           */

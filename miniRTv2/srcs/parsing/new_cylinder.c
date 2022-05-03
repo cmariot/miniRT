@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 16:25:40 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 16:53:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ t_obj	new_cylinder(char **array, int *error)
 		*error = 1;
 	else if (set_direction(&(cylinder.direction), array[2]))
 		*error = 1;
-	else if (set_double(&(cylinder.radius), array[3], 0.0, INT_MAX)
-		|| set_double(&(cylinder.height), array[4], 0.0, INT_MAX))
-		*error = second_line_error("Syntax error : Cylinder size");
+	else if (set_double(&(cylinder.radius), array[3], 0.0, INT_MAX))
+		*error = second_line_error("Syntax error : Cylinder radius");
+	else if (set_double(&(cylinder.height), array[4], 0.0, INT_MAX))
+		*error = second_line_error("Syntax error : Cylinder height");
 	else if (set_colors(&(cylinder.color), array[5]))
 		*error = 1;
-	cylinder.radius /= 2.0;
+	else
+		cylinder.radius /= 2.0;
 	return (cylinder);
 }

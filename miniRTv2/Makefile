@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/03 16:47:21 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/03 17:08:55 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,9 +105,9 @@ PARSING		= parsing.c \
 #RAYTRACING	= rendering.c \
 #			  intersection.c
 #
-#MLX_DIR		= open_window.c \
-#			  key_hook.c \
-#			  close_window.c
+MLX_DIR		= open_window.c \
+			  key_hook.c \
+			  close_window.c
 
 VECTORS		= new_vector.c \
 			  add_vector.c \
@@ -122,10 +122,10 @@ VECTORS		= new_vector.c \
 
 SRC			= main.c \
 			  $(addprefix parsing/, $(PARSING)) \
-			  $(addprefix vectors/, $(VECTORS)) \
 			  $(addprefix utils/, $(UTILS)) \
+			  $(addprefix mlx/, $(MLX_DIR)) \
+			  $(addprefix vectors/, $(VECTORS)) \
 #			  $(addprefix raytracing/, $(RAYTRACING)) \
-#			  $(addprefix mlx/, $(MLX_DIR)) \
 
 SRCS		= $(addprefix $(DIRSRC), $(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:32:00 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 16:24:23 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 16:53:26 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_obj	new_sphere(char **array, int *error)
 		*error = second_line_error("Syntax error : Sphere diameter");
 	else if (set_colors(&(sphere.color), array[3]))
 		*error = 1;
-	sphere.radius /= 2;
+	else
+		sphere.radius /= 2;
 	return (sphere);
 }
