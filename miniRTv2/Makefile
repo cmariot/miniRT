@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/03 12:16:40 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/03 16:47:21 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,14 +84,15 @@ LIBRAIRY		+= -L $(MLX) -lmlx
 
 DIRSRC		= srcs/
 
-UTILS		= error.c
+UTILS		= error.c \
+			  print_structure.c \
+			  free_world.c \
 
 PARSING		= parsing.c \
 			  check_extension.c \
 			  check_reading_access.c \
 			  get_object_list.c \
 			  memory_allocation.c \
-			  print_structure.c \
 			  fill_world.c \
 			  new_sphere.c \
 			  new_plan.c \
@@ -100,19 +101,7 @@ PARSING		= parsing.c \
 			  new_ambient.c \
 			  new_light.c \
 			  utils.c \
-#			  count_elements.c \
-#			  alloc_structure.c \
-#			  error.c \
-#			  fill_structure.c \
-#			  fill_ambient_light.c \
-#			  fill_camera.c \
-#			  fill_light.c \
-#			  fill_sphere.c \
-#			  fill_plan.c \
-#			  fill_cylinder.c \
-#			  fill_utils.c \
-#			  free_structure.c
-#
+
 #RAYTRACING	= rendering.c \
 #			  intersection.c
 #
@@ -132,11 +121,11 @@ VECTORS		= new_vector.c \
 			  sub_vector.c
 
 SRC			= main.c \
-			$(addprefix parsing/, $(PARSING)) \
-			$(addprefix vectors/, $(VECTORS)) \
-			$(addprefix utils/, $(UTILS)) \
-#			$(addprefix raytracing/, $(RAYTRACING)) \
-#			$(addprefix mlx/, $(MLX_DIR)) \
+			  $(addprefix parsing/, $(PARSING)) \
+			  $(addprefix vectors/, $(VECTORS)) \
+			  $(addprefix utils/, $(UTILS)) \
+#			  $(addprefix raytracing/, $(RAYTRACING)) \
+#			  $(addprefix mlx/, $(MLX_DIR)) \
 
 SRCS		= $(addprefix $(DIRSRC), $(SRC))
 

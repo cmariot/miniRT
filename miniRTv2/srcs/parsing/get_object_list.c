@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:22:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 09:19:46 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 14:16:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	get_element_type(t_obj_list *obj_list, char *line)
 
 	splitted_line = ft_split(line, ' ');
 	if (!splitted_line)
-		return (rt_error("Could not split the line."));
+		return (rt_error("The ft_split function failed in get_element_type()"));
 	if (ft_strcmp(splitted_line[0], "sp") == 0
 		|| ft_strcmp(splitted_line[0], "pl") == 0
 		|| ft_strcmp(splitted_line[0], "cy") == 0)
@@ -72,7 +72,7 @@ int	get_object_list(t_obj_list *obj_list, const char *filename)
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
-		return (rt_error("Could not open the scene."));
+		return (rt_error("The scene file can't be open."));
 	set_initial_values(obj_list);
 	error = false;
 	while (1)

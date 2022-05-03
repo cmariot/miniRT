@@ -6,27 +6,24 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:36:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 12:11:30 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 16:26:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	fill_ambient(t_amb *ambient_light, char **array)
-{
-	if (ft_arraylen(array) != 3)
-		return (rt_error("Wrong line syntax for the ambient."));
-	if (set_double(&(ambient_light->ratio), array[1], 0.0, 1.0))
-		return (second_line_error("Ambient light ratio."));
-	if (set_colors(&(ambient_light->color), array[2]))
-		return (second_line_error("Ambient light color"));
-	return (0);
-}
-
 t_amb	new_ambient(char **array, int *error)
 {
 	t_amb	ambient;
 
-	*error = fill_ambient(&ambient, array);
+	if (ft_arraylen(array) != 3)
+	{
+		*error = rt_error("Too much arguments in ambient light declaration.");
+		ambient.ratio = 0;
+	}
+	else if (set_double(&(ambient.ratio), array[1], 0.0, 1.0))
+		*error = second_line_error("Ambient light ratio.");
+	else if (set_colors(&(ambient.color), array[2]))
+		*error = second_line_error("Ambient light color");
 	return (ambient);
 }

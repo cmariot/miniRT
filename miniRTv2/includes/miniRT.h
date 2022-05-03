@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 12:16:26 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 14:06:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	print_cylinder(t_obj cylinder);
 /*                              Utils directory                               */
 /* ************************************************************************** */
 
+void	free_world(t_world *world);
 int		rt_error(char const *error_message);
 int		second_line_error(char const *error_message);
 

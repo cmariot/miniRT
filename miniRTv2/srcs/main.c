@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:21:02 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/02 19:34:57 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 15:46:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	{
 		if (parsing(&world, argv[1]))
 			return (1);
+		free_world(&world);
 		return (0);
 	}
 	else
