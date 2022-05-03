@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isadirectory.c                                  :+:      :+:    :+:   */
+/*   new_plan.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/31 14:52:22 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 10:27:52 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/02 19:33:20 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/03 23:01:32 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-/* Check if path is a directory */
-
-bool	ft_isadirectory(char *path)
+int	new_plan(t_obj *plan, char **array)
 {
-	DIR	*fd_dir;
-
-	fd_dir = opendir(path);
-	if (fd_dir == NULL)
-	{
-		return (false);
-	}
-	else
-	{
-		closedir(fd_dir);
-		return (true);
-	}
+	plan->print = &print_plan;
+	if (ft_arraylen(array) != 4)
+		return (rt_error("Too much arguments in plan declaration."));
+	else if (set_position(&(plan->position), array[1]))
+		return (1);
+	else if (set_direction(&(plan->direction), array[2]))
+		return (1);
+	else if (set_colors(&(plan->color), array[3]))
+		return (1);
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:39:25 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 11:20:48 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/01 22:46:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_3d	mul_vector(double a, t_3d b)
+t_3d	mul_vector(t_3d b, double a)
 {
 	t_3d	c;
 

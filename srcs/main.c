@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/19 21:57:45 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/30 08:42:58 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/01 22:21:02 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/03 23:33:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_scene	rt_scene;
+	t_world		world;
 
 	if (argc == 2)
 	{
-		if (parse_scene(argv[1], &rt_scene))
+		if (parsing(&world, argv[1]))
 			return (1);
-		if (open_window(&rt_scene))
+		if (open_window(&world))
 			return (1);
 		return (0);
 	}

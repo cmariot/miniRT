@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/04/30 19:46:47 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/03 23:20:50 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ NAME			 = miniRT
 CC				 = clang
 
 
-CFLAGS			 = -Wall -Wextra -Werror -O3 -g3
+CFLAGS			 = -Wall -Wextra -Werror -g3
 
 
 INCLUDES		 = -I includes
@@ -39,7 +39,7 @@ INCLUDES		+= -I libft/includes
 # **************************************************************************** #
 
 
-LFLAGS			 = -Wall -Wextra -Werror -O3 -g3
+LFLAGS			 = -Wall -Wextra -Werror -g3
 
 
 LIBRAIRY		 = -L ./libft -lft
@@ -62,19 +62,22 @@ ifeq ($(UNAME), arm64)
 
 	MLX			 = mlx_macos
 	LIBRAIRY	+= -framework OpenGL -framework AppKit
+	CFLAGS		+= -D ESC_KEY=53
+	SRC			+= mlx/close_window_macos.c
 
 else
 
 	MLX			 = mlx_linux
 	INCLUDES	+= -I /usr/include -O3
 	LIBRAIRY	+= -L mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11
+	CFLAGS		+= -D ESC_KEY=65307
+	SRCS		+= mlx/close_window_linux.c
 
 endif
 
 
 INCLUDES		+= -I $(MLX)
 LIBRAIRY		+= -L $(MLX) -lmlx
-
 
 
 # **************************************************************************** #
@@ -84,29 +87,29 @@ LIBRAIRY		+= -L $(MLX) -lmlx
 
 DIRSRC		= srcs/
 
-PARSING		= parse_scene.c \
+UTILS		= error.c \
+			  print_structure.c \
+			  print_structure2.c \
+			  free_world.c \
+
+PARSING		= parsing.c \
 			  check_extension.c \
 			  check_reading_access.c \
-			  count_elements.c \
-			  alloc_structure.c \
-			  error.c \
-			  fill_structure.c \
-			  fill_ambient_light.c \
-			  fill_camera.c \
-			  fill_light.c \
-			  fill_sphere.c \
-			  fill_plan.c \
-			  fill_cylinder.c \
-			  fill_utils.c \
-			  print_structure.c \
-			  free_structure.c
+			  get_object_list.c \
+			  memory_allocation.c \
+			  fill_world.c \
+			  new_sphere.c \
+			  new_plan.c \
+			  new_cylinder.c \
+			  new_camera.c \
+			  new_ambient.c \
+			  new_light.c \
+			  utils.c \
 
-RAYTRACING	= rendering.c \
-			  intersection.c
-
+RAYTRACER	= raytracer.c \
+#
 MLX_DIR		= open_window.c \
-			  key_hook.c \
-			  close_window.c
+			  key_hook.c
 
 VECTORS		= new_vector.c \
 			  add_vector.c \
@@ -119,11 +122,12 @@ VECTORS		= new_vector.c \
 			  scalar_product.c \
 			  sub_vector.c
 
-SRC			= main.c \
-			$(addprefix parsing/, $(PARSING)) \
-			$(addprefix raytracing/, $(RAYTRACING)) \
-			$(addprefix mlx/, $(MLX_DIR)) \
-			$(addprefix vectors/, $(VECTORS))
+SRC			+= main.c \
+			  $(addprefix parsing/, $(PARSING)) \
+			  $(addprefix utils/, $(UTILS)) \
+			  $(addprefix mlx/, $(MLX_DIR)) \
+			  $(addprefix vectors/, $(VECTORS)) \
+			  $(addprefix raytracer/, $(RAYTRACER)) \
 
 SRCS		= $(addprefix $(DIRSRC), $(SRC))
 
@@ -137,10 +141,10 @@ SRCS		= $(addprefix $(DIRSRC), $(SRC))
 DIROBJ		= objs/
 
 SUB_OBJ_DIR = objs/parsing \
-			  objs/raytracing \
+			  objs/utils \
+			  objs/raytracer \
 			  objs/mlx \
-			  objs/vectors \
-			  objs/matrix
+			  objs/vectors
 
 OBJ			= $(SRC:.c=.o)
 
@@ -192,7 +196,7 @@ $(NAME)	: $(DIROBJS)
 
 
 leaks :	all
-		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) scenes/minimaliste.rt
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) scenes/00_minimaliste.rt
 
 test :	all
 		./miniRT scenes/minimaliste.rt

@@ -6,11 +6,16 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 04:02:55 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/08 16:56:41 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 21:58:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	trgb_color(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
 void	red(void)
 {

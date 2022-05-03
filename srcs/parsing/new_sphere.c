@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   new_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 11:26:42 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 18:03:45 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/02 18:32:00 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/03 22:45:09 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	key_hook(int keycode, t_world *world)
+int	new_sphere(t_obj *sphere, char **array)
 {
-	if (keycode == ESC_KEY)
-		close_window(world);
+	sphere->print = &print_sphere;
+	if (ft_arraylen(array) != 4)
+		return (rt_error("Too much arguments in sphere declaration."));
+	if (set_position(&(sphere->position), array[1]))
+		return (1);
+	if (set_double(&(sphere->radius), array[2], 0, INT_MAX))
+		return (second_line_error("Syntax error : Sphere diameter"));
+	if (set_colors(&(sphere->color), array[3]))
+		return (1);
+	sphere->radius /= 2;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/01 01:29:35 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 23:48:18 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <float.h>
 
 # include "libft.h"
-# include "scene_structure.h"
-# include "mlx_structure.h"
+# include "vector3.h"
+# include "structure.h"
+# include "mlx.h"
 
 /* ************************************************************************** */
 /*                              Main directory                                */
@@ -31,61 +33,51 @@ int		main(int argc, char **argv);
 /*                             Parsing directory                              */
 /* ************************************************************************** */
 
-int		parse_scene(const char *scene, t_scene *rt_scene);
+int		parsing(t_world *world, const char *filename);
 int		check_extension(const char *filename, const char *extension);
 int		check_reading_access(const char *filename);
-int		count_elements(const char *filename, t_scene *rt_scene);
-int		alloc_structure(t_scene *rt_scene, t_counter elements);
-int		fill_structure(t_scene *rt_scene, const char *file);
-int		set_double(char *str, double *to_fill, double min, double max);
-int		set_point(t_3d *coordinates, char *str);
-int		set_orientation(t_3d *orientation, char *str);
-int		set_colors(char *rgb, t_3d *colors, int *trgb);
-int		trgb_color(int t, int r, int g, int b);
-int		fill_ambient_light(char **array, t_ambient_light *ambient_light);
-int		fill_camera(char **array, t_camera *camera);
-int		fill_light(char **array, t_light *light);
-int		fill_sphere(char **array, size_t *index, t_sphere *sphere);
-int		fill_cylinder(char **array, size_t *index, t_cylinder *cylinder);
-int		fill_plan(char **array, size_t *index, t_plan *plan);
-void	print_structure(t_scene *rt_scene);
-void	free_structure(t_scene *rt_scene, t_counter elements);
-int		rt_error(char const *error_message);
-int		second_line_error(char const *error_message);
+int		get_object_list(t_obj_list *obj_list, const char *filename);
+int		memory_allocation(t_obj_list *o);
+int		fill_world(t_world *world, const char *filename);
+int		new_sphere(t_obj *sphere, char **array);
+int		new_plan(t_obj *plan, char **array);
+int		new_cylinder(t_obj *cylinder, char **array);
+int		new_camera(t_cam *cam, char **array);
+int		new_ambient(t_amb *ambient, char **array);
+int		new_light(t_light *light, char **array);
+int		set_position(t_3d *position, char *str);
+int		set_direction(t_3d *direction, char *str);
+int		set_colors(t_color *color, char *rgb);
+int		set_double(double *dbl, char *str, double min, double max);
+
+void	print_structure(t_obj_list objs_list);
+void	print_sphere(void *ptr);
+void	print_plan(void *ptr);
+void	print_cylinder(void *ptr);
+void	print_light(void *ptr);
+void	print_ambient(void *ptr);
+void	print_camera(void *ptr);
 
 /* ************************************************************************** */
 /*                               Mlx directory                                */
 /* ************************************************************************** */
 
-int		open_window(t_scene *rt_scene);
-int		key_hook(int keycode, t_scene *scene);
-int		close_window(t_scene *scene);
-
-/* ************************************************************************** */
-/*                              Vector directory                              */
-/* ************************************************************************** */
-
-/* t_3d structure stores vectors (3D direction) or points (3D position).
- * Points and vectors can be transformed using linear transformations,
- * translation and rotation are examples of linear transformation.*/
-
-t_3d	add_vector(t_3d a, t_3d b);
-t_3d	cross_product(t_3d a, t_3d b);
-t_3d	div_vector(t_3d a, double b);
-double	length(t_3d point_a, t_3d point_b);
-t_3d	mul_vector(double a, t_3d b);
-t_3d	new_vector(float x, float y, float z);
-double	norm(t_3d a);
-double	norm_square(t_3d a);
-t_3d	normalize(t_3d a);
-double	scalar_product(t_3d a, t_3d b);
-t_3d	sub_vector(t_3d a, t_3d b);
+int		close_window(t_world *world);
+int		open_window(t_world *world);
+int		key_hook(int keycode, t_world *world);
 
 /* ************************************************************************** */
 /*                          Raytracinging directory                           */
 /* ************************************************************************** */
 
-void	rendering(t_scene *scene);
-bool	intersection(t_scene *scene, t_sphere sphere);
+void	raytracer(t_world *world, t_mlx *mlx);
+
+/* ************************************************************************** */
+/*                              Utils directory                               */
+/* ************************************************************************** */
+
+int		free_world(t_world *world);
+int		rt_error(char const *error_message);
+int		second_line_error(char const *error_message);
 
 #endif

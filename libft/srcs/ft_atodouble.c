@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atofloat.c                                      :+:      :+:    :+:   */
+/*   ft_atodouble.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 20:49:22 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/20 11:31:03 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 23:50:56 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ double	get_partie_entiere(char *str, int *index, bool *error)
 	int		i;
 	char	*entier;
 
-	if (str[*index] == '\0')
+	if (!str || str[*index] == '\0')
 		return (to_double_error(error));
 	partie_entiere = 0.0;
 	partie_entiere_len = 0;
