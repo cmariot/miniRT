@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/04 14:44:47 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/04 15:27:56 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@
 
 
 NAME			 = miniRT
+
+SCENE_TEST		 = scenes/00_minimaliste.rt
 
 
 # **************************************************************************** #
@@ -198,10 +200,10 @@ $(NAME)	: $(DIROBJS)
 
 
 leaks :	all
-		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) scenes/00_minimaliste.rt
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(SCENE_TEST)
 
 test :	all
-		./miniRT scenes/minimaliste.rt
+		./miniRT $(SCENE_TEST)
 
 norm :
 		@norminette srcs includes libft

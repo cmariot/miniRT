@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 15:18:41 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 15:57:05 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 struct			s_obj;
 
 typedef void	(*t_m_print)(void *);
+typedef bool	(*t_m_inter)(void);
 
 typedef struct s_img {
 	void			*img;
@@ -65,6 +66,7 @@ typedef struct s_cam {
 }	t_cam;
 
 typedef struct s_obj {
+	t_m_inter		intersection;
 	t_m_print		print;
 	t_3d			position;
 	t_3d			direction;

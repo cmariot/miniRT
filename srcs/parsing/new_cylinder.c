@@ -6,14 +6,20 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 22:58:32 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 16:00:37 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+bool	cylinder_intersection(void)
+{
+	return (false);
+}
+
 int	new_cylinder(t_obj *cylinder, char **array)
 {
+	cylinder->intersection = &cylinder_intersection;
 	cylinder->print = &print_cylinder;
 	if (ft_arraylen(array) != 6)
 		return (rt_error("Too much arguments in cylinder declaration."));
