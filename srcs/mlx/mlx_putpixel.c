@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_window_linux.c                               :+:      :+:    :+:   */
+/*   mlx_putpixel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 11:26:19 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 13:34:45 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/04 14:42:49 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/04 14:44:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	close_window(t_world *world)
+void	mlx_putpixel(t_img *data, size_t *pixel, int color)
 {
-	size_t	i;
+	char	*dst;
 
-	free_world(world);
-	i = 0;
-	while (i < world->mlx.nb_images)
-		mlx_destroy_image(world->mlx.mlx_ptr, world->mlx.image[i++].img);
-	mlx_clear_window(world->mlx.mlx_ptr, world->mlx.win_ptr);
-	mlx_destroy_window(world->mlx.mlx_ptr, world->mlx.win_ptr);
-	mlx_destroy_display(world->mlx.mlx_ptr);
-	free(world->mlx.mlx_ptr);
-	free(world->mlx.image);
-	exit(EXIT_SUCCESS);
-	return (1);
+	dst = data->addr + (pixel[Y] * data->line_length
+			+ pixel[X] * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

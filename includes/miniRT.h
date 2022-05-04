@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 08:58:58 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 14:46:37 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include "vector3.h"
 # include "structure.h"
 # include "mlx.h"
+
+# define X 0
+# define Y 1
 
 /* ************************************************************************** */
 /*                              Main directory                                */
@@ -65,6 +68,8 @@ void	print_camera(void *ptr);
 int		close_window(t_world *world);
 int		open_window(t_world *world);
 int		key_hook(int keycode, t_world *world);
+int		create_images(t_mlx *mlx, size_t nb_images, t_world *world);
+void	mlx_putpixel(t_img *data, size_t *pixel, int color);
 
 /* ************************************************************************** */
 /*                          Raytracinging directory                           */

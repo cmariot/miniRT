@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/03 23:20:50 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/04 14:44:47 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ else
 	INCLUDES	+= -I /usr/include -O3
 	LIBRAIRY	+= -L mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11
 	CFLAGS		+= -D ESC_KEY=65307
-	SRCS		+= mlx/close_window_linux.c
+	SRC			+= mlx/close_window_linux.c
 
 endif
 
@@ -109,6 +109,8 @@ PARSING		= parsing.c \
 RAYTRACER	= raytracer.c \
 #
 MLX_DIR		= open_window.c \
+			  create_images.c \
+			  mlx_putpixel.c \
 			  key_hook.c
 
 VECTORS		= new_vector.c \

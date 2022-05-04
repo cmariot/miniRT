@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:22:46 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 23:45:34 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 10:50:39 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int	set_world(t_obj_list *obj_list, char *line, size_t *index)
 	else if (!ft_strcmp(*splitted_line, "A"))
 		ret = new_ambient(&obj_list->ambient, splitted_line);
 	else if (!ft_strcmp(*splitted_line, "L"))
-		ret = new_light(&obj_list->spot[index[LIGHT]++],
-				splitted_line);
+		ret = new_light(&obj_list->spot[index[LIGHT]++], splitted_line);
 	ft_free_array(splitted_line);
 	return (ret);
 }

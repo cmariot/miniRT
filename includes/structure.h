@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 23:41:58 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 15:18:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_img {
 typedef struct s_mlx {
 	void			*mlx_ptr;
 	void			*win_ptr;
+	size_t			nb_images;
 	t_img			*image;
 }	t_mlx;
 
@@ -58,6 +59,7 @@ typedef struct s_cam {
 	t_m_print		print;
 	t_3d			position;
 	t_3d			direction;
+	t_3d			ray;
 	double			fov_horizontal;
 	double			fov_vertical;
 }	t_cam;
