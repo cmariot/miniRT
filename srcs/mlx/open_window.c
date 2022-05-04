@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:15:07 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 21:37:40 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 09:05:49 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	open_window(t_world *world)
 			SCREEN_SIZE_X, SCREEN_SIZE_Y, "miniRT");
 	if (world->mlx.win_ptr == NULL)
 		return (rt_error("MLX: mlx_open_window() failed."));
-	raytracer(world, &world->mlx);
+	raytracer(world, &world->mlx, &world->obj_list, &world->obj_list.camera[0]);
 	mlx_key_hook(world->mlx.win_ptr, key_hook, world);
 	mlx_hook(world->mlx.win_ptr, 33, 1L << 5, close_window, world);
 	mlx_loop(world->mlx.mlx_ptr);

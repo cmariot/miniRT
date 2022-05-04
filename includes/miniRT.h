@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 23:48:18 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 08:58:58 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		key_hook(int keycode, t_world *world);
 /*                          Raytracinging directory                           */
 /* ************************************************************************** */
 
-void	raytracer(t_world *world, t_mlx *mlx);
+void	raytracer(t_world *world, t_mlx *mlx, t_obj_list *objs, t_cam *cam);
 
 /* ************************************************************************** */
 /*                              Utils directory                               */

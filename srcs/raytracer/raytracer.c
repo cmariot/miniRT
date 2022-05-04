@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 22:16:27 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 09:02:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ void	my_mlx_pixel_put(t_img *data, size_t *pixel, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	raytracer(t_world *world, t_mlx *mlx)
+void	raytracer(t_world *world, t_mlx *mlx, t_obj_list *obj_list, t_cam *camera)
 {
 	size_t	pixel[2];
 	t_img	img;
 	int		color;
 
+	(void)obj_list;
+	(void)camera;
 	create_image(&img, mlx, world);
 	pixel[Y] = 0;
 	while (pixel[Y] < SCREEN_SIZE_Y)
@@ -63,5 +65,4 @@ void	raytracer(t_world *world, t_mlx *mlx)
 		pixel[Y]++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img.img, 0, 0);
-	return ;
 }

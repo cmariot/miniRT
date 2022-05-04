@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:25:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/01 22:38:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 08:36:56 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_3d
 	double			x;
 	double			y;
 	double			z;
+	double			vector;
 }	t_3d;
 
 t_3d	new_vector(float x, float y, float z);
