@@ -6,14 +6,37 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 16:00:37 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 00:03:24 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	cylinder_intersection(void)
+t_3d	absolute_vector(t_3d a)
 {
+	t_3d b;
+
+	if (a.x > 0)
+		b.x = a.x;
+	else
+		b.x = -a.y;
+	if (a.y > 0)
+		b.y = a.y;
+	else
+		b.y = -a.y;
+	if (a.z > 0)
+		b.z = a.z;
+	else
+		b.z = -a.z;
+	return (b);
+}
+
+bool	cylinder_intersection(t_obj obj, t_cam camera, t_3d *p, t_3d *n)
+{
+	(void)obj;
+	(void)camera;
+	(void)p;
+	(void)n;
 	return (false);
 }
 

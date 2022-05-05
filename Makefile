@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/04 15:27:56 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/04 20:39:57 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,11 +89,6 @@ LIBRAIRY		+= -L $(MLX) -lmlx
 
 DIRSRC		= srcs/
 
-UTILS		= error.c \
-			  print_structure.c \
-			  print_structure2.c \
-			  free_world.c \
-
 PARSING		= parsing.c \
 			  check_extension.c \
 			  check_reading_access.c \
@@ -110,10 +105,17 @@ PARSING		= parsing.c \
 
 RAYTRACER	= raytracer.c \
 #
+INTER		= intersection_sphere.c \
+
 MLX_DIR		= open_window.c \
 			  create_images.c \
 			  mlx_putpixel.c \
 			  key_hook.c
+
+UTILS		= error.c \
+			  print_structure.c \
+			  print_structure2.c \
+			  free_world.c \
 
 VECTORS		= new_vector.c \
 			  add_vector.c \
@@ -132,6 +134,7 @@ SRC			+= main.c \
 			  $(addprefix mlx/, $(MLX_DIR)) \
 			  $(addprefix vectors/, $(VECTORS)) \
 			  $(addprefix raytracer/, $(RAYTRACER)) \
+			  $(addprefix intersection/, $(INTER)) \
 
 SRCS		= $(addprefix $(DIRSRC), $(SRC))
 
@@ -148,6 +151,7 @@ SUB_OBJ_DIR = objs/parsing \
 			  objs/utils \
 			  objs/raytracer \
 			  objs/mlx \
+			  objs/intersection \
 			  objs/vectors
 
 OBJ			= $(SRC:.c=.o)

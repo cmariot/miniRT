@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:38:18 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 13:38:43 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 18:41:24 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ int	create_images(t_mlx *mlx, size_t nb_images, t_world *world)
 	while (i < nb_images)
 	{
 		mlx->image[i].img
-			= mlx_new_image(mlx->mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y);
+			= mlx_new_image(mlx->mlx_ptr,
+				world->obj_list.camera[0].screen_width,
+				world->obj_list.camera[0].screen_height);
 		if (!mlx->image[i].img)
 			return (create_images_error(1, world));
 		mlx->image[i].addr = mlx_get_data_addr(mlx->image[i].img,

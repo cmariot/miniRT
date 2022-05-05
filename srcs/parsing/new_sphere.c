@@ -6,20 +6,15 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:32:00 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 16:04:00 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 20:38:28 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	sphere_intersection(void)
-{
-	return (false);
-}
-
 int	new_sphere(t_obj *sphere, char **array)
 {
-	sphere->intersection = &sphere_intersection;
+	sphere->intersection = &intersection_sphere;
 	sphere->print = &print_sphere;
 	if (ft_arraylen(array) != 4)
 		return (rt_error("Too much arguments in sphere declaration."));

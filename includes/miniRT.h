@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 14:46:37 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/04 23:58:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	mlx_putpixel(t_img *data, size_t *pixel, int color);
 /* ************************************************************************** */
 
 void	raytracer(t_world *world, t_mlx *mlx, t_obj_list *objs, t_cam *cam);
+
+bool	intersection_sphere(t_obj sphere, t_cam camera, t_3d *p, t_3d *n);
 
 /* ************************************************************************** */
 /*                              Utils directory                               */

@@ -6,20 +6,17 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 15:57:05 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 00:01:59 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
-# define SCREEN_SIZE_X 1440
-# define SCREEN_SIZE_Y 872
-
 struct			s_obj;
+struct			s_cam;
 
 typedef void	(*t_m_print)(void *);
-typedef bool	(*t_m_inter)(void);
 
 typedef struct s_img {
 	void			*img;
@@ -61,10 +58,13 @@ typedef struct s_cam {
 	t_3d			position;
 	t_3d			direction;
 	t_3d			ray;
+	size_t			screen_width;
+	size_t			screen_height;
 	double			fov_horizontal;
 	double			fov_vertical;
 }	t_cam;
 
+typedef bool	(*t_m_inter)(struct s_obj, struct s_cam, struct s_3d*, struct s_3d*);
 typedef struct s_obj {
 	t_m_inter		intersection;
 	t_m_print		print;
