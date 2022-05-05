@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 00:10:59 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 22:38:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ bool	intersection_sphere(t_obj sphere, t_cam camera, t_3d *p, t_3d *n)
 	{
 		t = first_solution(delta, abc);
 //		if (t < 0)
-//			return (false);
+			return (false);
 	}
 	*p = add_vector(camera.position, mul_vector(camera.ray, t));
 	*n = normalize(sub_vector(*p, sphere.position));

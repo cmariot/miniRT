@@ -6,52 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 15:34:38 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 20:38:13 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-#define PI 3.14159265359
-
-t_3d	ray_generator(t_cam *camera, size_t x, size_t y)
-{
-	t_3d	ray_direction;
-
-	ray_direction.x = (x - (camera->screen_width * 0.5));
-	ray_direction.y = (camera->screen_height * 0.5) - y;
-	ray_direction.z = -(camera->screen_width * 0.5)
-		/ tan(camera->fov_horizontal * PI / 180 * 0.5);
-	return (normalize(ray_direction));
-}
-
-int	check_intersection(t_cam *camera, t_obj_list *obj_list,
-	t_3d *position, t_3d *normale)
-{
-	int		pixel_color;
-	size_t	i;
-	double	max_distance;
-	double	distance;
-
-	i = 0;
-	max_distance = INFINITY;
-	pixel_color = trgb_color(0, 42, 42, 42);
-	while (i < obj_list->nb_objs)
-	{
-		if (obj_list->objs[i].intersection(obj_list->objs[i],
-				camera[0], position, normale))
-		{
-			distance = length(camera->position, *position);
-			if (distance < max_distance)
-			{
-				pixel_color = obj_list->objs[i].color.trgb;
-				max_distance = distance;
-			}
-		}
-		i++;
-	}
-	return (pixel_color);
-}
 
 void	raytracer(t_world *world, t_mlx *mlx,
 	t_obj_list *obj_list, t_cam *camera)

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 16:15:45 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 21:28:05 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ void	mlx_putpixel(t_img *data, size_t *pixel, int color);
 /* ************************************************************************** */
 
 void	raytracer(t_world *world, t_mlx *mlx, t_obj_list *objs, t_cam *cam);
+t_3d	ray_generator(t_cam *camera, size_t x, size_t y);
+int		illumination(t_obj obj, t_obj_list *obj_list, t_3d n, t_3d p);
+int		check_intersection(t_cam *c, t_obj_list *o, t_3d *p, t_3d *n);
 
 bool	intersection_sphere(t_obj sphere, t_cam camera, t_3d *p, t_3d *n);
 bool	intersection_plan(t_obj obj, t_cam camera, t_3d *p, t_3d *n);
