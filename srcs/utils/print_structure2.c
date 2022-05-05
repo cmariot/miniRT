@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 23:13:06 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 09:20:50 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 12:01:13 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ void	print_camera(void *ptr)
 		camera->direction.z);
 	printf("|\tFOV hori  : %.3f\n",
 		camera->fov_horizontal);
-	printf("|\tFOV vert  : %.3f\n\n",
-		camera->fov_vertical);
+	printf("\nScreen :\n");
+	printf("|\tCenter position  : x = %.3f ; y = %.3f ; z = %.3f\n",
+		camera->pos_screen_center.x,
+		camera->pos_screen_center.y,
+		camera->pos_screen_center.z);
+	printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 09:16:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 18:36:06 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 12:11:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	new_camera(t_cam *camera, char **array)
 		return (1);
 	if (set_double(&(camera->fov_horizontal), array[3], 0.0, 180.0))
 		return (rt_error("Syntax error : Camera FOV"));
-	camera->fov_vertical = camera->fov_horizontal
-		/ (camera->screen_width / camera->screen_height);
+	camera->screen_distance = (camera->screen_height / 2)
+		/ (tan(camera->fov_horizontal / 2));
+	camera->pos_screen_center = add_vector(camera->position,
+			mul_vector(camera->direction, camera->screen_distance));
 	return (0);
 }

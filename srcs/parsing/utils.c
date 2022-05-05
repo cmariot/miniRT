@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 23:00:11 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 09:18:22 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 12:43:56 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	set_direction(t_3d *direction, char *str)
 		ft_free_array(array);
 		return (rt_error("Syntax error : Invalid direction"));
 	}
-	if (set_double(&direction->x, array[0], -1, 1)
+	if (set_double(&(direction->x), array[0], -1, 1)
 		|| set_double(&direction->y, array[1], -1, 1)
 		|| set_double(&direction->z, array[2], -1, 1))
 	{
