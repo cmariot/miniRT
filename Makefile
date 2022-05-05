@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/04 20:39:57 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/05 16:00:06 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ PARSING		= parsing.c \
 RAYTRACER	= raytracer.c \
 #
 INTER		= intersection_sphere.c \
+			  intersection_plan.c \
 
 MLX_DIR		= open_window.c \
 			  create_images.c \

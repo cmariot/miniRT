@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 11:28:30 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/05 15:34:38 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_3d	ray_generator(t_cam *camera, size_t x, size_t y)
 {
 	t_3d	ray_direction;
 
-	ray_direction.x = -(x - (camera->screen_width * 0.5));
+	ray_direction.x = (x - (camera->screen_width * 0.5));
 	ray_direction.y = (camera->screen_height * 0.5) - y;
 	ray_direction.z = -(camera->screen_width * 0.5)
 		/ tan(camera->fov_horizontal * PI / 180 * 0.5);
@@ -34,7 +34,7 @@ int	check_intersection(t_cam *camera, t_obj_list *obj_list,
 	double	distance;
 
 	i = 0;
-	max_distance = INT_MAX;
+	max_distance = INFINITY;
 	pixel_color = trgb_color(0, 42, 42, 42);
 	while (i < obj_list->nb_objs)
 	{
