@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/05 20:39:47 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/06 10:51:29 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ CFLAGS			 = -Wall -Wextra -Werror -g3
 
 
 INCLUDES		 = -I includes
-INCLUDES		+= -I libft/includes
 
 
 # **************************************************************************** #
@@ -64,7 +63,6 @@ ifeq ($(UNAME), arm64)
 
 	MLX			 = mlx_macos
 	LIBRAIRY	+= -framework OpenGL -framework AppKit
-	CFLAGS		+= -D ESC_KEY=53
 	SRC			+= mlx/close_window_macos.c
 
 else
@@ -72,7 +70,6 @@ else
 	MLX			 = mlx_linux
 	INCLUDES	+= -I /usr/include -O3
 	LIBRAIRY	+= -L mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11
-	CFLAGS		+= -D ESC_KEY=65307
 	SRC			+= mlx/close_window_linux.c
 
 endif

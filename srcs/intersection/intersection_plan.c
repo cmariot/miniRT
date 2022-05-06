@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 22:57:39 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/06 11:33:27 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@
  *
  *   
  */
-//printf("ETAPE1 : obj.pos - cam.pos : %.1f = %.1f - %.1f ; %.1f = %.1f - %.1f ; %.1f = %.1f - %.1f\n",
+//printf("ETAPE1 : obj.pos -
+//cam.pos : %.1f = %.1f - %.1f ;
+//			%.1f = %.1f - %.1f ;
+//			%.1f = %.1f - %.1f\n",
 //		etape1.x, obj.position.x, camera.position.x, 
 //		etape1.y, obj.position.y, camera.position.y, 
 //		etape1.z, obj.position.z, camera.position.z);

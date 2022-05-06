@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 21:28:05 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/06 10:52:17 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 # include <limits.h>
 # include <float.h>
 
-# include "libft.h"
+# include "../libft/includes/libft.h"
 # include "vector3.h"
 # include "structure.h"
 # include "mlx.h"
+# include "keycodes.h"
 
 # define X 0
 # define Y 1

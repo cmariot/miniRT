@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 22:38:31 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/06 11:45:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ double	get_delta(t_obj sphere, t_cam camera, double *abc)
 	abc[0] = norm_square(camera.ray);
 	abc[1] = scalar_product(camera.ray, origin) * 2;
 	abc[2] = norm_square(origin) - (sphere.radius * sphere.radius);
-	delta = pow(abc[1], 2) - 4 * abc[0] * abc[2];
+	delta = pow(abc[1], 2) - (4 * abc[0] * abc[2]);
 	return (delta);
 }
 
@@ -126,14 +126,14 @@ bool	intersection_sphere(t_obj sphere, t_cam camera, t_3d *p, t_3d *n)
 		t1 = first_solution(delta, abc);
 		t2 = second_solution(delta, abc);
 		t = min_positive_double(t1, t2);
-//		if (t < 0)
-//			return (false);
+		//if (t < 0)
+		//	return (false);
 	}
 	else
 	{
 		t = first_solution(delta, abc);
-//		if (t < 0)
-			return (false);
+		//if (t < 0)
+		//	return (false);
 	}
 	*p = add_vector(camera.position, mul_vector(camera.ray, t));
 	*n = normalize(sub_vector(*p, sphere.position));
