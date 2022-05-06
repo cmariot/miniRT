@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:36:55 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/06 12:09:23 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/06 13:35:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	check_intersection(t_cam *camera, t_obj_list *obj_list,
 		if (obj_list->objs[i].intersection(obj_list->objs[i],
 				camera[0], position, normale))
 		{
-			print_vector("INTERSECTION", *position);
 			distance = length(camera->position, *position);
 			if (distance < max_distance)
 			{
