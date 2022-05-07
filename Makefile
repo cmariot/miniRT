@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/06 10:51:29 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/07 14:17:21 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -208,8 +208,10 @@ $(NAME)	: $(DIROBJS)
 leaks :	all
 		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(SCENE_TEST)
 
+
 test :	all
 		./miniRT $(SCENE_TEST)
+
 
 norm :
 		@norminette srcs includes libft
@@ -235,6 +237,10 @@ fclean :
 
 
 re :	fclean all
+
+
+ycm_db :
+		compiledb make
 
 
 header :

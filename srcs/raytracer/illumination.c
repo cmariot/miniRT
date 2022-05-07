@@ -6,28 +6,27 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:36:27 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/06 11:26:37 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/07 18:38:16 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_color	reflexion_lambert(t_color color, t_light spot,
+static t_color	reflexion_lambert(t_color color, t_light spot,
 	t_3d normale, t_3d intersection)
 {
 	float	scalar;
 
-	scalar = scalar_product(normale,
-			normalize(sub_vector(intersection, spot.position)));
+	scalar = scalar_product(normalize(sub_vector(spot.position, intersection)), normale);
 	if (scalar == 0)
 		return (color);
-	color.r += spot.ratio * scalar * spot.color.r;
-	color.g += spot.ratio * scalar * spot.color.g;
-	color.b += spot.ratio * scalar * spot.color.g;
+	color.r += spot.ratio * scalar * color.r;
+	color.g += spot.ratio * scalar * color.g;
+	color.b += spot.ratio * scalar * color.b;
 	return (color);
 }
 
-t_color	reflexion_ambiente(t_color obj_color, t_amb ambient)
+static t_color	reflexion_ambiente(t_color obj_color, t_amb ambient)
 {
 	float	k;
 

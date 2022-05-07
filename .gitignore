@@ -2,3 +2,5 @@ miniRT
 *.o
 *.a
 .DS_Store
+.cache
+compile_commands.json

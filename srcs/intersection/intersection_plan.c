@@ -6,65 +6,79 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/06 11:33:27 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/07 18:30:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 /*
- * L'equation vectorielle d'un plan passant par le point P (x, y, z)
- * et dont la normale est orientee selon a b et c est :
- *
- *		ax + by + cz + d = 0
- *
- *	On a d = a * xp + b * yp + c*zp
- *
- *   
- */
-//printf("ETAPE1 : obj.pos -
-//cam.pos : %.1f = %.1f - %.1f ;
-//			%.1f = %.1f - %.1f ;
-//			%.1f = %.1f - %.1f\n",
-//		etape1.x, obj.position.x, camera.position.x, 
-//		etape1.y, obj.position.y, camera.position.y, 
-//		etape1.z, obj.position.z, camera.position.z);
-
-/* 
- * SOIT D LE RAYON PASSANT PAR LE POINT D'ORIGINE
- * DU VECTEUR O (xO ; yO ; zO)
- * ET DE VECTEUR DIRECTEUR U (u ; v ; w),
- * on soustrait l'origine du plan a l'origine du rayon
- *
  * SYSTEME D'ÉQUATION PARAMETRIQUES DU RAYON :
  * x(t) -> U * t + xa
  * y(t) -> V * t + ya
  * z(t) -> W * t + za
  *
- * EQUATION PLAN : 
- * ax + by + cz + d = 0
+ * EQUATION PLAN :
+ * Ax + By + Cz + D = 0
  *
- * EN REMPLACANT LES ELEMENTS DANS L'EQUATION PLAN
- * a * (U * t + xa) + b * (V * t + ya) + c * (W * t + za) + d = 0
+ * EQUATION D'UN PLAN CONTENANT LE POINT P (x0, y0, z0):
+ * A(x - x0) + B(y = y0) + C(z - z0) = 0
  *
- * ON REFORMULE
+ * ON DETERMINE L'EQUATION DU PLAN AVEC SA POSITION :
  *
- */
+ * A = plan.direction.x
+ * B = plan.direction.y
+ * C = plan.direction.z
+ *
+ *   plan.direction.x * (x - plan.position.x)
+ * + plan.direction.y * (y - plan.position.y)
+ * + plan.direction.z * (z - plan.position.z) = 0
+ *
+ * ON CHERCHE A SAVOIR SI NOTRE RAYON COUPE LE PLAN,
+ * ON REMPLACE x, y et z PAR x(t), y(t) et z(t)
+ *
+ *   plan.direction.x * x(t)
+ * + plan.direction.y * y(t)
+ * + plan.direction.z * z(t)
+ * - scalar_product(plan.direction, plan.position) = 0
+ *
+ *   plan.direction.x * (ray.direction.x * t + ray.position.x)
+ * + plan.direction.y * (ray.direction.y * t + ray.position.y)
+ * + plan.direction.z * (ray.direction.z * t + ray.position.z)
+ * - scalar_product(plan.direction, plan.position) = 0
+ *
+ *   plan.direction.x * ray.direction.x * t + plan.direction.x * ray.position.x
+ * + plan.direction.y * ray.direction.y * t + plan.direction.y * ray.position.y
+ * + plan.direction.z * ray.direction.z * t + plan.direction.z * ray.position.z
+ * - scalar_product(plan.direction, plan.position) = 0
+ *
+ *   plan.direction.x * ray.direction.x * t
+ * + plan.direction.y * ray.direction.y * t
+ * + plan.direction.z * ray.direction.z * t
+ * - scalar_product(plan.direction, plan.position)
+ * + scalar_product(plan.direction, ray.position) = 0
+ *
+ *   t * (scalar_product(plan.direction, ray.direction))
+ * - scalar_product(plan.direction, plan.position)
+ * + scalar_product(plan.direction, ray.position) = 0
+ *
+ * t = (scalar_product(plan.direction, plan.position)
+ *     - scalar_product(plan.direction, ray.position))
+ *     / scalar_product(plan.direction, ray.direction)
+ *
+ * */
+
 bool	intersection_plan(t_obj plan, t_cam camera, t_3d *p, t_3d *n)
 {
-	t_3d	origin;
-	t_3d	etape1;
-	float	etape2;
-	float	etape3;
+	float	t;
 
-	origin = sub_vector(camera.position, plan.position);
-	etape1 = sub_vector(plan.position, origin);
-	etape2 = scalar_product(plan.direction, camera.ray);
-	etape3 = scalar_product(plan.direction, etape1) / etape2;
-	if (etape3 > 0)
+	t = (scalar_product(plan.direction, plan.position)
+		- scalar_product(plan.direction, camera.position))
+		/ scalar_product(plan.direction, camera.ray);
+	if (t > 0)
 	{
-		*p = add_vector(camera.position, mul_vector(camera.ray, etape3));
-		*n = normalize(sub_vector(*p, plan.position));
+		*p = add_vector(camera.position, mul_vector(camera.ray, t));
+		*n = normalize(add_vector(camera.position,mul_vector(*p, t)));
 		return (true);
 	}
 	return (false);
