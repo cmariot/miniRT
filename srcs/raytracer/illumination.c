@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:36:27 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/07 18:38:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 20:52:28 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_color	reflexion_lambert(t_color color, t_light spot,
 	float	scalar;
 
 	scalar = scalar_product(normalize(sub_vector(spot.position, intersection)), normale);
-	if (scalar == 0)
+	if (scalar <= 0)
 		return (color);
 	color.r += spot.ratio * scalar * color.r;
 	color.g += spot.ratio * scalar * color.g;

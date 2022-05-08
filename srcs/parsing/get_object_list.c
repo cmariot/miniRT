@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:22:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/03 23:45:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 19:20:46 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * If there is not or more than one ambient_light, camera and light it's an
  * error. */
 
-int	check_nb_elements(t_obj_list *obj_list)
+static int	check_nb_elements(t_obj_list *obj_list)
 {
 	if (obj_list->nb_ambient != 1)
 		return (rt_error("The scene must have one ambient light."));
@@ -30,7 +30,7 @@ int	check_nb_elements(t_obj_list *obj_list)
 	return (0);
 }
 
-int	get_element_type(t_obj_list *obj_list, char *line)
+static int	get_element_type(t_obj_list *obj_list, char *line)
 {
 	char	**splitted_line;
 
@@ -56,7 +56,7 @@ int	get_element_type(t_obj_list *obj_list, char *line)
 	return (0);
 }
 
-void	set_initial_values(t_obj_list *obj_list)
+static void	set_initial_values(t_obj_list *obj_list)
 {
 	obj_list->nb_camera = 0;
 	obj_list->nb_objs = 0;

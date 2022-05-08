@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 16:43:27 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 10:57:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:55:15 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,20 @@ void	print_structure(t_obj_list objs_list)
 	i = 0;
 	while (i < objs_list.nb_camera)
 	{
-		objs_list.camera[0].print((void *)&objs_list.camera[0]);
+		objs_list.camera[i].print(&objs_list.camera[i]);
 		i++;
 	}
 	i = 0;
 	while (i < objs_list.nb_objs)
 	{
-		objs_list.objs[i].print((void *)&objs_list.objs[i]);
+		objs_list.objs[i].print(&objs_list.objs[i]);
 		i++;
 	}
-	objs_list.ambient.print((void *)&objs_list.ambient);
+	objs_list.ambient.print(&objs_list.ambient);
 	i = 0;
 	while (i < objs_list.nb_spot)
 	{
-		objs_list.spot[0].print((void *)&objs_list.spot[i]);
+		objs_list.spot[i].print(&objs_list.spot[i]);
 		i++;
 	}
 }

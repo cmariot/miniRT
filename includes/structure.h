@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 11:57:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:02:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,22 @@ typedef struct t_amb {
 	double			ratio;
 }	t_amb;
 
+typedef struct s_ray {
+	t_3d	position;
+	t_3d	direction;
+}	t_ray;
+
 typedef struct s_cam {
 	t_m_print		print;
 	t_3d			position;
 	t_3d			direction;
-	t_3d			ray;
+	t_ray			ray;
 	size_t			screen_width;
 	size_t			screen_height;
-	float			screen_distance;
-	t_3d			pos_screen_center;
 	double			fov_horizontal;
 }	t_cam;
 
-typedef bool	(*t_m_inter)(struct s_obj, struct s_cam,
+typedef bool	(*t_m_inter)(struct s_obj, struct s_ray,
 		struct s_3d*, struct s_3d*);
 typedef struct s_obj {
 	t_m_inter		intersection;
@@ -75,6 +78,9 @@ typedef struct s_obj {
 	t_color			color;
 	double			radius;
 	double			height;
+	t_3d			ra1;
+	t_3d			ra2;
+	t_3d			s;
 }	t_obj;
 
 typedef struct s_obj_list {

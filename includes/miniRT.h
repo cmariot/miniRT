@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/06 10:52:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:39:46 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "structure.h"
 # include "mlx.h"
 # include "keycodes.h"
+
+# define SCREEN_WIDTH 1440
 
 # define X 0
 # define Y 1
@@ -77,12 +79,13 @@ void	mlx_putpixel(t_img *data, size_t *pixel, int color);
 /* ************************************************************************** */
 
 void	raytracer(t_world *world, t_mlx *mlx, t_obj_list *objs, t_cam *cam);
-t_3d	ray_generator(t_cam *camera, size_t x, size_t y);
+t_ray	ray_generator(t_cam *camera, size_t x, size_t y);
 int		illumination(t_obj obj, t_obj_list *obj_list, t_3d n, t_3d p);
 int		check_intersection(t_cam *c, t_obj_list *o, t_3d *p, t_3d *n);
 
-bool	intersection_sphere(t_obj sphere, t_cam camera, t_3d *p, t_3d *n);
-bool	intersection_plan(t_obj obj, t_cam camera, t_3d *p, t_3d *n);
+bool	intersection_plan(t_obj plan, t_ray ray, t_3d *p, t_3d *n);
+bool	intersection_sphere(t_obj sphere, t_ray ray, t_3d *p, t_3d *n);
+bool	intersection_cylinder(t_obj obj, t_ray ray, t_3d *p, t_3d *n);
 
 /* ************************************************************************** */
 /*                              Utils directory                               */
@@ -91,5 +94,8 @@ bool	intersection_plan(t_obj obj, t_cam camera, t_3d *p, t_3d *n);
 int		free_world(t_world *world);
 int		rt_error(char const *error_message);
 int		second_line_error(char const *error_message);
+double	t1(double delta, double *abc);
+double	t2(double delta, double *abc);
+double	min_double(double t1, double t2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/07 18:30:31 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:51:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,17 @@
  *
  * */
 
-bool	intersection_plan(t_obj plan, t_cam camera, t_3d *p, t_3d *n)
+bool	intersection_plan(t_obj plan, t_ray ray, t_3d *p, t_3d *n)
 {
 	float	t;
 
 	t = (scalar_product(plan.direction, plan.position)
-		- scalar_product(plan.direction, camera.position))
-		/ scalar_product(plan.direction, camera.ray);
-	if (t > 0)
+		- scalar_product(plan.direction, ray.position))
+		/ scalar_product(plan.direction, ray.direction);
+	if (t >= 0)
 	{
-		*p = add_vector(camera.position, mul_vector(camera.ray, t));
-		*n = normalize(add_vector(camera.position,mul_vector(*p, t)));
+		*p = add_vector(ray.position, mul_vector(ray.direction, t));
+		*n = normalize(add_vector(ray.position, mul_vector(*p, t)));
 		return (true);
 	}
 	return (false);

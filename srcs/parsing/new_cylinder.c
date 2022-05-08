@@ -6,43 +6,15 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/06 11:32:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 19:54:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_3d	absolute_vector(t_3d a)
-{
-	t_3d	b;
-
-	if (a.x > 0)
-		b.x = a.x;
-	else
-		b.x = -a.y;
-	if (a.y > 0)
-		b.y = a.y;
-	else
-		b.y = -a.y;
-	if (a.z > 0)
-		b.z = a.z;
-	else
-		b.z = -a.z;
-	return (b);
-}
-
-bool	cylinder_intersection(t_obj obj, t_cam camera, t_3d *p, t_3d *n)
-{
-	(void)obj;
-	(void)camera;
-	(void)p;
-	(void)n;
-	return (false);
-}
-
 int	new_cylinder(t_obj *cylinder, char **array)
 {
-	cylinder->intersection = &cylinder_intersection;
+	cylinder->intersection = &intersection_cylinder;
 	cylinder->print = &print_cylinder;
 	if (ft_arraylen(array) != 6)
 		return (rt_error("Too much arguments in cylinder declaration."));
@@ -57,5 +29,8 @@ int	new_cylinder(t_obj *cylinder, char **array)
 	if (set_colors(&cylinder->color, array[5]))
 		return (1);
 	cylinder->radius /= 2.0;
+	cylinder->ra1 = add_vector(cylinder->position, mul_vector(cylinder->direction, cylinder->height / 2.0));
+	cylinder->ra2 = add_vector(cylinder->position, mul_vector(cylinder->direction, -cylinder->height / 2.0));
+	cylinder->s = div_vector(sub_vector(cylinder->ra2, cylinder->ra1), length(cylinder->ra1, cylinder->ra2));
 	return (0);
 }

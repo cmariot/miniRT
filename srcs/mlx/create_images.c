@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:38:18 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/07 13:41:11 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 19:17:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	create_images_error(int error, t_world *world)
+static int	create_images_error(int error, t_world *world)
 {
 	if (error == 1)
 	{

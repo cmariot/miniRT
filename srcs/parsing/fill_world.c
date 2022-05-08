@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:22:46 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 10:50:39 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:53:20 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #define CAM		1
 #define LIGHT	2
 
-int	set_world(t_obj_list *obj_list, char *line, size_t *index)
+static int	set_world(t_obj_list *obj_list, char *line, size_t *index)
 {
 	char	**splitted_line;
 	int		ret;

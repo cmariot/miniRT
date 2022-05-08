@@ -6,20 +6,20 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/07 15:38:26 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 18:56:42 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 /* Solution : (-b - Racine(delta)) / 2a */
-static double	t1(double delta, double *abc)
+double	t1(double delta, double *abc)
 {
 	return ((-abc[1] - sqrt(delta)) / (2 * abc[0]));
 }
 
 /* Solution : (-b + Racine(delta)) / 2a */
-static double	t2(double delta, double *abc)
+double	t2(double delta, double *abc)
 {
 	return ((-abc[1] + sqrt(delta)) / (2 * abc[0]));
 }
@@ -27,9 +27,9 @@ static double	t2(double delta, double *abc)
 /* Si a et b sont positifs, on retourne le plus petit,
  * sinon on retourne le plus grand */
 
-static double	min_double(double t1, double t2)
+double	min_double(double t1, double t2)
 {
-	if (t1 > 0)
+	if (t1 >= 0)
 		return (t1);
 	else
 		return (t2);
@@ -77,14 +77,14 @@ static double	min_double(double t1, double t2)
  * DELTA = B^2 - 4AC
  */
 
-static double	get_delta(t_obj sphere, t_cam camera, double *abc)
+static double	get_delta(t_obj sphere, t_ray ray, double *abc)
 {
 	t_3d		origin;
 	double		delta;
 
-	origin = sub_vector(camera.position, sphere.position);
-	abc[0] = norm_square(camera.ray);
-	abc[1] = scalar_product(camera.ray, origin) * 2.0;
+	origin = sub_vector(ray.position, sphere.position);
+	abc[0] = norm_square(ray.direction);
+	abc[1] = scalar_product(ray.direction, origin) * 2.0;
 	abc[2] = norm_square(origin) - (sphere.radius * sphere.radius);
 	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
 	return (delta);
@@ -101,13 +101,13 @@ static double	get_delta(t_obj sphere, t_cam camera, double *abc)
  * - origine : sphere.point.x, sphere.point.y, sphere.point.z
  * - rayon : sphere.rayon */
 
-bool	intersection_sphere(t_obj sphere, t_cam camera, t_3d *p, t_3d *n)
+bool	intersection_sphere(t_obj sphere, t_ray ray, t_3d *p, t_3d *n)
 {
 	double		delta;
 	double		abc[3];
 	double		t;
 
-	delta = get_delta(sphere, camera, abc);
+	delta = get_delta(sphere, ray, abc);
 	if (delta < 0)
 		return (false);
 	else if (delta == 0)
@@ -116,7 +116,7 @@ bool	intersection_sphere(t_obj sphere, t_cam camera, t_3d *p, t_3d *n)
 		t = min_double(t1(delta, abc), t2(delta, abc));
 	if (t < 0)
 		return (false);
-	*p = add_vector(camera.position, mul_vector(camera.ray, t));
+	*p = add_vector(ray.position, mul_vector(ray.direction, t));
 	*n = normalize(sub_vector(*p, sphere.position));
 	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/07 14:17:21 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/07 20:39:25 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,7 @@ RAYTRACER	= raytracer.c \
 #
 INTER		= intersection_sphere.c \
 			  intersection_plan.c \
-
+			  intersection_cylindre.c
 
 MLX_DIR		= open_window.c \
 			  create_images.c \
@@ -128,6 +128,7 @@ VECTORS		= new_vector.c \
 			  norm.c \
 			  norm_square.c \
 			  scalar_product.c \
+			  cross_product.c \
 			  sub_vector.c
 
 SRC			+= main.c \
