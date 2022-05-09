@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:36:55 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/09 09:58:36 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/09 16:49:09 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,23 @@ int	check_intersection(t_cam *camera, t_obj_list *obj_list,
 
 	i = 0;
 	max_distance = INFINITY;
-	pixel_color = trgb_color(0, obj_list->ambient.color.r,
-			obj_list->ambient.color.g, obj_list->ambient.color.b);
+	pixel_color = obj_list->ambient.color.trgb;
 	while (i < obj_list->nb_objs)
 	{
 		if (obj_list->objs[i].intersection(obj_list->objs[i],
 				camera[0].ray, position, normale))
 		{
-			distance = length(camera->position, *position);
-			if (distance <= max_distance)
+			if (is_shadow(obj_list, position, normale)) //shadow
+				pixel_color = 0;
+			else
 			{
-				pixel_color = illumination(obj_list->objs[i], obj_list,
-						normale, position);
-				max_distance = distance;
+				distance = length(camera->position, *position);
+				if (distance < max_distance)
+				{
+					pixel_color = illumination(obj_list->objs[i], obj_list,
+							normale, position);
+					max_distance = distance;
+				}
 			}
 		}
 		i++;

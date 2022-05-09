@@ -6,27 +6,18 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 04:02:55 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 20:48:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/09 11:19:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	trgb_color(int t, int r, int g, int b)
+int	trgb_color(double t, double r, double g, double b)
 {
-	if (r < 0)
-		r = 0;
-	if (g < 0)
-		g = 0;
-	if (b < 0)
-		b = 0;
-	if (r > 255)
-		r = 255;
-	if (g > 255)
-		g = 255;
-	if (b > 255)
-		b = 255;
-	return (t << 24 | r << 16 | g << 8 | b);
+	r = fmax(0, fmin(r, 255));
+	g = fmax(0, fmin(g, 255));
+	b = fmax(0, fmin(b, 255));
+	return ((int)t << 24 | (int)r << 16 | (int)g << 8 | (int)b);
 }
 
 void	red(void)

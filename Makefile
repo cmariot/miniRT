@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/07 20:39:25 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/09 15:45:01 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,7 @@ RAYTRACER	= raytracer.c \
 			  ray_generator.c \
 			  check_intersection.c \
 			  illumination.c \
+			  shadow.c
 #
 INTER		= intersection_sphere.c \
 			  intersection_plan.c \

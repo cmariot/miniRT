@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/09 09:35:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:44:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	raytracer(t_world *world, t_mlx *mlx, t_obj_list *objs, t_cam *cam);
 t_ray	ray_generator(t_cam *camera, size_t x, size_t y);
 int		illumination(t_obj obj, t_obj_list *obj_list, t_3d *n, t_3d *i);
 int		check_intersection(t_cam *c, t_obj_list *o, t_3d *p, t_3d *n);
+bool	is_shadow(t_obj_list *obj_list, t_3d *position, t_3d *normale);
 
 bool	intersection_plan(t_obj plan, t_ray ray, t_3d *p, t_3d *n);
 bool	intersection_sphere(t_obj sphere, t_ray ray, t_3d *p, t_3d *n);

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:34:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 22:14:33 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/09 11:19:59 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
-int			trgb_color(int t, int r, int g, int b);
+int			trgb_color(double t, double r, double g, double b);
 
 /* GET NEXT LINE */
 char		*get_next_line(int fd);
