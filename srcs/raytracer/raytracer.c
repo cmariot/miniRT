@@ -6,11 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 20:38:13 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 21:24:00 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+# define X 0
+# define Y 1
 
 void	raytracer(t_world *world, t_mlx *mlx,
 	t_obj_list *obj_list, t_cam *camera)

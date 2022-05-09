@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 18:56:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 22:29:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,11 @@ double	t2(double delta, double *abc)
 	return ((-abc[1] + sqrt(delta)) / (2 * abc[0]));
 }
 
-/* Si a et b sont positifs, on retourne le plus petit,
- * sinon on retourne le plus grand */
-
-double	min_double(double t1, double t2)
+double	min_double(const double dbl1, const double dbl2)
 {
-	if (t1 >= 0)
-		return (t1);
-	else
-		return (t2);
+	if (dbl1 > 0)
+		return (dbl1);
+	return (dbl2);
 }
 /* 
  * SOIT D LE RAYON PASSANT PAR LE POINT D'ORIGINE

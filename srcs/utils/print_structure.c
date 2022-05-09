@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 16:43:27 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 16:55:15 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/08 23:33:27 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_sphere(void *ptr)
 		sphere->position.z);
 	printf("|\tRadius   : %.3f\n",
 		sphere->radius);
-	printf("|\tColor    : r = %d ; g = %d ; b = %d ; trgb = %d\n\n",
+	printf("|\tColor    : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n\n",
 		sphere->color.r,
 		sphere->color.g,
 		sphere->color.b,
@@ -45,7 +45,7 @@ void	print_plan(void *ptr)
 		plan->direction.x,
 		plan->direction.y,
 		plan->direction.z);
-	printf("|\tColor     : r = %d ; g = %d ; b = %d ; trgb = %d\n\n",
+	printf("|\tColor     : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n\n",
 		plan->color.r,
 		plan->color.g,
 		plan->color.b,
@@ -70,7 +70,7 @@ void	print_cylinder(void *ptr)
 		cylinder->radius);
 	printf("|\tHeight    : %.3f\n",
 		cylinder->height);
-	printf("|\tColor     : r = %d ; g = %d ; b = %d ; trgb = %d\n\n",
+	printf("|\tColor     : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n\n",
 		cylinder->color.r,
 		cylinder->color.g,
 		cylinder->color.b,
