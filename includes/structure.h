@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/09 09:13:00 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/10 14:49:09 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef bool	(*t_m_inter)(struct s_obj, struct s_ray,
 		struct s_3d*, struct s_3d*);
 typedef struct s_obj {
 	t_m_inter		intersection;
-	t_m_inter		second_inter;
 	t_m_print		print;
 	t_3d			position;
 	t_3d			direction;

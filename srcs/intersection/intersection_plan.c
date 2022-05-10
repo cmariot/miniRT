@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/10 11:53:57 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/10 15:54:38 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@
  *     - scalar_product(plan.direction, ray.position))
  *     / scalar_product(plan.direction, ray.direction)
  *
+ * 
+ * 
+ * Dans le cas d'un plan on a deux norales pour un point,
+ * on va selectionner celle qui est dirigee vers la camera 
  * */
 
 bool	intersection_plan(t_obj plan, t_ray ray, t_3d *p, t_3d *n)
@@ -77,7 +81,7 @@ bool	intersection_plan(t_obj plan, t_ray ray, t_3d *p, t_3d *n)
 	t = (scalar_product(plan.direction, plan.position)
 		- scalar_product(plan.direction, ray.position))
 		/ scalar_product(plan.direction, ray.direction);
-	if (t >= 0)
+	if (t > 0)
 	{
 		*p = add_vector(ray.position, mul_vector(ray.direction, t));
 		normale1 = plan.direction;

@@ -6,13 +6,13 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/10 12:12:56 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/10 16:44:46 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # **************************************************************************** #
-#                             EXECUTABLE'S NAME                                #
+#                              EXECUTABLE'S NAME                               #
 # **************************************************************************** #
 
 
@@ -29,23 +29,18 @@ SCENE_TEST		 = scenes/00_minimaliste.rt
 CC				 = clang
 
 
-CFLAGS			 = -Wall -Wextra -Werror -O3
+CFLAGS			 = -Wall -Wextra -Werror -g3 -O3
+LFLAGS			 = -Wall -Wextra -Werror -g3 -O3
 
 
 INCLUDES		 = -I includes
+INCLUDES		+= -I $(MLX)
 
 
-# **************************************************************************** #
-#                                  LINKAGE                                     #
-# **************************************************************************** #
 
-
-LFLAGS			 = -Wall -Wextra -Werror -g3
-
-
-LIBRAIRY		 = -L ./libft -lft
-LIBRAIRY		+= -L ./libft/srcs/print -lprint
-LIBRAIRY		+= -L /usr/lib -lm
+LIBRARY			 = -L libft -lft
+LIBRARY			+= -L libft/srcs/print -lprint
+LIBRARY			+= -L /usr/lib -lm
 
 
 # **************************************************************************** #
@@ -58,25 +53,20 @@ LIBRAIRY		+= -L /usr/lib -lm
 
 UNAME 			:= $(shell uname -m)
 
-
 ifeq ($(UNAME), arm64)
 
 	MLX			 = mlx_macos
-	LIBRAIRY	+= -framework OpenGL -framework AppKit
-	SRC			+= mlx/close_window_macos.c
+	LIBRARY		+= -L mlx_macos -lmlx -framework OpenGL -framework AppKit
+	SRC_SUBDIR	+= mlx/close_window_macos.c
 
 else
 
 	MLX			 = mlx_linux
-	INCLUDES	+= -I /usr/include -O3
-	LIBRAIRY	+= -L mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11
-	SRC			+= mlx/close_window_linux.c
+	LIBRARY		+= -L mlx_linux -lmlx -lmlx_Linux -L /usr/lib -lXext -lX11
+	SRC_SUBDIR	+= mlx/close_window_linux.c
 
 endif
 
-
-INCLUDES		+= -I $(MLX)
-LIBRAIRY		+= -L $(MLX) -lmlx
 
 
 # **************************************************************************** #
@@ -84,7 +74,18 @@ LIBRAIRY		+= -L $(MLX) -lmlx
 # **************************************************************************** #
 
 
-DIRSRC		= srcs/
+SRC_ROOTDIR		= srcs/
+
+SRC_SUBDIR	   += main.c \
+				  $(addprefix parsing/, $(PARSING)) \
+				  $(addprefix utils/, $(UTILS)) \
+				  $(addprefix mlx/, $(MLX_DIR)) \
+				  $(addprefix vectors/, $(VECTORS)) \
+				  $(addprefix raytracer/, $(RAYTRACER)) \
+				  $(addprefix intersection/, $(INTER))
+
+
+MAIN		= main.c
 
 PARSING		= parsing.c \
 			  check_extension.c \
@@ -98,14 +99,14 @@ PARSING		= parsing.c \
 			  new_camera.c \
 			  new_ambient.c \
 			  new_light.c \
-			  utils.c \
+			  utils.c
 
 RAYTRACER	= raytracer.c \
 			  ray_generator.c \
 			  check_intersection.c \
 			  illumination.c \
 			  shadow.c
-#
+
 INTER		= intersection_sphere.c \
 			  intersection_plan.c \
 			  intersection_cylindre.c
@@ -118,7 +119,7 @@ MLX_DIR		= open_window.c \
 UTILS		= error.c \
 			  print_structure.c \
 			  print_structure2.c \
-			  free_world.c \
+			  free_world.c
 
 VECTORS		= new_vector.c \
 			  add_vector.c \
@@ -132,15 +133,8 @@ VECTORS		= new_vector.c \
 			  cross_product.c \
 			  sub_vector.c
 
-SRC			+= main.c \
-			  $(addprefix parsing/, $(PARSING)) \
-			  $(addprefix utils/, $(UTILS)) \
-			  $(addprefix mlx/, $(MLX_DIR)) \
-			  $(addprefix vectors/, $(VECTORS)) \
-			  $(addprefix raytracer/, $(RAYTRACER)) \
-			  $(addprefix intersection/, $(INTER)) \
 
-SRCS		= $(addprefix $(DIRSRC), $(SRC))
+SRCS		= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
 
 
 
@@ -158,7 +152,7 @@ SUB_OBJ_DIR = objs/parsing \
 			  objs/intersection \
 			  objs/vectors
 
-OBJ			= $(SRC:.c=.o)
+OBJ			= $(SRC_SUBDIR:.c=.o)
 
 
 DIROBJS		= $(addprefix $(DIROBJ), $(OBJ))
@@ -170,9 +164,7 @@ DIROBJS		= $(addprefix $(DIROBJ), $(OBJ))
 # **************************************************************************** #
 
 
-GREEN		= \033[32;1m
 RED			= \033[31;1m
-YELLOW		= \033[33;1m
 CYAN		= \033[36;1m
 RESET		= \033[0m
 
@@ -192,7 +184,7 @@ all : header $(NAME) footer
 bonus : all
 
 
-$(DIROBJ)%.o: $(DIRSRC)%.c
+$(DIROBJ)%.o: $(SRC_ROOTDIR)%.c
 		@mkdir -p $(SUB_OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -203,7 +195,7 @@ $(NAME)	: $(DIROBJS)
 		@printf "$(RESET)"
 		@make -C $(MLX) --no-print-directory
 		@make -C libft --no-print-directory
-		$(CC) $(LFLAGS) $(DIROBJS) $(LIBRAIRY) -o $(NAME)
+		$(CC) $(LFLAGS) $(DIROBJS) $(LIBRARY) -o $(NAME)
 		@printf "\n"
 
 
@@ -239,10 +231,6 @@ fclean :
 
 
 re :	fclean all
-
-
-ycm_db :
-		compiledb make
 
 
 header :

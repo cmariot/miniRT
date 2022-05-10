@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/27 18:57:32 by cmariot           #+#    #+#              #
-#    Updated: 2022/04/30 19:24:27 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/10 16:13:24 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,6 @@ SRC			= colors.c \
 			  ft_putstr_fd.c \
 			  ft_realloc.c \
 			  ft_split.c \
-			  ft_sqrt.c \
 			  ft_strchr.c \
 			  ft_strcmp.c \
 			  ft_strdup.c \

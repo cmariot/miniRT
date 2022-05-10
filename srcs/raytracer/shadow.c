@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:24:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/09 19:22:19 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/10 14:46:46 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ bool	is_shadow(t_obj_list *obj_list, t_3d *position, t_3d *normale)
 		{
 			if (obj_list->objs[j].intersection(obj_list->objs[j],
 					secondary, &p2, &n2))
-				if (norm(add_vector(*position, p2))
-					<= norm(add_vector(*position, obj_list->spot[i].position)))
+				if (length(*position, p2)
+					< length(*position, obj_list->spot[i].position))
 					return (false);
 			j++;
 		}
