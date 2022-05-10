@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 23:13:06 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 23:33:56 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/10 12:10:44 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_light(void *ptr)
 		spot->position.x,
 		spot->position.y,
 		spot->position.z);
-	printf("|\tColor     : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n\n",
+	printf("|\tColor     : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n",
 		spot->color.r,
 		spot->color.g,
 		spot->color.b,
@@ -37,7 +37,7 @@ void	print_ambient(void *ptr)
 
 	ambient = (t_amb *)ptr;
 	printf("\nAmbient_light\n");
-	printf("|\tColor     : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n\n",
+	printf("|\tColor     : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n",
 		ambient->color.r,
 		ambient->color.g,
 		ambient->color.b,

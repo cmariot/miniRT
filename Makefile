@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/09 15:45:01 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/10 12:12:56 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SCENE_TEST		 = scenes/00_minimaliste.rt
 CC				 = clang
 
 
-CFLAGS			 = -Wall -Wextra -Werror -g3
+CFLAGS			 = -Wall -Wextra -Werror -O3
 
 
 INCLUDES		 = -I includes

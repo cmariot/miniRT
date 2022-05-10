@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:24:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/09 17:05:59 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/09 19:22:19 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	is_shadow(t_obj_list *obj_list, t_3d *position, t_3d *normale)
 	i = 0;
 	while (i < obj_list->nb_spot)
 	{
-		secondary.direction = normalize(add_vector(*position,
+		secondary.direction = normalize(sub_vector(*position,
 					obj_list->spot[i].position));
 		j = 0;
 		while (j < obj_list->nb_objs)

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 16:51:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/10 11:53:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@
 bool	intersection_plan(t_obj plan, t_ray ray, t_3d *p, t_3d *n)
 {
 	float	t;
+	t_3d	normale1;
+	t_3d	normale2;
 
 	t = (scalar_product(plan.direction, plan.position)
 		- scalar_product(plan.direction, ray.position))
@@ -78,7 +80,13 @@ bool	intersection_plan(t_obj plan, t_ray ray, t_3d *p, t_3d *n)
 	if (t >= 0)
 	{
 		*p = add_vector(ray.position, mul_vector(ray.direction, t));
-		*n = normalize(add_vector(ray.position, mul_vector(*p, t)));
+		normale1 = plan.direction;
+		normale2 = mul_vector(plan.direction, -1);
+		if (length(ray.position, add_vector(*p, normale1)) <
+			length(ray.position, add_vector(*p, normale2)))
+			*n = normale1;
+		else
+			*n = normale2;
 		return (true);
 	}
 	return (false);

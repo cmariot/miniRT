@@ -6,15 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 22:27:36 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/09 21:34:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static bool	updated_values(t_3d *p, t_3d *n, t_3d intersection, t_3d obj_position)
+static bool	updated_values(t_3d *p, t_3d *n, t_3d obj_position)
 {
-	*p = intersection;
 	*n = normalize(sub_vector(*p, obj_position));
 	return (true);
 }
@@ -75,7 +74,6 @@ bool	intersection_cylinder(t_obj cyl, t_ray ray, t_3d *p, t_3d *n)
 	double	abc[3];
 	double	delta;
 	float	t;
-	t_3d	position;
 
 	delta = get_delta(abc, cyl, ray);
 	if (delta < 0)
@@ -86,14 +84,16 @@ bool	intersection_cylinder(t_obj cyl, t_ray ray, t_3d *p, t_3d *n)
 		t = min_double(t1(delta, abc), t2(delta, abc));
 	if (t < 0)
 		return (false);
-	position = add_vector(ray.position, mul_vector(ray.direction, t));
-	if (intersection(position, cyl))
-		return (updated_values(p, n, position, cyl.position));
+	*p = add_vector(ray.position, mul_vector(ray.direction, t));
+	//intersection sur le cote externe
+	if (intersection(*p, cyl))
+		return (updated_values(p, n, cyl.position));
+	//intersection sur le cote interne
 	else if (delta != 0)
 	{
-		position = add_vector(ray.position, mul_vector(ray.direction, t2(delta, abc)));
-		if (intersection(position, cyl))
-			return (updated_values(p, n, position, cyl.position));
+		*p = add_vector(ray.position, mul_vector(ray.direction, t2(delta, abc)));
+		if (intersection(*p, cyl))
+			return (updated_values(p, n, cyl.position));
 	}
 	return (false);
 }
