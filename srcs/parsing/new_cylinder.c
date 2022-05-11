@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 19:54:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 16:48:23 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,23 @@ int	new_cylinder(t_obj *cylinder, char **array)
 	cylinder->intersection = &intersection_cylinder;
 	cylinder->print = &print_cylinder;
 	if (ft_arraylen(array) != 6)
-		return (rt_error("Too much arguments in cylinder declaration."));
+		return (rt_error("Invalid cylinder declaration."));
 	if (set_position(&cylinder->position, array[1]))
-		return (1);
+		return (rt_error("Syntax error : Cylinder position"));
 	if (set_direction(&cylinder->direction, array[2]))
-		return (1);
+		return (rt_error("Syntax error : Cylinder direction"));
 	if (set_double(&cylinder->radius, array[3], 0.0, INT_MAX))
-		return (second_line_error("Syntax error : Cylinder radius"));
+		return (rt_error("Syntax error : Cylinder diameter"));
 	if (set_double(&cylinder->height, array[4], 0.0, INT_MAX))
-		return (second_line_error("Syntax error : Cylinder height"));
+		return (rt_error("Syntax error : Cylinder height"));
 	if (set_colors(&cylinder->color, array[5]))
-		return (1);
+		return (rt_error("Syntax error : Cylinder color"));
 	cylinder->radius /= 2.0;
-	cylinder->ra1 = add_vector(cylinder->position, mul_vector(cylinder->direction, cylinder->height / 2.0));
-	cylinder->ra2 = add_vector(cylinder->position, mul_vector(cylinder->direction, -cylinder->height / 2.0));
-	cylinder->s = div_vector(sub_vector(cylinder->ra2, cylinder->ra1), length(cylinder->ra1, cylinder->ra2));
+	cylinder->ext1 = add_vector(cylinder->position,
+			mul_vector(cylinder->direction, cylinder->height / 2.0));
+	cylinder->ext2 = add_vector(cylinder->position,
+			mul_vector(cylinder->direction, -cylinder->height / 2.0));
+	cylinder->axe = div_vector(sub_vector(cylinder->ext2, cylinder->ext1),
+			length(cylinder->ext1, cylinder->ext2));
 	return (0);
 }

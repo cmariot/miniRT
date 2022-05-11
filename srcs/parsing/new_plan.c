@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:33:20 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 16:16:22 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 16:48:36 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	new_plan(t_obj *plan, char **array)
 	plan->intersection = &intersection_plan;
 	plan->print = &print_plan;
 	if (ft_arraylen(array) != 4)
-		return (rt_error("Too much arguments in plan declaration."));
+		return (rt_error("Invalid plan declaration."));
 	else if (set_position(&(plan->position), array[1]))
-		return (1);
+		return (rt_error("Syntax error : Plan position"));
 	else if (set_direction(&(plan->direction), array[2]))
-		return (1);
+		return (rt_error("Syntax error : Plan direction"));
 	else if (set_colors(&(plan->color), array[3]))
-		return (1);
+		return (rt_error("Syntax error : Plan color"));
 	return (0);
 }

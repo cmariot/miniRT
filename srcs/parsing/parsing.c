@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:03:29 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/04 09:03:51 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 15:48:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	parsing(t_world *world, const char *filename)
 		return (1);
 	if (check_reading_access(filename))
 		return (1);
-	if (get_object_list(&world->obj_list, filename))
+	if (count_objects(&world->obj_list, filename))
 		return (1);
 	if (memory_allocation(&world->obj_list))
-		return (free_world(world));
-	if (fill_world(world, filename))
-		return (free_world(world));
+		return (free_structure(world));
+	if (fill_structure(world, filename))
+		return (free_structure(world));
 	print_structure(world->obj_list);
 	return (0);
 }

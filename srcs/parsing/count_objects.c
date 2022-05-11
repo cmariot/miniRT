@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_object_list.c                                  :+:      :+:    :+:   */
+/*   count_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:22:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 19:20:46 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 12:30:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_nb_elements(t_obj_list *obj_list)
 		return (rt_error("The scene must have one ambient light."));
 	else if (obj_list->nb_camera != 1)
 		return (rt_error("The scene must have one camera."));
-	else if (obj_list->nb_spot != 1)
+	else if (obj_list->nb_light != 1)
 		return (rt_error("The scene must have one light."));
 	return (0);
 }
@@ -40,13 +40,13 @@ static int	get_element_type(t_obj_list *obj_list, char *line)
 	if (ft_strcmp(splitted_line[0], "sp") == 0
 		|| ft_strcmp(splitted_line[0], "pl") == 0
 		|| ft_strcmp(splitted_line[0], "cy") == 0)
-		obj_list->nb_objs++;
+		obj_list->nb_obj++;
 	else if (ft_strcmp(splitted_line[0], "A") == 0)
 		obj_list->nb_ambient++;
 	else if (ft_strcmp(splitted_line[0], "C") == 0)
 		obj_list->nb_camera++;
 	else if (ft_strcmp(splitted_line[0], "L") == 0)
-		obj_list->nb_spot++;
+		obj_list->nb_light++;
 	else if (splitted_line[0] != NULL)
 	{
 		ft_free_array(splitted_line);
@@ -59,15 +59,13 @@ static int	get_element_type(t_obj_list *obj_list, char *line)
 static void	set_initial_values(t_obj_list *obj_list)
 {
 	obj_list->nb_camera = 0;
-	obj_list->nb_objs = 0;
-	obj_list->nb_spot = 0;
+	obj_list->nb_obj = 0;
+	obj_list->nb_light = 0;
 	obj_list->nb_ambient = 0;
-	obj_list->objs = NULL;
-	obj_list->camera = NULL;
-	obj_list->spot = NULL;
+	obj_list->obj = NULL;
 }
 
-int	get_object_list(t_obj_list *obj_list, const char *filename)
+int	count_objects(t_obj_list *obj_list, const char *filename)
 {
 	int		file_descriptor;
 	char	*line;

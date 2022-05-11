@@ -6,19 +6,19 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 20:49:22 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/05 12:19:41 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 14:32:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	to_double_error(bool *error)
+static double	to_double_error(bool *error)
 {
 	*error = true;
 	return (0.0);
 }
 
-double	get_partie_decimale(char *str, int *index, bool *error)
+static double	get_partie_decimale(char *str, int *index, bool *error)
 {
 	double	partie_decimale;
 	int		partie_decimale_len;
@@ -42,7 +42,7 @@ double	get_partie_decimale(char *str, int *index, bool *error)
 	return (partie_decimale);
 }
 
-double	get_partie_entiere(char *str, int *index, bool *error)
+static double	get_partie_entiere(char *str, int *index, bool *error)
 {
 	double	partie_entiere;
 	int		partie_entiere_len;
@@ -65,7 +65,7 @@ double	get_partie_entiere(char *str, int *index, bool *error)
 	return (partie_entiere);
 }
 
-double	get_signe(char *str, int *index, bool *error)
+static double	get_signe(char *str, int *index, bool *error)
 {
 	double	signe;
 

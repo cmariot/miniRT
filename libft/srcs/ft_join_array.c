@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:32:40 by cmariot           #+#    #+#             */
-/*   Updated: 2022/02/03 19:19:02 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/10 20:32:23 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_new_str_len(char *sep, char **array)
+static int	get_new_str_len(char *sep, char **array)
 {
 	int		str_len;
 	int		i;

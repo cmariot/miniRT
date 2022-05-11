@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 14:58:09 by cmariot           #+#    #+#             */
-/*   Updated: 2021/12/14 19:17:01 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/10 20:27:25 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	char	*new;
-	size_t	i;
+	void	*new;
+	size_t	nb_bytes;
 
-	new = malloc(size * count);
+	nb_bytes = size * count;
+	new = malloc(nb_bytes);
 	if (!new)
 		return (NULL);
-	i = 0;
-	while (i < count * size)
-		new[i++] = 0;
+	ft_bzero(new, nb_bytes);
 	return (new);
 }

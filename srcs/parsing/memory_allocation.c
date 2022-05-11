@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:01:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/10 14:16:09 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 11:48:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,10 @@
 
 int	memory_allocation(t_obj_list *obj_list)
 {
-	if (obj_list->nb_objs)
+	if (obj_list->nb_obj)
 	{
-		obj_list->objs = ft_calloc(sizeof(t_obj), obj_list->nb_objs);
-		if (!obj_list->objs)
-			return (rt_error("Memory allocation failed."));
-	}
-	if (obj_list->nb_camera)
-	{
-		obj_list->camera = ft_calloc(sizeof(t_cam), obj_list->nb_camera);
-		if (!obj_list->camera)
-			return (rt_error("Memory allocation failed."));
-	}
-	if (obj_list->nb_spot)
-	{
-		obj_list->spot = ft_calloc(sizeof(t_light), obj_list->nb_spot);
-		if (!obj_list->spot)
+		obj_list->obj = ft_calloc(sizeof(t_obj), obj_list->nb_obj);
+		if (!obj_list->obj)
 			return (rt_error("Memory allocation failed."));
 	}
 	return (0);

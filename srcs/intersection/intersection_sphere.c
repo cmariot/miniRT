@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/08 22:29:50 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 16:36:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ double	t2(double delta, double *abc)
 	return ((-abc[1] + sqrt(delta)) / (2 * abc[0]));
 }
 
-double	min_double(const double dbl1, const double dbl2)
+/* En supposant que t1 < t2 */
+double	min_double(const double t1, const double t2)
 {
-	if (dbl1 > 0)
-		return (dbl1);
-	return (dbl2);
+	if (t1 > 0)
+		return (t1);
+	return (t2);
 }
 /* 
  * SOIT D LE RAYON PASSANT PAR LE POINT D'ORIGINE
@@ -75,7 +76,7 @@ double	min_double(const double dbl1, const double dbl2)
 
 static double	get_delta(t_obj sphere, t_ray ray, double *abc)
 {
-	t_3d		origin;
+	t_v3		origin;
 	double		delta;
 
 	origin = sub_vector(ray.position, sphere.position);
@@ -97,22 +98,22 @@ static double	get_delta(t_obj sphere, t_ray ray, double *abc)
  * - origine : sphere.point.x, sphere.point.y, sphere.point.z
  * - rayon : sphere.rayon */
 
-bool	intersection_sphere(t_obj sphere, t_ray ray, t_3d *p, t_3d *n)
+bool	intersection_sphere(t_obj sphere, t_ray *ray)
 {
 	double		delta;
 	double		abc[3];
-	double		t;
 
-	delta = get_delta(sphere, ray, abc);
+	delta = get_delta(sphere, *ray, abc);
 	if (delta < 0)
 		return (false);
 	else if (delta == 0)
-		t = t1(delta, abc);
+		ray->t = t1(delta, abc);
 	else
-		t = min_double(t1(delta, abc), t2(delta, abc));
-	if (t < 0)
+		ray->t = min_double(t1(delta, abc), t2(delta, abc));
+	if (ray->t < 0)
 		return (false);
-	*p = add_vector(ray.position, mul_vector(ray.direction, t));
-	*n = normalize(sub_vector(*p, sphere.position));
+	ray->intersection = add_vector(ray->position,
+			mul_vector(ray->direction, ray->t));
+	ray->normale = normalize(sub_vector(ray->intersection, sphere.position));
 	return (true);
 }

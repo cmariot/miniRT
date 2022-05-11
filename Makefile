@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/10 16:44:46 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/11 18:56:09 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@
 
 NAME			 = miniRT
 
-SCENE_TEST		 = scenes/00_minimaliste.rt
+
+SCENE_TEST		 = scenes/00_test.rt
+
 
 
 # **************************************************************************** #
@@ -34,13 +36,14 @@ LFLAGS			 = -Wall -Wextra -Werror -g3 -O3
 
 
 INCLUDES		 = -I includes
+INCLUDES		+= -I libft/includes
 INCLUDES		+= -I $(MLX)
-
 
 
 LIBRARY			 = -L libft -lft
 LIBRARY			+= -L libft/srcs/print -lprint
 LIBRARY			+= -L /usr/lib -lm
+
 
 
 # **************************************************************************** #
@@ -56,17 +59,14 @@ UNAME 			:= $(shell uname -m)
 ifeq ($(UNAME), arm64)
 
 	MLX			 = mlx_macos
-	LIBRARY		+= -L mlx_macos -lmlx -framework OpenGL -framework AppKit
-	SRC_SUBDIR	+= mlx/close_window_macos.c
+	LIBRARY		+= -L $(MLX) -lmlx -framework OpenGL -framework AppKit
 
 else
 
 	MLX			 = mlx_linux
-	LIBRARY		+= -L mlx_linux -lmlx -lmlx_Linux -L /usr/lib -lXext -lX11
-	SRC_SUBDIR	+= mlx/close_window_linux.c
+	LIBRARY		+= -L $(MLX) -lmlx -lmlx_Linux -L /usr/lib -lXext -lX11
 
 endif
-
 
 
 # **************************************************************************** #
@@ -76,7 +76,8 @@ endif
 
 SRC_ROOTDIR		= srcs/
 
-SRC_SUBDIR	   += main.c \
+
+SRC_SUBDIR	    = $(MAIN) \
 				  $(addprefix parsing/, $(PARSING)) \
 				  $(addprefix utils/, $(UTILS)) \
 				  $(addprefix mlx/, $(MLX_DIR)) \
@@ -85,56 +86,64 @@ SRC_SUBDIR	   += main.c \
 				  $(addprefix intersection/, $(INTER))
 
 
-MAIN		= main.c
-
-PARSING		= parsing.c \
-			  check_extension.c \
-			  check_reading_access.c \
-			  get_object_list.c \
-			  memory_allocation.c \
-			  fill_world.c \
-			  new_sphere.c \
-			  new_plan.c \
-			  new_cylinder.c \
-			  new_camera.c \
-			  new_ambient.c \
-			  new_light.c \
-			  utils.c
-
-RAYTRACER	= raytracer.c \
-			  ray_generator.c \
-			  check_intersection.c \
-			  illumination.c \
-			  shadow.c
-
-INTER		= intersection_sphere.c \
-			  intersection_plan.c \
-			  intersection_cylindre.c
-
-MLX_DIR		= open_window.c \
-			  create_images.c \
-			  mlx_putpixel.c \
-			  key_hook.c
-
-UTILS		= error.c \
-			  print_structure.c \
-			  print_structure2.c \
-			  free_world.c
-
-VECTORS		= new_vector.c \
-			  add_vector.c \
-			  div_vector.c \
-			  length.c \
-			  mul_vector.c \
-			  normalize.c \
-			  norm.c \
-			  norm_square.c \
-			  scalar_product.c \
-			  cross_product.c \
-			  sub_vector.c
+MAIN			= main.c
 
 
-SRCS		= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
+PARSING			= parsing.c \
+				  check_extension.c \
+				  check_reading_access.c \
+				  count_objects.c \
+				  memory_allocation.c \
+				  fill_structure.c \
+				  new_sphere.c \
+				  new_plan.c \
+				  new_cylinder.c \
+				  new_camera.c \
+				  new_ambient.c \
+				  new_light.c \
+				  utils.c
+
+
+RAYTRACER		= raytracer.c
+
+
+INTER			= intersection_sphere.c \
+				  intersection_plan.c \
+				  intersection_cylindre.c
+
+
+MLX_DIR			= open_window.c \
+				  create_image.c \
+				  mlx_putpixel.c \
+				  key_hook.c
+
+				  ifeq ($(UNAME), arm64)
+				  	MLX_DIR	+= close_window_macos.c
+				  else
+				  	MLX_DIR	+= close_window_linux.c
+				  endif
+
+
+UTILS			= error.c \
+				  print_structure.c \
+				  print_structure2.c \
+				  free_structure.c
+
+
+VECTORS			= new_vector.c \
+				  add_vector.c \
+				  div_vector.c \
+				  length.c \
+				  mul_vector.c \
+				  normalize.c \
+				  norm.c \
+				  norm_square.c \
+				  scalar_product.c \
+				  cross_product.c \
+				  sub_vector.c
+
+
+SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
 
 
 
@@ -143,19 +152,13 @@ SRCS		= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
 # **************************************************************************** #
 
 
-DIROBJ		= objs/
+OBJ_ROOTDIR		= objs/
 
-SUB_OBJ_DIR = objs/parsing \
-			  objs/utils \
-			  objs/raytracer \
-			  objs/mlx \
-			  objs/intersection \
-			  objs/vectors
+OBJ_SUBDIR		= $(SRC_SUBDIR:.c=.o)
 
-OBJ			= $(SRC_SUBDIR:.c=.o)
+OBJ_DIR 		= $(shell find ./srcs -type d | sed s/".\/srcs"/".\/objs"/g)
 
-
-DIROBJS		= $(addprefix $(DIROBJ), $(OBJ))
+OBJS			= $(addprefix $(OBJ_ROOTDIR), $(OBJ_SUBDIR))
 
 
 
@@ -164,9 +167,9 @@ DIROBJS		= $(addprefix $(DIROBJ), $(OBJ))
 # **************************************************************************** #
 
 
-RED			= \033[31;1m
-CYAN		= \033[36;1m
-RESET		= \033[0m
+RED				= \033[31;1m
+CYAN			= \033[36;1m
+RESET			= \033[0m
 
 
 
@@ -175,76 +178,76 @@ RESET		= \033[0m
 # **************************************************************************** #
 
 
-.SILENT : all
+.SILENT : 		all
 
 
-all : header $(NAME) footer
+all : 			header $(NAME) footer
 
 
-bonus : all
+bonus : 		all
 
 
-$(DIROBJ)%.o: $(SRC_ROOTDIR)%.c
-		@mkdir -p $(SUB_OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.c includes/miniRT.h
+				@mkdir -p $(OBJ_DIR)
+				$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 
-$(NAME)	: $(DIROBJS)
-		@printf "$(CYAN)"
-		@printf "\nMLX COMPILATION\n"
-		@printf "$(RESET)"
-		@make -C $(MLX) --no-print-directory
-		@make -C libft --no-print-directory
-		$(CC) $(LFLAGS) $(DIROBJS) $(LIBRARY) -o $(NAME)
-		@printf "\n"
+$(NAME)	: 		$(OBJS)
+				@printf "$(CYAN)"
+				@printf "\nMLX COMPILATION\n"
+				@printf "$(RESET)"
+				@make -C $(MLX) --no-print-directory
+				@make -C libft --no-print-directory
+				$(CC) $(LFLAGS) $(OBJS) $(LIBRARY) -o $(NAME)
+				@printf "\n"
 
 
-leaks :	all
-		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(SCENE_TEST)
+leaks :			all
+				valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(SCENE_TEST)
 
 
-test :	all
-		./miniRT $(SCENE_TEST)
+test :			all
+				./$(NAME) $(SCENE_TEST)
 
 
 norm :
-		@norminette srcs includes libft
+				@norminette srcs includes libft
 
 
 clean :
-		@rm -rf $(DIROBJ)
-		@make clean -C libft
-		@make clean -C $(MLX)
-		@printf "$(RED)"
-		@printf "Object files removed\n"
-		@printf "$(RESET)"
+				@rm -rf $(OBJ_ROOTDIR)
+				@make clean -C libft
+				@make clean -C $(MLX)
+				@printf "$(RED)"
+				@printf "Object files removed\n"
+				@printf "$(RESET)"
 
 
 fclean :
-		@-rm -f $(NAME)
-		@-rm -rf $(DIROBJ)
-		@make fclean -C libft --no-print-directory
-		@make clean -C $(MLX) --no-print-directory
-		@printf "$(RED)"
-		@printf "Binary and object files removed\n"
-		@printf "$(RESET)"
+				@-rm -f $(NAME)
+				@-rm -rf $(OBJ_ROOTDIR)
+				@make fclean -C libft --no-print-directory
+				@make clean -C $(MLX) --no-print-directory
+				@printf "$(RED)"
+				@printf "Binary and object files removed\n"
+				@printf "$(RESET)"
 
 
-re :	fclean all
+re :			fclean all
 
 
 header :
-		@printf "$(CYAN)"
-		@printf "MINIRT COMPILATION\n"
-		@printf "$(RESET)"
+				@printf "$(CYAN)"
+				@printf "MINIRT COMPILATION\n"
+				@printf "$(RESET)"
 
 
 footer :
-		@printf "$(CYAN)"
-		@printf "➤     SUCCESS\n"
-		@printf "\nUSAGE\n"
-		@printf "$(RESET)"
-		@printf "./miniRT scene.rt\n"
+				@printf "$(CYAN)"
+				@printf "➤     SUCCESS\n"
+				@printf "\nUSAGE\n"
+				@printf "$(RESET)"
+				@printf "./$(NAME) scene.rt\n"
 
 
-.PHONY : fclean
+.PHONY : 		all clean fclean re
