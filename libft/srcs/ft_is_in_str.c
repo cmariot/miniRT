@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:23:18 by cmariot           #+#    #+#             */
-/*   Updated: 2022/02/03 19:26:53 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 10:28:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ bool	ft_is_in_str(char *str, char c)
 	while (str[i] != '\0')
 	{
 		if (str[i] == c)
-			return (TRUE);
+			return (true);
 		i++;
 	}
-	return (FALSE);
+	return (false);
 }

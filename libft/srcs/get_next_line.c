@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 14:18:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/01/02 21:24:52 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 11:32:49 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_add_buf_to_str(char **str, void *buf)
 	return ;
 }
 
-char	*gnl_outpout(ssize_t read_return, char **str_input)
+static char	*gnl_outpout(ssize_t read_return, char **str_input)
 {
 	int		len;
 	char	*tmp;

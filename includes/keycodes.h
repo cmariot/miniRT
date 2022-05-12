@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_structure.c                                   :+:      :+:    :+:   */
+/*   keycodes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 20:29:31 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/08 16:14:04 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/06 10:38:11 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/08 12:44:51 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#ifndef KEYCODES_H
+# define KEYCODES_H
 
-void	free_structure(t_scene *rt_scene, t_counter elements)
-{
-	if (elements.nb_sphere && rt_scene->sphere)
-		free(rt_scene->sphere);
-	if (elements.nb_plan && rt_scene->plan)
-		free(rt_scene->plan);
-	if (elements.nb_cylinder && rt_scene->cylinder)
-		free(rt_scene->cylinder);
-}
+# if defined __APPLE__
+#  define ESC_KEY 53
+//#  define RED_CROSS
+
+# elif defined unix
+#  define ESC_KEY 65307
+//#  define RED_CROSS
+
+# endif
+
+#endif

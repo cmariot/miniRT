@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 18:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 10:46:18 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/01 23:08:00 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/03 13:59:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 
 int	check_extension(const char *filename, const char *extension)
 {
-	size_t	filename_index;
-	size_t	extension_index;
+	size_t	filename_len;
+	size_t	extension_len;
 
-	if (ft_strlen(filename) < ft_strlen(extension))
+	filename_len = ft_strlen(filename);
+	extension_len = ft_strlen(extension);
+	if (filename_len-- < extension_len--)
 		return (rt_error("The scene must have the .rt extension."));
-	filename_index = ft_strlen(filename) - 1;
-	extension_index = ft_strlen(extension) - 1;
-	while (extension_index + 1 != 0)
-		if (filename[filename_index--] != extension[extension_index--])
+	while (extension_len + 1 != 0)
+		if (filename[filename_len--] != extension[extension_len--])
 			return (rt_error("The scene must have the .rt extension."));
 	return (0);
 }

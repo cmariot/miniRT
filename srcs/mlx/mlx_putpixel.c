@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   mlx_putpixel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 10:43:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/19 12:44:56 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/04 14:42:49 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/11 14:21:58 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	rt_error(char const *error_message)
+void	mlx_putpixel(t_img *data, size_t x, size_t y, int color)
 {
-	red();
-	print(2, "Error\n");
-	print(2, "%s\n", error_message);
-	reset_color();
-	return (1);
-}
+	char	*dst;
 
-int	second_line_error(char const *error_message)
-{
-	red();
-	print(2, "%s\n", error_message);
-	reset_color();
-	return (1);
+	dst = data->addr
+		+ (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

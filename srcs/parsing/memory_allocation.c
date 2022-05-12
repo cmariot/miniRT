@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_scene.c                                      :+:      :+:    :+:   */
+/*   memory_allocation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 15:33:43 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/30 08:46:11 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/02 18:01:44 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/11 11:48:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	parse_scene(const char *filename, t_scene *rt_scene)
+int	memory_allocation(t_obj_list *obj_list)
 {
-	if (check_extension(filename, ".rt"))
-		return (1);
-	if (check_reading_access(filename))
-		return (1);
-	if (count_elements(filename, rt_scene))
-		return (1);
-	if (alloc_structure(rt_scene, rt_scene->elements))
-		return (1);
-	if (fill_structure(rt_scene, filename))
+	if (obj_list->nb_obj)
 	{
-		free_structure(rt_scene, rt_scene->elements);
-		return (1);
+		obj_list->obj = ft_calloc(sizeof(t_obj), obj_list->nb_obj);
+		if (!obj_list->obj)
+			return (rt_error("Memory allocation failed."));
 	}
-	print_structure(rt_scene);
 	return (0);
 }

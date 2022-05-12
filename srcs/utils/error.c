@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_structure.h                                    :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 17:21:32 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/20 11:49:32 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/01 23:08:58 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/11 17:49:46 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_STRUCTURE_H
-# define MLX_STRUCTURE_H
+#include "miniRT.h"
 
-# include <mlx.h>
-
-# define SIZE_X 1440
-# define SIZE_Y 872
-
-# define PI 3.14159265359
-
-typedef struct s_mlx
+int	rt_error(char const *error_message)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_mlx;
-
-#endif
+	red();
+	print(2, "Error\n");
+	print(2, "%s\n", error_message);
+	reset_color();
+	return (1);
+}

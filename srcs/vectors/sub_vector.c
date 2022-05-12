@@ -6,15 +6,15 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:35:00 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/09 11:13:26 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 16:32:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_3d	sub_vector(t_3d a, t_3d b)
+t_v3	sub_vector(t_v3 a, t_v3 b)
 {
-	t_3d	c;
+	t_v3	c;
 
 	c.x = a.x - b.x;
 	c.y = a.y - b.y;

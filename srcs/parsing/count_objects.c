@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_elements.c                                   :+:      :+:    :+:   */
+/*   count_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 18:59:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/01 00:16:11 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/01 23:22:12 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/11 22:33:52 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,38 @@
 /* This functions file counts the elements to display on the screen.
  * The file is open and the structure variables are set to default,
  * next the file is read, we get its content with get_next_line and split.
- * The number of each elements is set in the t_scene structure.
+ * The number of each elements is set in the t_world structure.
  * If there is not or more than one ambient_light, camera and light it's an
  * error. */
 
-int	check_nb_elements(t_scene *rt_scene)
+static int	check_nb_elements(t_obj_list *obj_list)
 {
-	if (rt_scene->elements.nb_ambient_light != 1)
+	if (obj_list->nb_ambient != 1)
 		return (rt_error("The scene must have one ambient light."));
-	else if (rt_scene->elements.nb_camera != 1)
+	else if (obj_list->nb_camera != 1)
 		return (rt_error("The scene must have one camera."));
-	else if (rt_scene->elements.nb_light != 1)
+	else if (obj_list->nb_light != 1)
 		return (rt_error("The scene must have one light."));
 	return (0);
 }
 
-int	get_element_type(char *line, t_scene *rt_scene)
+static int	get_element_type(t_obj_list *obj_list, char *line)
 {
 	char	**splitted_line;
 
 	splitted_line = ft_split(line, ' ');
 	if (!splitted_line)
-		return (rt_error("Could not split the line."));
-	if (ft_strcmp(splitted_line[0], "A") == 0)
-		rt_scene->elements.nb_ambient_light++;
+		return (rt_error("The ft_split function failed in get_element_type()"));
+	if (ft_strcmp(splitted_line[0], "sp") == 0
+		|| ft_strcmp(splitted_line[0], "pl") == 0
+		|| ft_strcmp(splitted_line[0], "cy") == 0)
+		obj_list->nb_obj++;
+	else if (ft_strcmp(splitted_line[0], "A") == 0)
+		obj_list->nb_ambient++;
 	else if (ft_strcmp(splitted_line[0], "C") == 0)
-		rt_scene->elements.nb_camera++;
+		obj_list->nb_camera++;
 	else if (ft_strcmp(splitted_line[0], "L") == 0)
-		rt_scene->elements.nb_light++;
-	else if (ft_strcmp(splitted_line[0], "sp") == 0)
-		rt_scene->elements.nb_sphere++;
-	else if (ft_strcmp(splitted_line[0], "pl") == 0)
-		rt_scene->elements.nb_plan++;
-	else if (ft_strcmp(splitted_line[0], "cy") == 0)
-		rt_scene->elements.nb_cylinder++;
+		obj_list->nb_light++;
 	else if (splitted_line[0] != NULL)
 	{
 		ft_free_array(splitted_line);
@@ -58,24 +56,16 @@ int	get_element_type(char *line, t_scene *rt_scene)
 	return (0);
 }
 
-void	init_scene(t_scene *rt_scene)
+static void	init_obj_list(t_obj_list *obj_list)
 {
-	rt_scene->elements.nb_ambient_light = 0;
-	rt_scene->elements.nb_camera = 0;
-	rt_scene->elements.nb_light = 0;
-	rt_scene->elements.current_sphere = 0;
-	rt_scene->elements.nb_sphere = 0;
-	rt_scene->elements.nb_plan = 0;
-	rt_scene->elements.nb_cylinder = 0;
-	rt_scene->elements.index_sphere = 0;
-	rt_scene->elements.index_plan = 0;
-	rt_scene->elements.index_cylinder = 0;
-	rt_scene->sphere = NULL;
-	rt_scene->plan = NULL;
-	rt_scene->cylinder = NULL;
+	obj_list->nb_camera = 0;
+	obj_list->nb_obj = 0;
+	obj_list->nb_light = 0;
+	obj_list->nb_ambient = 0;
+	obj_list->obj = NULL;
 }
 
-int	count_elements(const char *filename, t_scene *rt_scene)
+int	count_objects(t_obj_list *obj_list, const char *filename)
 {
 	int		file_descriptor;
 	char	*line;
@@ -83,20 +73,20 @@ int	count_elements(const char *filename, t_scene *rt_scene)
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
-		return (rt_error("Could not open the scene."));
-	init_scene(rt_scene);
+		return (rt_error("The scene file can't be open."));
+	init_obj_list(obj_list);
 	error = false;
 	while (1)
 	{
 		line = gnl_without_bn(file_descriptor);
 		if (!line)
 			break ;
-		if (error == false && get_element_type(line, rt_scene))
+		if (error == false && get_element_type(obj_list, line))
 			error = true;
 		free(line);
 	}
 	close(file_descriptor);
-	if (error == true || check_nb_elements(rt_scene))
+	if (error == true || check_nb_elements(obj_list))
 		return (1);
 	return (0);
 }

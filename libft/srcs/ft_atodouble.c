@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atofloat.c                                      :+:      :+:    :+:   */
+/*   ft_atodouble.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 20:49:22 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/20 11:31:03 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 20:36:53 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	to_double_error(bool *error)
+static double	to_double_error(bool *error)
 {
 	*error = true;
 	return (0.0);
 }
 
-double	get_partie_decimale(char *str, int *index, bool *error)
+static double	get_partie_decimale(char *str, int *index, bool *error)
 {
 	double	partie_decimale;
 	int		partie_decimale_len;
@@ -33,8 +33,10 @@ double	get_partie_decimale(char *str, int *index, bool *error)
 	i = *index;
 	while (str[i] != '\0' && ft_isdigit(str[i++]) == 1)
 		partie_decimale_len++;
+	if (partie_decimale_len > 9)
+		return (to_double_error(error));
 	decimal = ft_substr(str, *index, partie_decimale_len);
-	if (!decimal || ft_strlen(decimal) > 9)
+	if (!decimal)
 		return (to_double_error(error));
 	partie_decimale = (double)ft_atoi(decimal) / pow(10, ft_strlen(decimal));
 	*index += partie_decimale_len;
@@ -42,22 +44,24 @@ double	get_partie_decimale(char *str, int *index, bool *error)
 	return (partie_decimale);
 }
 
-double	get_partie_entiere(char *str, int *index, bool *error)
+static double	get_partie_entiere(char *str, int *index, bool *error)
 {
 	double	partie_entiere;
 	int		partie_entiere_len;
 	int		i;
 	char	*entier;
 
-	if (str[*index] == '\0')
+	if (!str || str[*index] == '\0')
 		return (to_double_error(error));
 	partie_entiere = 0.0;
 	partie_entiere_len = 0;
 	i = *index;
 	while (str[i] != '\0' && ft_isdigit(str[i++]) == 1)
 		partie_entiere_len++;
+	if (partie_entiere_len > 9)
+		return (to_double_error(error));
 	entier = ft_substr(str, *index, partie_entiere_len);
-	if (!entier || ft_strlen(entier) > 9)
+	if (!entier)
 		return (to_double_error(error));
 	partie_entiere = ft_atoi(entier);
 	free(entier);
@@ -65,7 +69,7 @@ double	get_partie_entiere(char *str, int *index, bool *error)
 	return (partie_entiere);
 }
 
-double	get_signe(char *str, int *index, bool *error)
+static double	get_signe(char *str, int *index, bool *error)
 {
 	double	signe;
 

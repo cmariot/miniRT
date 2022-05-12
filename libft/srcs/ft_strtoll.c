@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 14:47:24 by cmariot           #+#    #+#             */
-/*   Updated: 2022/01/09 17:51:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/03 10:27:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@
  * (LONG_LONG_OVERFLOW)
  */
 
-#define LONG_LONG_MAX 9223372036854775807
-
 int	ft_isspace(char c)
 {
 	if ((c == '\t' || c == '\n' || c == '\v')
@@ -48,8 +46,8 @@ int	ft_isspace(char c)
 
 void	skip_spaces(const char *restrict str, size_t *i)
 {
-	if (ft_isspace(str[*i]) == TRUE)
-		while (ft_isspace(str[*i]) == TRUE)
+	if (ft_isspace(str[*i]) == true)
+		while (ft_isspace(str[*i]) == true)
 			(*i)++;
 }
 
@@ -72,17 +70,17 @@ long long	ft_strtoll(const char *restrict str, char **restrict endptr)
 	i = 0;
 	skip_spaces(str, &i);
 	sign = get_sign(str, &i);
-	if (ft_isdigit(str[i]) == FALSE)
+	if (ft_isdigit(str[i]) == false)
 		return (0);
 	result = 0;
-	while (str[i] != '\0' && ft_isdigit(str[i]) == TRUE
-		&& result < LONG_LONG_MAX)
+	while (str[i] != '\0' && ft_isdigit(str[i]) == true
+		&& result < LLONG_MAX)
 	{
 		result = result * 10 + str[i++] - '0';
-		if (result > LONG_LONG_MAX)
+		if (result > LLONG_MAX)
 		{
 			i--;
-			result = LONG_LONG_MAX;
+			result = LLONG_MAX;
 			break ;
 		}
 	}

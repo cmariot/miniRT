@@ -5,58 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 20:28:57 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/15 10:47:55 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/02 18:22:46 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/11 22:06:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	get_line_content(char *line, t_scene *rt_scene)
+static int	set_world(t_obj_list *obj_list, char *line, size_t *index)
 {
 	char	**splitted_line;
+	int		ret;
 
 	splitted_line = ft_split(line, ' ');
 	if (!splitted_line)
-		return (rt_error("Split failed."));
-	if (ft_strcmp(splitted_line[0], "A") == 0)
-		return (fill_ambient_light(splitted_line, &rt_scene->ambient_light));
-	else if (ft_strcmp(splitted_line[0], "C") == 0)
-		return (fill_camera(splitted_line, &rt_scene->camera));
-	else if (ft_strcmp(splitted_line[0], "L") == 0)
-		return (fill_light(splitted_line, &rt_scene->light));
-	else if (ft_strcmp(splitted_line[0], "sp") == 0)
-		return (fill_sphere(splitted_line,
-				&(rt_scene->elements.index_sphere),
-				&(rt_scene->sphere[rt_scene->elements.index_sphere])));
-	else if (ft_strcmp(splitted_line[0], "pl") == 0)
-		return (fill_plan(splitted_line,
-				&(rt_scene->elements.index_plan),
-				&(rt_scene->plan[rt_scene->elements.index_plan])));
-	else if (ft_strcmp(splitted_line[0], "cy") == 0)
-		return (fill_cylinder(splitted_line,
-				&(rt_scene->elements.index_cylinder),
-				&(rt_scene->cylinder[rt_scene->elements.index_cylinder])));
+		return (rt_error("The ft_split function failed in set_world()"));
+	ret = 0;
+	if (!ft_strcmp(*splitted_line, "sp"))
+		ret = new_sphere(&obj_list->obj[(*index)++], splitted_line);
+	else if (!ft_strcmp(*splitted_line, "pl"))
+		ret = new_plan(&obj_list->obj[(*index)++], splitted_line);
+	else if (!ft_strcmp(*splitted_line, "cy"))
+		ret = new_cylinder(&obj_list->obj[(*index)++], splitted_line);
+	else if (!ft_strcmp(*splitted_line, "C"))
+		ret = new_camera(&obj_list->camera, splitted_line);
+	else if (!ft_strcmp(*splitted_line, "A"))
+		ret = new_ambient(&obj_list->ambient, splitted_line);
+	else if (!ft_strcmp(*splitted_line, "L"))
+		ret = new_light(&obj_list->light, splitted_line);
 	ft_free_array(splitted_line);
-	return (0);
+	return (ret);
 }
 
-int	fill_structure(t_scene *rt_scene, const char *filename)
+int	fill_structure(t_world *world, const char *filename)
 {
 	int		file_descriptor;
 	char	*line;
+	size_t	obj_index;
 	bool	error;
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
-		return (rt_error("Could not open the scene."));
+		return (rt_error("The scene file can't be open."));
 	error = false;
+	obj_index = 0;
 	while (1)
 	{
 		line = gnl_without_bn(file_descriptor);
 		if (!line)
 			break ;
-		if (error == false && get_line_content(line, rt_scene))
+		if (error == false && set_world(&world->obj_list, line, &obj_index))
 			error = true;
 		free(line);
 	}

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:34:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/04/30 19:23:44 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/10 16:13:34 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define LIBFT_H
 
 # define BUFFER_SIZE 50
-
-# define TRUE 1
-# define FALSE 0
 
 # include <string.h>
 # include <stdlib.h>
@@ -26,6 +23,9 @@
 # include <dirent.h>
 # include <stdbool.h>
 # include <math.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <float.h>
 
 typedef struct s_list
 {
@@ -77,7 +77,6 @@ void		ft_putstr(char *s);
 void		ft_putstr_fd(char *s, int fd);
 char		*ft_realloc(void *previous, char *new);
 char		**ft_split(char const *s, char c);
-float		ft_sqrt(float number);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strdel(char **adr_str);
 char		*ft_strdup(const char *s1);
@@ -95,6 +94,7 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
+int			trgb_color(double t, double r, double g, double b);
 
 /* GET NEXT LINE */
 char		*get_next_line(int fd);
