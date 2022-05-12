@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/12 08:51:43 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/12 10:36:41 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,7 +160,7 @@ OBJ_DIR 		= $(shell find ./srcs -type d | sed s/".\/srcs"/".\/objs"/g)
 
 OBJS			= $(addprefix $(OBJ_ROOTDIR), $(OBJ_SUBDIR))
 
-
+DEPS			:= $(OBJS:.o=.d)
 
 # **************************************************************************** #
 #                                  COLORS                                      #
@@ -187,9 +187,9 @@ all : 			header $(NAME) footer
 bonus : 		all
 
 
-$(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.c includes/miniRT.h
+$(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.c
 				@mkdir -p $(OBJ_DIR)
-				$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+				$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
 
 $(NAME)	: 		$(OBJS)
@@ -215,7 +215,7 @@ norm :
 
 
 clean :
-				@rm -rf $(OBJ_ROOTDIR)
+				@rm -rf $(OBJ_ROOTDIR) $(DEPS)
 				@make clean -C libft
 				@make clean -C $(MLX)
 				@printf "$(RED)"
@@ -225,7 +225,7 @@ clean :
 
 fclean :
 				@-rm -f $(NAME)
-				@-rm -rf $(OBJ_ROOTDIR)
+				@-rm -rf $(OBJ_ROOTDIR) $(DEPS)
 				@make fclean -C libft --no-print-directory
 				@make clean -C $(MLX) --no-print-directory
 				@printf "$(RED)"
@@ -249,5 +249,6 @@ footer :
 				@printf "$(RESET)"
 				@printf "./$(NAME) scene.rt\n"
 
+-include $(DEPS)
 
 .PHONY : 		all clean fclean re

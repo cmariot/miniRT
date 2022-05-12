@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 22:00:58 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 10:11:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct s_obj {
 	t_v3			ext1;
 	t_v3			ext2;
 	t_v3			axe;
-	//t_obj			*next;	Liste chainée ?
 }	t_obj;
 
 // Liste des objets
@@ -102,7 +101,7 @@ typedef struct s_obj_list {
 	t_obj			*obj;
 	t_cam			camera;
 	t_amb			ambient;
-	t_light			light;
+	t_light			light; //*
 }	t_obj_list;
 
 // Structure principale
