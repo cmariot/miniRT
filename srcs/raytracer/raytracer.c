@@ -57,6 +57,8 @@ int	check_intersection(t_ray *ray, t_obj_list *obj_list)
 				distance = ray->t;
 				dir_light = ray_generator_from_inter(ray, obj_list->light);
 				color = check_light(&dir_light, obj_list, color);
+				if (!color)
+					color = obj_list->ambient.color.trgb;
 			}
 		}
 		i++;
