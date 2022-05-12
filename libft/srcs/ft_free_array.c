@@ -6,14 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:22:57 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 19:37:19 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 08:58:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /* Free an array of char *, and free the array itself */
-void	ft_free_array(char **array)
+int	ft_free_array(char **array)
 {
 	size_t	i;
 
@@ -28,6 +28,6 @@ void	ft_free_array(char **array)
 		}
 		free(array);
 		array = NULL;
-		return ;
 	}
+	return (1);
 }

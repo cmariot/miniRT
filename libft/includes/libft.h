@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:34:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/10 16:13:34 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 08:58:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ double		ft_atodouble(char *str, bool *error);
 int			ft_atoi(const char *str);
 void		ft_bzero(void *b, size_t n);
 void		*ft_calloc(size_t count, size_t size);
-void		ft_free_array(char **array);
+int			ft_free_array(char **array);
 size_t		ft_intlen(int n);
 bool		ft_isadirectory(char *path);
 int			ft_isalnum(int c);
