@@ -12,14 +12,42 @@
 
 #include "miniRT.h"
 
+static int	check_light(t_ray *ray, t_obj_list *obj_list, int trgb)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < obj_list->nb_obj)
+	{
+		if (obj_list->obj[i].intersection(obj_list->obj[i], ray))
+			return (0);
+		i++;
+	}
+	return (trgb);
+}
+
+static t_ray	ray_generator_from_inter(t_ray *primary, t_light light)
+{
+	t_ray	ray;
+
+	ray.position = primary->intersection;
+	ray.direction = sub_vector(primary->intersection, light.position);
+	ray.direction = normalize(ray.direction);
+	return (ray);
+}
+
 int	check_intersection(t_ray *ray, t_obj_list *obj_list)
 {
 	int		color;
 	size_t	i;
+	size_t	j;
 	double	distance;
+	t_ray dir_light;
 
 	i = 0;
+	j = 0;
 	color = 0;
+	// dir_light = 0;
 	distance = INFINITY;
 	while (i < obj_list->nb_obj)
 	{
@@ -29,12 +57,15 @@ int	check_intersection(t_ray *ray, t_obj_list *obj_list)
 			{
 				color = obj_list->obj[i].color.trgb;
 				distance = ray->t;
+				dir_light = ray_generator_from_inter(ray, obj_list->light);
+				color = check_light(&dir_light, obj_list, color);
 			}
 		}
 		i++;
 	}
 	return (color);
 }
+
 
 t_ray	ray_generator(t_cam	*camera, double x, double y)
 {
@@ -47,7 +78,7 @@ t_ray	ray_generator(t_cam	*camera, double x, double y)
 	return (ray);
 }
 
-//pour chaque pixel de l'image 
+//pour chaque pixel de l'image
 //generer un rayon
 //voir si le rayon percute un objet si oui le pixel prend la couleur de l'objet
 void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
