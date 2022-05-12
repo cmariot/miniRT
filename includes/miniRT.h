@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 13:24:41 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:26:37 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "mlx.h"
 # include "keycodes.h"
 
-# define SCREEN_WIDTH 500
+# define SCREEN_WIDTH 1440
 
 /* ************************************************************************** */
 /*                              Main directory                                */
@@ -68,6 +68,7 @@ int		close_window(t_world *world);
 /* ************************************************************************** */
 
 void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx);
+t_ray	ray_generator(t_cam	*camera, double x, double y);
 
 /* ************************************************************************** */
 /*                           Intersection directory                           */

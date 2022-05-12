@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 10:11:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:19:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ typedef struct s_cam {
 	size_t			screen_width;
 	size_t			screen_height;
 	double			fov_horizontal;
+	double			constant_x;
+	double			constant_y;
+	double			constant_z;
 }	t_cam;
 
 // Structure utilisée pour les sphere, cylindres et plans

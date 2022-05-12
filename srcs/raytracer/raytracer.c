@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 14:48:36 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:32:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ static t_ray	ray_generator_from_inter(t_ray *primary, t_light light)
 	t_ray	ray;
 
 	ray.position = primary->intersection;
-	ray.direction = sub_vector(primary->intersection, light.position);
+	ray.direction = sub_vector(light.position, primary->intersection);
 	ray.direction = normalize(ray.direction);
+	//printf("2nd RAY : origine (%f, %f, %f) / direction (%f, %f, %f)\n", ray.position.x, ray.position.y, ray.position.z, ray.direction.x, ray.direction.y, ray.direction.z);
 	return (ray);
 }
 
@@ -40,14 +41,11 @@ int	check_intersection(t_ray *ray, t_obj_list *obj_list)
 {
 	int		color;
 	size_t	i;
-	size_t	j;
 	double	distance;
-	t_ray dir_light;
+	t_ray	dir_light;
 
 	i = 0;
-	j = 0;
 	color = 0;
-	// dir_light = 0;
 	distance = INFINITY;
 	while (i < obj_list->nb_obj)
 	{
@@ -64,18 +62,6 @@ int	check_intersection(t_ray *ray, t_obj_list *obj_list)
 		i++;
 	}
 	return (color);
-}
-
-
-t_ray	ray_generator(t_cam	*camera, double x, double y)
-{
-	t_ray	ray;
-
-	ray.position = camera->position;
-	ray.direction.x = x - camera->screen_width * 0.5;
-	ray.direction.y = y - camera->screen_height * 0.5;
-	ray.direction.z = -1 * ((camera->screen_width) / (2 * tan(camera->fov_horizontal * 0.0174533 * 0.5)));
-	return (ray);
 }
 
 //pour chaque pixel de l'image
