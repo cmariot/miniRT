@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:22:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 12:30:50 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 22:33:52 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	get_element_type(t_obj_list *obj_list, char *line)
 	return (0);
 }
 
-static void	set_initial_values(t_obj_list *obj_list)
+static void	init_obj_list(t_obj_list *obj_list)
 {
 	obj_list->nb_camera = 0;
 	obj_list->nb_obj = 0;
@@ -74,7 +74,7 @@ int	count_objects(t_obj_list *obj_list, const char *filename)
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
 		return (rt_error("The scene file can't be open."));
-	set_initial_values(obj_list);
+	init_obj_list(obj_list);
 	error = false;
 	while (1)
 	{

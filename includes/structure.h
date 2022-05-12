@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 16:30:51 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 22:00:58 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_cam {
 }	t_cam;
 
 // Structure utilisée pour les sphere, cylindres et plans
-// Pointeurs sur fonction = methodes (type commencant par 't_m_')
+// Pointeurs sur fonction (type commencant par 't_m_') = methodes
 typedef struct s_obj {
 	t_m_inter		intersection;
 	t_m_print		print;
@@ -90,6 +90,7 @@ typedef struct s_obj {
 	t_v3			ext1;
 	t_v3			ext2;
 	t_v3			axe;
+	//t_obj			*next;	Liste chainée ?
 }	t_obj;
 
 // Liste des objets

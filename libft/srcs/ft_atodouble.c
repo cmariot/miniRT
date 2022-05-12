@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 20:49:22 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 14:32:54 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 20:36:53 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ static double	get_partie_decimale(char *str, int *index, bool *error)
 	i = *index;
 	while (str[i] != '\0' && ft_isdigit(str[i++]) == 1)
 		partie_decimale_len++;
+	if (partie_decimale_len > 9)
+		return (to_double_error(error));
 	decimal = ft_substr(str, *index, partie_decimale_len);
-	if (!decimal || ft_strlen(decimal) > 9)
+	if (!decimal)
 		return (to_double_error(error));
 	partie_decimale = (double)ft_atoi(decimal) / pow(10, ft_strlen(decimal));
 	*index += partie_decimale_len;
@@ -56,8 +58,10 @@ static double	get_partie_entiere(char *str, int *index, bool *error)
 	i = *index;
 	while (str[i] != '\0' && ft_isdigit(str[i++]) == 1)
 		partie_entiere_len++;
+	if (partie_entiere_len > 9)
+		return (to_double_error(error));
 	entier = ft_substr(str, *index, partie_entiere_len);
-	if (!entier || ft_strlen(entier) > 9)
+	if (!entier)
 		return (to_double_error(error));
 	partie_entiere = ft_atoi(entier);
 	free(entier);

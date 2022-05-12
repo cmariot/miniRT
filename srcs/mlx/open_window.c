@@ -6,25 +6,39 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:15:07 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 13:42:49 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 22:07:47 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+static void	init_mlx(t_mlx *mlx, t_img *image)
+{
+	mlx->mlx_ptr = NULL;
+	mlx->win_ptr = NULL;
+	image->img = NULL;
+	image->addr = NULL;
+}
+
 int	open_window(t_world *world)
 {
+	init_mlx(&world->mlx, &world->mlx.image);
 	world->mlx.mlx_ptr = mlx_init();
-	if (world->mlx.mlx_ptr == NULL)
-		return (rt_error("MLX: mlx_init() failed."));
+	if (!world->mlx.mlx_ptr)
+	{
+		rt_error("MLX: mlx_init() failed.");
+		return (free_structure(world));
+	}
 	world->mlx.win_ptr = mlx_new_window(world->mlx.mlx_ptr,
 			world->obj_list.camera.screen_width,
 			world->obj_list.camera.screen_height,
 			"miniRT");
-	if (world->mlx.win_ptr == NULL)
-		return (rt_error("MLX: mlx_open_window() failed."));
-	if (create_image(&world->mlx, world))
+	if (!world->mlx.win_ptr)
+	{
+		rt_error("MLX: mlx_open_window() failed.");
 		return (close_window(world));
+	}
+	create_image(&world->mlx, world);
 	raytracer(&world->obj_list, &world->obj_list.camera, &world->mlx);
 	mlx_key_hook(world->mlx.win_ptr, key_hook, world);
 	mlx_hook(world->mlx.win_ptr, 33, 1L << 5, close_window, world);
