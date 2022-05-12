@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 10:40:05 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 13:24:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "mlx.h"
 # include "keycodes.h"
 
-# define SCREEN_WIDTH 1600
+# define SCREEN_WIDTH 500
 
 /* ************************************************************************** */
 /*                              Main directory                                */
