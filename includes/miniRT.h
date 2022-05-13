@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 17:44:25 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/13 14:07:28 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_ray	ray_generator(t_cam	*camera, double x, double y);
 int		check_intersection(t_ray *ray, t_obj_list *obj_list);
 t_ray	second_ray_generator(t_ray *first_ray, t_light light);
 bool	is_shadow(t_ray *second_ray, t_light light, t_obj_list *obj_list);
+int		illumination(t_color obj_color, t_obj_list obj_list, t_ray ray);
 
 /* ************************************************************************** */
 /*                           Intersection directory                           */
