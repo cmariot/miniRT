@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/13 14:14:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/13 16:22:15 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_color	diffuse_reflexion(t_color obj_color, t_ray ray,
 	diffuse_color.b = 0;
 	scalar = scalar_product(normalize(sub_vector(light.position,
 					ray.intersection)), ray.normale);
-	if (scalar >= 0)
+	if (scalar > 0)
 	{
 		intensite = intensite_lumiere * light.ratio
 			/ norm_square(sub_vector(light.position, ray.intersection));

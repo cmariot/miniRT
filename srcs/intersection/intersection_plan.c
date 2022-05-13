@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/13 08:57:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/13 16:10:45 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ bool	intersection_plan(t_obj plan, t_ray *ray)
 	t_v3	normale1;
 	t_v3	normale2;
 
-	return (false);
 	ray->t = (scalar_product(plan.direction, plan.position)
 			- scalar_product(plan.direction, ray->position))
 		/ scalar_product(plan.direction, ray->direction);
@@ -82,8 +81,7 @@ bool	intersection_plan(t_obj plan, t_ray *ray)
 				mul_vector(ray->direction, ray->t));
 		normale1 = plan.direction;
 		normale2 = mul_vector(plan.direction, -1);
-		if (length(ray->position, add_vector(ray->intersection, normale1))
-			< length(ray->position, add_vector(ray->intersection, normale2)))
+		if (length(ray->position, normale1) < length(ray->position, normale2))
 			ray->normale = normale1;
 		else
 			ray->normale = normale2;
