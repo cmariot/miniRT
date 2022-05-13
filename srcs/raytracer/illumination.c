@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/13 16:22:15 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/13 19:11:34 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ static t_color	diffuse_reflexion(t_color obj_color, t_ray ray,
 	t_color			diffuse_color;
 	double			scalar;
 	double			intensite;
-	const double	intensite_lumiere = 20;
+	const double	intensite_lumiere = 10;
 
 	diffuse_color.r = 0;
 	diffuse_color.g = 0;
 	diffuse_color.b = 0;
+	if (ray.intersection.x == 0 && ray.intersection.y == 0
+		&& ray.intersection.z == 0)
+		return (diffuse_color);
 	scalar = scalar_product(normalize(sub_vector(light.position,
 					ray.intersection)), ray.normale);
 	if (scalar > 0)
@@ -36,16 +39,15 @@ static t_color	diffuse_reflexion(t_color obj_color, t_ray ray,
 	return (diffuse_color);
 }
 
-static t_color	ambient_reflexion(t_color obj_color, t_amb ambient)
+static t_color	ambient_reflexion(t_color color, t_amb ambient)
 {
-	t_color	ambient_color;
 	double	k;
 
 	k = ambient.ratio / 255;
-	ambient_color.r = ambient.color.r * k * obj_color.r;
-	ambient_color.g = ambient.color.g * k * obj_color.g;
-	ambient_color.b = ambient.color.b * k * obj_color.b;
-	return (ambient_color);
+	color.r *= ambient.color.r * k;
+	color.g *= ambient.color.g * k;
+	color.b *= ambient.color.b * k;
+	return (color);
 }
 
 int	illumination(t_color obj_color, t_obj_list obj_list, t_ray ray)
