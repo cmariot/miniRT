@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/27 18:57:32 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/10 16:13:24 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/12 21:51:09 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,7 @@ CC			= clang
 
 CFLAGS		= -Wall -Wextra -Werror
 
-INCLUDES	= -I ./includes
-INCLUDES	+= -I ./srcs/print/includes
+INCLUDES	= -I includes
 
 # **************************************************************************** #
 #                                SOURCE FILES                                  #

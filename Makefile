@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/12 16:27:52 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/12 17:49:59 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,10 @@ PARSING			= parsing.c \
 
 
 RAYTRACER		= raytracer.c \
-				  ray_generator.c
+				  ray_generator.c \
+				  check_intersection.c \
+				  second_ray_generator.c \
+				  is_shadow.c
 
 
 INTER			= intersection_sphere.c \

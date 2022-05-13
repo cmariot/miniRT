@@ -6,11 +6,16 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:25:43 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 16:26:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 19:42:19 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+/*
+ * Origine   : Camera 
+ * Direction : Pixel (x ; y)
+ */
 
 t_ray	ray_generator(t_cam	*camera, double x, double y)
 {

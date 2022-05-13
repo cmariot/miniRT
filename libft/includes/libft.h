@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:34:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 08:58:55 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 21:52:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <float.h>
+
+# include "../srcs/print/includes/ft_print.h"
 
 typedef struct s_list
 {

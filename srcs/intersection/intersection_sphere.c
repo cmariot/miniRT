@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 13:26:03 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/12 20:57:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ double	min_double(const double t1, const double t2)
  *  z(t) -> ray->direction.z * t + ray->position.z
  *
  * EQUATION SPHERE : UN POINT EST SUR LA SPHERE SI IL Y A UNE SOLUTION
- *   (sphere->position.x)^2 + (sphere->position.y)^2 + (sphere->position.z)^2
- * = (sphere.radius)^2
+ *   x^2 + y^2 + z^2 = (sphere.radius)^2
  *
  * EN REMPLACANT LES ELEMENTS DANS L'EQUATION SPHERE :
  *   (ray->direction.x * t + ray->position.x)^2
@@ -60,7 +59,7 @@ double	min_double(const double t1, const double t2)
  * + ray->position.x^2 + ray->position.y^2 + ray->position.z^2
  * - (sphere.radius)^2 = 0
  *
- * REFORMULATION :
+ * REFORMULATION SOUS LA FORME At^2 + Bt + C = 0:
  *   ((ray->direction.x)^2 + (ray->direction.y)^2 + (ray->direction.z)^2) * t^2
  * + ((ray->direction.x * ray->position.x)
  * + (ray->direction.y * ray->position.y)
@@ -87,7 +86,7 @@ static double	get_delta(t_obj sphere, t_ray ray, double *abc)
 	origin = sub_vector(ray.position, sphere.position);
 	abc[0] = norm_square(ray.direction);
 	abc[1] = scalar_product(ray.direction, origin) * 2.0;
-	abc[2] = norm_square(origin) - (sphere.radius * sphere.radius);
+	abc[2] = norm_square(origin) - pow(sphere.radius, 2);
 	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
 	return (delta);
 }

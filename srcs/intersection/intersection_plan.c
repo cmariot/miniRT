@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 13:30:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/13 08:57:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 /*
  * SYSTEME D'ÉQUATION PARAMETRIQUES DU RAYON :
- * x(t) -> U * t + xa
- * y(t) -> V * t + ya
- * z(t) -> W * t + za
+ *  x(t) -> ray->direction.x * t + ray->position.x
+ *  y(t) -> ray->direction.y * t + ray->position.y
+ *  z(t) -> ray->direction.z * t + ray->position.z
  *
  * EQUATION PLAN :
- * Ax + By + Cz + D = 0
+ * A(x - plan.position.x) + B(y - plan.position.y) + C(z - plan.position.z) = 0
  *
- * EQUATION D'UN PLAN CONTENANT LE POINT P (x0, y0, z0):
- * A(x - x0) + B(y = y0) + C(z - z0) = 0
- *
- * ON DETERMINE L'EQUATION DU PLAN AVEC SA POSITION :
- *
+ * AVEC :
  * A = plan.direction.x
  * B = plan.direction.y
  * C = plan.direction.z
  *
+ * EQUATION DU PLAN EN FONCTION DE SA POSITION ET SA DIRECTION:
  *   plan.direction.x * (x - plan.position.x)
  * + plan.direction.y * (y - plan.position.y)
  * + plan.direction.z * (z - plan.position.z) = 0
