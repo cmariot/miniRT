@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:25:43 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/13 18:20:24 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/14 13:43:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ t_ray	ray_generator(t_cam	*camera, double x, double y)
 	ray.direction.y = y + camera->constant_y;
 	ray.direction.z = camera->constant_z;
 	ray.intersection = new_vector(0, 0, 0);
+	ray.normale = new_vector(0, 0, 0);
 	return (ray);
 }

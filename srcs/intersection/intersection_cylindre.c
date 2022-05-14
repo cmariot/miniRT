@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/13 16:11:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/13 22:33:30 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ bool	intersection_cylinder(t_obj cyl, t_ray *ray)
 	double	abc[3];
 	double	delta;
 
+	return (false);
 	delta = get_delta(abc, cyl, *ray);
 	if (delta < 0)
 		return (false);
