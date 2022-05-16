@@ -1,7 +1,4 @@
 TODO :
-- [ ] Coordonnées inversées
-- [ ] Plan qui bloque vue
-- [ ] Objet sans lunière visible (reflexion ambiante/diffuse)
 - [ ] Direction 0,0,0 et gestion erreur
 - [ ] Cylindres calculer normale
 - [ ] Translation/rotation camera
@@ -10,3 +7,4 @@ DONE :
 - [X] Normales à l'interieur des spheres
 - [X] Couleur intérieur sphère
 - [X] Croix pour fermer la fenêtre non fonctionnelle macOS
+- [X] Objet sans lunière visible (reflexion ambiante/diffuse)

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 12:24:47 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 14:16:28 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static t_color	diffuse_reflexion(t_color obj_color, t_ray ray, t_light light, t_
 	double			intensite;
 	const double	intensite_lumiere = 20.0;
 
-	(void)ambient_color;
 	diffuse_color.r = 0;
 	diffuse_color.g = 0;
 	diffuse_color.b = 0;
@@ -32,18 +31,21 @@ static t_color	diffuse_reflexion(t_color obj_color, t_ray ray, t_light light, t_
 	{
 		intensite = fmax(0.0, intensite_lumiere) * light.ratio
 			/ norm_square(sub_vector(light.position, ray.intersection));
-		diffuse_color.r = intensite * scalar * pow(obj_color.r, 2.0);
-		diffuse_color.g = intensite * scalar * pow(obj_color.g, 2.0);
-		diffuse_color.b = intensite * scalar * pow(obj_color.b, 2.0);
+		diffuse_color.r = intensite * scalar * obj_color.r * ambient_color.r;
+		diffuse_color.g = intensite * scalar * obj_color.g * ambient_color.g;
+		diffuse_color.b = intensite * scalar * obj_color.b * ambient_color.b;
 	}
 	return (diffuse_color);
 }
 
 static t_color	ambient_reflexion(t_color color, t_amb ambient)
 {
-	color.r = (ambient.color.r / 255.0) * ambient.ratio * (color.r );
-	color.g = (ambient.color.g / 255.0) * ambient.ratio * (color.g );
-	color.b = (ambient.color.b / 255.0) * ambient.ratio * (color.b );
+	double	k;
+
+	k = ambient.ratio / 255.0;
+	color.r *= ambient.color.r * k;
+	color.g *= ambient.color.g * k;
+	color.b *= ambient.color.b * k;
 	return (color);
 }
 
@@ -57,5 +59,7 @@ int	illumination(t_color pixel_color, t_obj_list obj_list, t_ray ray)
 	pixel_color.r = ambient_color.r + diffuse_color.r;
 	pixel_color.g = ambient_color.g + diffuse_color.g;
 	pixel_color.b = ambient_color.b + diffuse_color.b;
+	if (pixel_color.r == 0 && pixel_color.g == 0 && pixel_color.b == 0)
+		printf("FULL BLACK\n");
 	return (trgb_color(0, pixel_color.r, pixel_color.g, pixel_color.b));
 }
