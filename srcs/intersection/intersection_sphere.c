@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 09:20:32 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 19:59:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static double	get_delta(t_obj sphere, t_ray ray, double *abc)
 	return (delta);
 }
 
-void	get_normale(t_ray *ray, t_obj sphere)
+static void	get_normale(t_ray *ray, t_obj sphere)
 {
 	t_v3	normale1;
 	t_v3	normale2;

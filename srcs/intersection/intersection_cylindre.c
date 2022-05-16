@@ -6,72 +6,36 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 16:04:18 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 20:06:25 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-/* PYTAGORE POUR TROUVER LA POSITION DU POINT LE PLUS PROCHE SUR L'AXE
- *
- * norm_square(sub_vector(cyl->intersection, cyl->ext2)) - pow(cyl->radius, 2.0)
- * = norm_square(sub_vector(cyl->ext2, INCONNU));
- *
- * norm_square(sub_vector(cyl->intersection, cyl->ext2)) - pow(cyl->radius, 2.0)
- * = (cyl->ext2.x - INCONNU.x)^2 + (cyl->ext2.y - INCONNU.y)^2 + (cyl->ext2.z - INCONNU.z)^2
- *
- * norm_square(sub_vector(cyl->intersection, cyl->ext2)) - pow(cyl->radius, 2.0)
- * = (cyl->ext2.x^2) - (2 * cyl->ext2.x * INCONNU.x) + (INCONNU.x^2)
- * + (cyl->ext2.y^2) - (2 * cyl->ext2.y * INCONNU.y) + (INCONNU.y^2)
- * + (cyl->ext2.z^2) - (2 * cyl->ext2.z * INCONNU.z) + (INCONNU.z^2)
- *
- * norm_square(sub_vector(cyl->intersection, cyl->ext2)) - pow(cyl->radius, 2.0) - norm_square(cyl->ext2)
- * = (-2 * cyl->ext2.x) * INCONNU.x + (INCONNU.x^2)
- * + (-2 * cyl->ext2.y) * INCONNU.y + (INCONNU.y^2)
- * + (-2 * cyl->ext2.z) * INCONNU.z + (INCONNU.z^2)
- *
- * calul DELTA :
- * A = 1
- * B = (-2 * cyl->ext2.y)
- * DELTA = 
- * cyl->normale = normalize(sub_vector(INCONNU, cyl->intersection)) 
- */
-static bool	updated_values(t_obj cyl, t_ray *ray)
+static bool	get_normale(t_obj cyl, t_ray *ray)
 {
-	double	abc[3];
-	double	delta;
-	t_v3	t;
-	t_v3	A;
+	t_v3	diff_origin;
+	double	dist_to_point;
+	t_v3	axe_point;
+	t_v3	normale1;
+	t_v3	normale2;
 
-	//On doit calculer la normale du cylindre ici
-	//Objectif 1 : trouver le point le plus proche du point d'intersection sur l'axe du cylindre
-	//X
-	abc[0] = 1;
-	abc[1] = (-2 * cyl.ext2.x);
-	abc[2] = -norm_square(sub_vector(ray->intersection, cyl.ext2)) - pow(cyl.radius, 2.0) - norm_square(cyl.ext2);
-	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
-	t.x = min_double(t1(delta, abc), t2(delta, abc));
-	abc[0] = 1;
-	abc[1] = (-2 * cyl.ext2.y);
-	abc[2] = -norm_square(sub_vector(ray->intersection, cyl.ext2)) - pow(cyl.radius, 2.0) - norm_square(cyl.ext2);
-	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
-	t.y = min_double(t1(delta, abc), t2(delta, abc));
-	abc[0] = 1;
-	abc[1] = (-2 * cyl.ext2.z);
-	abc[2] = -norm_square(sub_vector(ray->intersection, cyl.ext2)) - pow(cyl.radius, 2.0) - norm_square(cyl.ext2);
-	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
-	t.z = min_double(t1(delta, abc), t2(delta, abc));
-	A = add_vector(cyl.ext2, t);
-	printf("X = %f, Y = %f, Z = %f\n", A.x, A.y, A.z);
+	diff_origin = sub_vector(cyl.position, ray->intersection);
+	dist_to_point = scalar_product(diff_origin, cyl.direction);
+	if (fabs(dist_to_point) > cyl.height / 2.0)
+		return (false);
+	axe_point = add_vector(cyl.position,
+			mul_vector(cyl.direction, -dist_to_point));
+	normale1 = normalize(sub_vector(axe_point, ray->intersection));
+	normale2 = mul_vector(normale1, -1);
+	if (norm_square(sub_vector(ray->position,
+				add_vector(ray->intersection, normale1)))
+		< norm_square(sub_vector(ray->position,
+				add_vector(ray->intersection, normale2))))
+		ray->normale = normale1;
+	else
+		ray->normale = normale2;
 	return (true);
-}
-
-static bool	intersection(t_v3 position, t_obj cyl)
-{
-	if (scalar_product(sub_vector(position, cyl.ext1), cyl.axe) > 0
-		&& scalar_product(sub_vector(position, cyl.ext2), cyl.axe) < 0)
-		return (true);
-	return (false);
 }
 
 static double	get_delta(double *abc, t_obj cyl, t_ray ray)
@@ -135,13 +99,15 @@ bool	intersection_cylinder(t_obj cyl, t_ray *ray)
 		return (false);
 	ray->intersection = add_vector(ray->position,
 			mul_vector(ray->direction, ray->t));
-	if (intersection(ray->intersection, cyl))
-		return (updated_values(cyl, ray));
-	else if (delta == 0)
-		return (false);
-	ray->intersection = add_vector(ray->position,
-			mul_vector(ray->direction, t2(delta, abc)));
-	if (intersection(ray->intersection, cyl))
-		return (updated_values(cyl, ray));
+	if (get_normale(cyl, ray))
+		return (true);
+	else if (delta != 0)
+	{
+		ray->t = t2(delta, abc);
+		ray->intersection = add_vector(ray->position,
+				mul_vector(ray->direction, ray->t));
+		if (get_normale(cyl, ray))
+			return (true);
+	}
 	return (false);
 }
