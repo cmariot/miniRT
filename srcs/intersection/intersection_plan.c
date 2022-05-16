@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/14 11:15:40 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 20:49:38 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,26 @@
  *
  * Dans le cas d'un plan on a deux normales pour un point,
  * on va selectionner celle qui est dirigee vers la camera
- * */
+ */
 
-bool	intersection_plan(t_obj plan, t_ray *ray)
+t_v3	nearest_normale(t_ray ray, t_obj obj)
 {
 	t_v3	normale1;
 	t_v3	normale2;
+
+	normale1 = obj.direction;
+	normale2 = mul_vector(obj.direction, -1);
+	if (norm_square(sub_vector(ray.position,
+				add_vector(ray.intersection, normale1)))
+		< norm_square(sub_vector(ray.position,
+				add_vector(ray.intersection, normale2))))
+		return (normale1);
+	else
+		return (normale2);
+}
+
+bool	intersection_plan(t_obj plan, t_ray *ray)
+{
 
 	ray->t = (scalar_product(plan.direction, plan.position)
 			- scalar_product(plan.direction, ray->position))
@@ -79,15 +93,7 @@ bool	intersection_plan(t_obj plan, t_ray *ray)
 	{
 		ray->intersection = add_vector(ray->position,
 				mul_vector(ray->direction, ray->t));
-		normale1 = plan.direction;
-		normale2 = mul_vector(plan.direction, -1);
-		if (norm_square(sub_vector(ray->position,
-					add_vector(ray->intersection, normale1)))
-			< norm_square(sub_vector(ray->position,
-					add_vector(ray->intersection, normale2))))
-			ray->normale = normale1;
-		else
-			ray->normale = normale2;
+		ray->normale = nearest_normale(*ray, plan);
 		return (true);
 	}
 	return (false);

@@ -6,15 +6,33 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 19:59:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 20:45:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+static void	get_normale(t_ray *ray, t_obj sphere)
+{
+	t_v3	normale1;
+	t_v3	normale2;
+	t_v3	ray_intersection;
+
+	normale1 = normalize(sub_vector(ray->intersection,
+				sphere.position));
+	normale2 = mul_vector(normale1, -1);
+	ray_intersection = sub_vector(ray->position, ray->intersection);
+	if (norm_square(sub_vector(ray_intersection, normale1))
+		< norm_square(sub_vector(ray_intersection, normale2)))
+		ray->normale = normale1;
+	else
+		ray->normale = normale2;
+}
+
 /*
  * Solution 1 : (-b - racine(delta)) / 2a
  */
+
 double	t1(double delta, double *abc)
 {
 	return ((-abc[1] - sqrt(delta)) / (2 * abc[0]));
@@ -24,12 +42,14 @@ double	t1(double delta, double *abc)
  * Solution 2 : (-b + racine(delta)) / 2a
  * Racine de delta étant positif, on a t2 > t1
  */
+
 double	t2(double delta, double *abc)
 {
 	return ((-abc[1] + sqrt(delta)) / (2 * abc[0]));
 }
 
 /* En supposant que t1 < t2 */
+
 double	min_double(const double t1, const double t2)
 {
 	if (t1 > 0)
@@ -89,23 +109,6 @@ static double	get_delta(t_obj sphere, t_ray ray, double *abc)
 	abc[2] = norm_square(origin) - pow(sphere.radius, 2);
 	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
 	return (delta);
-}
-
-static void	get_normale(t_ray *ray, t_obj sphere)
-{
-	t_v3	normale1;
-	t_v3	normale2;
-	t_v3	ray_intersection;
-
-	normale1 = normalize(sub_vector(ray->intersection,
-				sphere.position));
-	normale2 = mul_vector(normale1, -1);
-	ray_intersection = sub_vector(ray->position, ray->intersection);
-	if (norm_square(sub_vector(ray_intersection, normale1))
-		< norm_square(sub_vector(ray_intersection, normale2)))
-		ray->normale = normale1;
-	else
-		ray->normale = normale2;
 }
 
 /*

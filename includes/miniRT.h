@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 15:27:27 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 20:50:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ bool	intersection_cylinder(t_obj cyl, t_ray *ray);
 double	t1(double delta, double *abc);
 double	t2(double delta, double *abc);
 double	min_double(double t1, double t2);
+t_v3	nearest_normale(t_ray ray, t_obj obj);
 
 /* ************************************************************************** */
 /*                              Utils directory                               */
