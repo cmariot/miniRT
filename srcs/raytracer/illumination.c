@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/14 14:26:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:50:20 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_color	diffuse_reflexion(t_color obj_color, t_ray ray, t_light light)
 	t_color			diffuse_color;
 	double			scalar;
 	double			intensite;
-	const double	intensite_lumiere = 20;
+	const double	intensite_lumiere = 20.0;
 
 	diffuse_color.r = 0;
 	diffuse_color.g = 0;
@@ -29,7 +29,7 @@ static t_color	diffuse_reflexion(t_color obj_color, t_ray ray, t_light light)
 					ray.intersection)), ray.normale);
 	if (scalar > 0)
 	{
-		intensite = fmax(0, intensite_lumiere) * light.ratio
+		intensite = fmax(0.0, intensite_lumiere) * light.ratio
 			/ norm_square(sub_vector(light.position, ray.intersection));
 		diffuse_color.r = intensite * scalar * pow(obj_color.r, 2.0);
 		diffuse_color.g = intensite * scalar * pow(obj_color.g, 2.0);
@@ -42,7 +42,7 @@ static t_color	ambient_reflexion(t_color color, t_amb ambient)
 {
 	double	k;
 
-	k = ambient.ratio / 255;
+	k = ambient.ratio / 255.0;
 	color.r *= ambient.color.r * k;
 	color.g *= ambient.color.g * k;
 	color.b *= ambient.color.b * k;

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 20:57:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 08:34:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ bool	intersection_sphere(t_obj sphere, t_ray *ray)
 {
 	double		delta;
 	double		abc[3];
+	t_v3		normale1;
+	t_v3		normale2;
 
 	delta = get_delta(sphere, *ray, abc);
 	if (delta < 0)
@@ -120,5 +122,20 @@ bool	intersection_sphere(t_obj sphere, t_ray *ray)
 	ray->intersection = add_vector(ray->position,
 			mul_vector(ray->direction, ray->t));
 	ray->normale = normalize(sub_vector(ray->intersection, sphere.position));
+	
+	normale1 = ray->normale;
+	normale2 = mul_vector(normale1, -1);
+	if (norm_square(sub_vector(ray->position,
+				add_vector(ray->intersection, normale1)))
+		< norm_square(sub_vector(ray->position,
+				add_vector(ray->intersection, normale2))))
+		ray->normale = normale1;
+	else
+		ray->normale = normale2;
+
+	//ray->t = t2(delta, abc);
+	//ray->intersection = add_vector(ray->position,
+	//		mul_vector(ray->direction, ray->t));
+	//ray->normale = normalize(sub_vector(ray->intersection, sphere.position));
 	return (true);
 }

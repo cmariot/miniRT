@@ -6,17 +6,30 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/13 22:33:30 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/14 19:45:46 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-//static bool	updated_values(t_v3 *p, t_v3 *n, t_v3 obj_position)
-//{
-//	*n = normalize(sub_vector(*p, obj_position));
-//	return (true);
-//}
+/* PYTAGORE POUR TROUVER LA POSITION DU POINT LE PLUS PROCHE SUR L'AXE
+ *
+ * norm_square(sub_vector(cyl->intersection, cyl->ext2)) - pow(cyl->radius, 2.0)
+ * = norm_square(sub_vector(cyl->ext2, INCONNU));
+ *
+ * norm_square(sub_vector(cyl->intersection, cyl->ext2)) - pow(cyl->radius, 2.0)
+ * = (cyl->ext2.x - INCONNU.x)^2 + (cyl->ext2.y - INCONNU.y)^2 + (cyl->ext2.z - INCONNU.z)^2
+ *
+ *
+ *
+ * cyl->normale = normalize(sub_vector(INCONNU, cyl->intersection)) 
+ */
+static bool	updated_values(t_v3 *p, t_v3 *n, t_v3 obj_position)
+{
+	//On doit calculer la normale du cylindre ici
+	*n = normalize(sub_vector(*p, obj_position));
+	return (true);
+}
 
 static bool	intersection(t_v3 position, t_obj cyl)
 {
@@ -60,9 +73,9 @@ static double	get_delta(double *abc, t_obj cyl, t_ray ray)
  * B = 2 * scalar_product(RA0, VA)
  * C = scalar_product(RA0, RA0) - pow(obj.height, 2)
  *
- * S = div_vector(sub_vector(RA2, RA1),
- *		absolute_vector(sub_vector(RA2, RA1)))
- * VA = mul_vector(mul_vector(S, ray.direction), S);
+ * S   = div_vector(sub_vector(RA2, RA1),
+ *		 absolute_vector(sub_vector(RA2, RA1)))
+ * VA  = mul_vector(mul_vector(S, ray.direction), S);
  * RA0 = mul_vector(mul_vector(S, sub_vector(ray.position, RA1)), S);
  *
  * LE CYLINDRE EST DELIMITE PAR DEUX POINTS, RA1 et RA2 :
@@ -76,7 +89,6 @@ bool	intersection_cylinder(t_obj cyl, t_ray *ray)
 	double	abc[3];
 	double	delta;
 
-	return (false);
 	delta = get_delta(abc, cyl, *ray);
 	if (delta < 0)
 		return (false);
@@ -89,13 +101,14 @@ bool	intersection_cylinder(t_obj cyl, t_ray *ray)
 	ray->intersection = add_vector(ray->position,
 			mul_vector(ray->direction, ray->t));
 	if (intersection(ray->intersection, cyl))
-		return (true);
-	else if (delta != 0)
-	{
-		ray->intersection = add_vector(ray->position,
-				mul_vector(ray->direction, t2(delta, abc)));
-		if (intersection(ray->intersection, cyl))
-			return (true);
-	}
+		return (updated_values(&ray->intersection,
+				&ray->normale, cyl.position));
+	else if (delta == 0)
+		return (false);
+	ray->intersection = add_vector(ray->position,
+			mul_vector(ray->direction, t2(delta, abc)));
+	if (intersection(ray->intersection, cyl))
+		return (updated_values(&ray->intersection,
+				&ray->normale, cyl.position));
 	return (false);
 }

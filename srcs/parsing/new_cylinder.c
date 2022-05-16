@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 09:05:05 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/14 18:01:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,11 @@ int	new_cylinder(t_obj *cylinder, char **array)
 	if (set_colors(&cylinder->color, array[5]))
 		return (rt_error("Syntax error : Cylinder color"));
 	cylinder->radius /= 2.0;
-	// Extremite 1 du cylindre, constante utile dans le calcul d'intersection
 	cylinder->ext1 = add_vector(cylinder->position,
 			mul_vector(cylinder->direction, cylinder->height / 2.0));
-	// Extremite 2 du cylindre, constante utile dans le calcul d'intersection
 	cylinder->ext2 = add_vector(cylinder->position,
 			mul_vector(cylinder->direction, -cylinder->height / 2.0));
-	// Axe du cylindre, constante utile dans le calcul d'intersection
-	cylinder->axe = div_vector(sub_vector(cylinder->ext2, cylinder->ext1),
-			length(cylinder->ext1, cylinder->ext2));
+	cylinder->axe = normalize(div_vector(sub_vector(cylinder->ext2,
+					cylinder->ext1), length(cylinder->ext1, cylinder->ext2)));
 	return (0);
 }
