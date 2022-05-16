@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 08:34:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 09:20:32 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,23 @@ static double	get_delta(t_obj sphere, t_ray ray, double *abc)
 	return (delta);
 }
 
+void	get_normale(t_ray *ray, t_obj sphere)
+{
+	t_v3	normale1;
+	t_v3	normale2;
+	t_v3	ray_intersection;
+
+	normale1 = normalize(sub_vector(ray->intersection,
+				sphere.position));
+	normale2 = mul_vector(normale1, -1);
+	ray_intersection = sub_vector(ray->position, ray->intersection);
+	if (norm_square(sub_vector(ray_intersection, normale1))
+		< norm_square(sub_vector(ray_intersection, normale2)))
+		ray->normale = normale1;
+	else
+		ray->normale = normale2;
+}
+
 /*
  * On a un rayon caracterisé par son point d'origine (position camera)
  * et sa direction (normalisée).
@@ -107,8 +124,6 @@ bool	intersection_sphere(t_obj sphere, t_ray *ray)
 {
 	double		delta;
 	double		abc[3];
-	t_v3		normale1;
-	t_v3		normale2;
 
 	delta = get_delta(sphere, *ray, abc);
 	if (delta < 0)
@@ -121,21 +136,6 @@ bool	intersection_sphere(t_obj sphere, t_ray *ray)
 		return (false);
 	ray->intersection = add_vector(ray->position,
 			mul_vector(ray->direction, ray->t));
-	ray->normale = normalize(sub_vector(ray->intersection, sphere.position));
-	
-	normale1 = ray->normale;
-	normale2 = mul_vector(normale1, -1);
-	if (norm_square(sub_vector(ray->position,
-				add_vector(ray->intersection, normale1)))
-		< norm_square(sub_vector(ray->position,
-				add_vector(ray->intersection, normale2))))
-		ray->normale = normale1;
-	else
-		ray->normale = normale2;
-
-	//ray->t = t2(delta, abc);
-	//ray->intersection = add_vector(ray->position,
-	//		mul_vector(ray->direction, ray->t));
-	//ray->normale = normalize(sub_vector(ray->intersection, sphere.position));
+	get_normale(ray, sphere);
 	return (true);
 }
