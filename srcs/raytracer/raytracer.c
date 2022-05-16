@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/13 09:18:52 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 11:20:08 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 	double	x;
 	double	y;
 
+	//matrice rotation
 	y = 0;
 	while (y < (double)camera->screen_height)
 	{

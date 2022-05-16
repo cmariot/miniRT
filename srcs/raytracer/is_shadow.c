@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:42:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/13 22:06:25 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 10:54:45 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	is_shadow(t_ray *second_ray, t_light light, t_obj_list *obj_list)
 	{
 		if (obj_list->obj[i].intersection(obj_list->obj[i], second_ray))
 		{
-			if (pow(second_ray->t, 2)
+			if (pow(second_ray->t, 2.0)
 				< norm_square(sub_vector(second_ray->position, light.position)))
 				return (true);
 		}

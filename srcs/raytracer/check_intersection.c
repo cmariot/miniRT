@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:41:28 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/15 11:56:36 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/16 11:48:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_intersection(t_ray *first_ray, t_obj_list *obj_list)
 
 	i = 0;
 	max_distance = INFINITY;
-	color = illumination(obj_list->ambient.color, *obj_list, *first_ray);
+	color = 0;
 	while (i < obj_list->nb_obj)
 	{
 		if (obj_list->obj[i].intersection(obj_list->obj[i], first_ray))
