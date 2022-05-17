@@ -6,55 +6,26 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 20:45:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:51:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static void	get_normale(t_ray *ray, t_obj sphere)
+static t_v3	get_normale(t_ray ray, t_obj sphere)
 {
+	t_v3	origine;
 	t_v3	normale1;
 	t_v3	normale2;
-	t_v3	ray_intersection;
 
-	normale1 = normalize(sub_vector(ray->intersection,
-				sphere.position));
+	origine = sub_vector(ray.position, ray.intersection);
+	normale1 = normalize(sub_vector(ray.intersection, sphere.position));
 	normale2 = mul_vector(normale1, -1);
-	ray_intersection = sub_vector(ray->position, ray->intersection);
-	if (norm_square(sub_vector(ray_intersection, normale1))
-		< norm_square(sub_vector(ray_intersection, normale2)))
-		ray->normale = normale1;
+	if (norm_square(sub_vector(origine, normale1))
+		< norm_square(sub_vector(origine, normale2)))
+		return (normale1);
 	else
-		ray->normale = normale2;
-}
-
-/*
- * Solution 1 : (-b - racine(delta)) / 2a
- */
-
-double	t1(double delta, double *abc)
-{
-	return ((-abc[1] - sqrt(delta)) / (2 * abc[0]));
-}
-
-/* 
- * Solution 2 : (-b + racine(delta)) / 2a
- * Racine de delta étant positif, on a t2 > t1
- */
-
-double	t2(double delta, double *abc)
-{
-	return ((-abc[1] + sqrt(delta)) / (2 * abc[0]));
-}
-
-/* En supposant que t1 < t2 */
-
-double	min_double(const double t1, const double t2)
-{
-	if (t1 > 0)
-		return (t1);
-	return (t2);
+		return (normale2);
 }
 
 /*
@@ -98,9 +69,10 @@ double	min_double(const double t1, const double t2)
  * DELTA = B^2 - 4AC
  */
 
-static double	get_delta(t_obj sphere, t_ray ray, double *abc)
+static double	get_solution(t_ray ray, t_obj sphere)
 {
 	t_v3		origin;
+	double		abc[3];
 	double		delta;
 
 	origin = sub_vector(ray.position, sphere.position);
@@ -108,7 +80,12 @@ static double	get_delta(t_obj sphere, t_ray ray, double *abc)
 	abc[1] = scalar_product(ray.direction, origin) * 2.0;
 	abc[2] = norm_square(origin) - pow(sphere.radius, 2);
 	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
-	return (delta);
+	if (delta < 0)
+		return (-1.0);
+	else if (delta == 0)
+		return (t1(delta, abc));
+	else
+		return (min_positive(t1(delta, abc), t2(delta, abc)));
 }
 
 /*
@@ -125,20 +102,10 @@ static double	get_delta(t_obj sphere, t_ray ray, double *abc)
 
 bool	intersection_sphere(t_obj sphere, t_ray *ray)
 {
-	double		delta;
-	double		abc[3];
-
-	delta = get_delta(sphere, *ray, abc);
-	if (delta < 0)
-		return (false);
-	else if (delta == 0)
-		ray->t = t1(delta, abc);
-	else
-		ray->t = min_double(t1(delta, abc), t2(delta, abc));
+	ray->t = get_solution(*ray, sphere);
 	if (ray->t < 0)
 		return (false);
-	ray->intersection = add_vector(ray->position,
-			mul_vector(ray->direction, ray->t));
-	get_normale(ray, sphere);
+	ray->intersection = get_position(ray->position, ray->direction, ray->t);
+	ray->normale = get_normale(*ray, sphere);
 	return (true);
 }

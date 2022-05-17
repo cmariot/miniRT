@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 11:20:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:44:46 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 	double	x;
 	double	y;
 
-	//matrice rotation
 	y = 0;
-	while (y < (double)camera->screen_height)
+	while (y < camera->screen_height)
 	{
 		x = 0;
-		while (x < (double)camera->screen_width)
+		while (x < camera->screen_width)
 		{
 			camera->ray = ray_generator(camera, x, y);
-			color = check_intersection(&camera->ray, obj_list);
+			compute_color(&color, &camera->ray, obj_list);
 			mlx_putpixel(&mlx->image, x, y, color);
 			x++;
 		}

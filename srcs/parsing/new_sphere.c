@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:32:00 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 16:48:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:32:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	new_sphere(t_obj *sphere, char **array)
 		return (rt_error("Invalid sphere declaration."));
 	if (set_position(&(sphere->position), array[1]))
 		return (rt_error("Syntax error : Sphere position"));
-	if (set_double(&(sphere->radius), array[2], 0, INT_MAX))
+	if (set_double(&(sphere->radius), array[2], 0.0, INT_MAX))
 		return (rt_error("Syntax error : Sphere diameter"));
 	if (set_colors(&(sphere->color), array[3]))
 		return (rt_error("Syntax error : Sphere color"));

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_intersection.c                               :+:      :+:    :+:   */
+/*   compute_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:41:28 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 11:48:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:25:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@
  * des precedents objets on calcule la couleur du pixel
  */
 
-int	check_intersection(t_ray *first_ray, t_obj_list *obj_list)
+void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list)
 {
-	size_t	i;
 	double	max_distance;
-	int		color;
 	t_ray	second_ray;
+	size_t	i;
 
-	i = 0;
+	*color = 0;
 	max_distance = INFINITY;
-	color = 0;
+	i = 0;
 	while (i < obj_list->nb_obj)
 	{
 		if (obj_list->obj[i].intersection(obj_list->obj[i], first_ray))
@@ -37,12 +36,13 @@ int	check_intersection(t_ray *first_ray, t_obj_list *obj_list)
 				max_distance = first_ray->t;
 				second_ray = second_ray_generator(first_ray, obj_list->light);
 				if (is_shadow(&second_ray, obj_list->light, obj_list))
-					color = illumination(obj_list->obj[i].color, *obj_list, second_ray);
+					*color = compute_reflexion(obj_list->obj[i].color,
+							*obj_list, second_ray);
 				else
-					color = illumination(obj_list->obj[i].color, *obj_list, *first_ray);
+					*color = compute_reflexion(obj_list->obj[i].color,
+							*obj_list, *first_ray);
 			}
 		}
 		i++;
 	}
-	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 20:06:25 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:53:32 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 static bool	get_normale(t_obj cyl, t_ray *ray)
 {
-	t_v3	diff_origin;
-	double	dist_to_point;
+	t_v3	origine;
+	double	ext_distance;
 	t_v3	axe_point;
 	t_v3	normale1;
 	t_v3	normale2;
 
-	diff_origin = sub_vector(cyl.position, ray->intersection);
-	dist_to_point = scalar_product(diff_origin, cyl.direction);
-	if (fabs(dist_to_point) > cyl.height / 2.0)
+	origine = sub_vector(cyl.position, ray->intersection);
+	ext_distance = scalar_product(origine, cyl.direction);
+	if (fabs(ext_distance) > cyl.height / 2.0)
 		return (false);
-	axe_point = add_vector(cyl.position,
-			mul_vector(cyl.direction, -dist_to_point));
+	axe_point = get_position(cyl.position, cyl.direction, -ext_distance);
 	normale1 = normalize(sub_vector(axe_point, ray->intersection));
 	normale2 = mul_vector(normale1, -1);
 	if (norm_square(sub_vector(ray->position,
@@ -94,18 +93,16 @@ bool	intersection_cylinder(t_obj cyl, t_ray *ray)
 	else if (delta == 0)
 		ray->t = t1(delta, abc);
 	else
-		ray->t = min_double(t1(delta, abc), t2(delta, abc));
+		ray->t = min_positive(t1(delta, abc), t2(delta, abc));
 	if (ray->t < 0)
 		return (false);
-	ray->intersection = add_vector(ray->position,
-			mul_vector(ray->direction, ray->t));
+	ray->intersection = get_position(ray->position, ray->direction, ray->t);
 	if (get_normale(cyl, ray))
 		return (true);
 	else if (delta != 0)
 	{
 		ray->t = t2(delta, abc);
-		ray->intersection = add_vector(ray->position,
-				mul_vector(ray->direction, ray->t));
+		ray->intersection = get_position(ray->position, ray->direction, ray->t);
 		if (get_normale(cyl, ray))
 			return (true);
 	}

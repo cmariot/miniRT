@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:43:50 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 10:52:15 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:42:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ t_ray	second_ray_generator(t_ray *first_ray, t_light light)
 	second_ray.position = add_vector(first_ray->intersection, decalage);
 	second_ray.direction
 		= normalize(sub_vector(light.position, first_ray->intersection));
-	second_ray.intersection = new_vector(0, 0, 0);
-	second_ray.normale = new_vector(0, 0, 0);
 	return (second_ray);
 }

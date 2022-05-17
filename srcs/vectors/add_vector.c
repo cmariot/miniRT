@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:28:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 16:31:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:16:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,5 @@
 
 t_v3	add_vector(t_v3 a, t_v3 b)
 {
-	t_v3	c;
-
-	c.x = a.x + b.x;
-	c.y = a.y + b.y;
-	c.z = a.z + b.z;
-	return (c);
+	return (new_vector(a.x + b.x, a.y + b.y, a.z + b.z));
 }

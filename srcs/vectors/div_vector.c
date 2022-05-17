@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:42:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 16:31:51 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:17:42 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,5 @@
 
 t_v3	div_vector(t_v3 a, double b)
 {
-	t_v3	c;
-
-	c.x = a.x / b;
-	c.y = a.y / b;
-	c.z = a.z / b;
-	return (c);
+	return (new_vector(a.x / b, a.y / b, a.z / b));
 }

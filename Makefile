@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/14 11:40:48 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/17 14:55:43 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,15 +107,16 @@ PARSING			= parsing.c \
 
 RAYTRACER		= raytracer.c \
 				  ray_generator.c \
-				  check_intersection.c \
+				  compute_color.c \
 				  second_ray_generator.c \
 				  is_shadow.c \
-				  illumination.c
+				  compute_reflexion.c
 
 
 INTER			= intersection_sphere.c \
 				  intersection_plan.c \
-				  intersection_cylindre.c
+				  intersection_cylindre.c \
+				  utils.c
 
 
 MLX_DIR			= open_window.c \

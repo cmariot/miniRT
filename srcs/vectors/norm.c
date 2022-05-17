@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:53:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 16:32:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:10:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@
 
 double	norm(t_v3 a)
 {
-	return (sqrt(norm_square(a)));
+	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }

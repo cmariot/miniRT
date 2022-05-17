@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 23:00:11 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 09:02:24 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:33:36 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	set_colors(t_color *color, char *rgb)
 		return (1);
 	else if (ft_arraylen(array) != 3)
 		return (ft_free_array(array));
-	if (set_double(&color->r, array[0], 0, 255)
-		|| set_double(&color->g, array[1], 0, 255)
-		|| set_double(&color->b, array[2], 0, 255))
+	if (set_double(&color->r, array[0], 0.0, 255.0)
+		|| set_double(&color->g, array[1], 0.0, 255.0)
+		|| set_double(&color->b, array[2], 0.0, 255.0))
 		return (ft_free_array(array));
 	ft_free_array(array);
 	color->trgb = trgb_color(0, color->r, color->g, color->b);
@@ -50,9 +50,9 @@ int	set_direction(t_v3 *direction, char *str)
 		return (1);
 	else if (ft_arraylen(array) != 3)
 		return (ft_free_array(array));
-	if (set_double(&(direction->x), array[0], -1, 1)
-		|| set_double(&direction->y, array[1], -1, 1)
-		|| set_double(&direction->z, array[2], -1, 1))
+	if (set_double(&(direction->x), array[0], -1.0, 1.0)
+		|| set_double(&direction->y, array[1], -1.0, 1.0)
+		|| set_double(&direction->z, array[2], -1.0, 1.0))
 		return (ft_free_array(array));
 	if (direction->x == 0.0 && direction->y == 0.0 && direction->z == 0.0)
 		return (ft_free_array(array));

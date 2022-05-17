@@ -6,11 +6,27 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 20:49:38 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:53:47 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+static t_v3	get_normale(t_ray ray, t_obj obj)
+{
+	t_v3	origine;
+	t_v3	normale1;
+	t_v3	normale2;
+
+	origine = add_vector(ray.position, ray.intersection);
+	normale1 = obj.direction;
+	normale2 = mul_vector(obj.direction, -1);
+	if (norm_square(add_vector(origine, normale1))
+		< norm_square(add_vector(origine, normale2)))
+		return (normale1);
+	else
+		return (normale2);
+}
 
 /*
  * SYSTEME D'ÉQUATION PARAMETRIQUES DU RAYON :
@@ -67,34 +83,19 @@
  * on va selectionner celle qui est dirigee vers la camera
  */
 
-t_v3	nearest_normale(t_ray ray, t_obj obj)
+static double	get_solution(t_ray ray, t_obj plan)
 {
-	t_v3	normale1;
-	t_v3	normale2;
-
-	normale1 = obj.direction;
-	normale2 = mul_vector(obj.direction, -1);
-	if (norm_square(sub_vector(ray.position,
-				add_vector(ray.intersection, normale1)))
-		< norm_square(sub_vector(ray.position,
-				add_vector(ray.intersection, normale2))))
-		return (normale1);
-	else
-		return (normale2);
+	return ((scalar_product(plan.direction, plan.position)
+			- scalar_product(plan.direction, ray.position))
+		/ scalar_product(plan.direction, ray.direction));
 }
 
 bool	intersection_plan(t_obj plan, t_ray *ray)
 {
-
-	ray->t = (scalar_product(plan.direction, plan.position)
-			- scalar_product(plan.direction, ray->position))
-		/ scalar_product(plan.direction, ray->direction);
-	if (ray->t >= 0)
-	{
-		ray->intersection = add_vector(ray->position,
-				mul_vector(ray->direction, ray->t));
-		ray->normale = nearest_normale(*ray, plan);
-		return (true);
-	}
-	return (false);
+	ray->t = get_solution(*ray, plan);
+	if (ray->t < 0)
+		return (false);
+	ray->intersection = get_position(ray->position, ray->direction, ray->t);
+	ray->normale = get_normale(*ray, plan);
+	return (true);
 }
