@@ -6,20 +6,20 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 17:32:02 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 12:43:05 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static t_v3	get_normale(t_ray ray, t_obj obj)
+static t_v3	get_normale(t_ray *ray, t_obj *obj)
 {
 	t_v3	origine;
 	t_v3	normale1;
 	t_v3	normale2;
 
-	origine = add_vector(ray.position, ray.intersection);
-	normale1 = obj.direction;
+	origine = add_vector(ray->position, ray->intersection);
+	normale1 = obj->direction;
 	normale2 = mul_vector(normale1, -1);
 	if (norm_square(add_vector(origine, normale1))
 		< norm_square(add_vector(origine, normale2)))
@@ -83,19 +83,19 @@ static t_v3	get_normale(t_ray ray, t_obj obj)
  * on va selectionner celle qui est dirigee vers la camera
  */
 
-static double	get_solution(t_ray ray, t_obj plan)
+static double	get_solution(t_ray *ray, t_obj *plan)
 {
-	return ((scalar_product(plan.direction, plan.position)
-			- scalar_product(plan.direction, ray.position))
-		/ scalar_product(plan.direction, ray.direction));
+	return ((scalar_product(plan->direction, plan->position)
+			- scalar_product(plan->direction, ray->position))
+		/ scalar_product(plan->direction, ray->direction));
 }
 
-bool	intersection_plan(t_obj plan, t_ray *ray)
+bool	intersection_plan(t_obj *plan, t_ray *ray)
 {
-	ray->t = get_solution(*ray, plan);
+	ray->t = get_solution(ray, plan);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	ray->normale = get_normale(*ray, plan);
+	ray->normale = get_normale(ray, plan);
 	return (true);
 }

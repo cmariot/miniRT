@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:28:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 15:16:14 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 11:00:26 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_v3	add_vector(t_v3 a, t_v3 b)
+extern inline t_v3	add_vector(t_v3 a, t_v3 b)
 {
 	return (new_vector(a.x + b.x, a.y + b.y, a.z + b.z));
 }

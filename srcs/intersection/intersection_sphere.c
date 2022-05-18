@@ -6,20 +6,20 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 14:51:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 12:59:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static t_v3	get_normale(t_ray ray, t_obj sphere)
+static t_v3	get_normale(t_ray *ray, t_obj *sphere)
 {
 	t_v3	origine;
 	t_v3	normale1;
 	t_v3	normale2;
 
-	origine = sub_vector(ray.position, ray.intersection);
-	normale1 = normalize(sub_vector(ray.intersection, sphere.position));
+	origine = sub_vector(ray->position, ray->intersection);
+	normale1 = normalize(sub_vector(ray->intersection, sphere->position));
 	normale2 = mul_vector(normale1, -1);
 	if (norm_square(sub_vector(origine, normale1))
 		< norm_square(sub_vector(origine, normale2)))
@@ -69,16 +69,16 @@ static t_v3	get_normale(t_ray ray, t_obj sphere)
  * DELTA = B^2 - 4AC
  */
 
-static double	get_solution(t_ray ray, t_obj sphere)
+static double	get_solution(t_ray *ray, t_obj *sphere)
 {
 	t_v3		origin;
 	double		abc[3];
 	double		delta;
 
-	origin = sub_vector(ray.position, sphere.position);
-	abc[0] = norm_square(ray.direction);
-	abc[1] = scalar_product(ray.direction, origin) * 2.0;
-	abc[2] = norm_square(origin) - pow(sphere.radius, 2);
+	origin = sub_vector(ray->position, sphere->position);
+	abc[0] = norm_square(ray->direction);
+	abc[1] = scalar_product(ray->direction, origin) * 2.0;
+	abc[2] = norm_square(origin) - pow(sphere->radius, 2);
 	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
 	if (delta < 0)
 		return (-1.0);
@@ -100,12 +100,13 @@ static double	get_solution(t_ray ray, t_obj sphere)
  * - rayon : sphere->radius
  */
 
-bool	intersection_sphere(t_obj sphere, t_ray *ray)
+//Vecteur(x) =  direction * x + t
+bool	intersection_sphere(t_obj *sphere, t_ray *ray)
 {
-	ray->t = get_solution(*ray, sphere);
+	ray->t = get_solution(ray, sphere);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	ray->normale = get_normale(*ray, sphere);
+	ray->normale = get_normale(ray, sphere);
 	return (true);
 }

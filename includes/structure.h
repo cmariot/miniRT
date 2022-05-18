@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 08:43:33 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 15:55:30 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ struct				s_obj;
 struct				s_ray;
 
 typedef void		(*t_m_print)(void *);
-typedef bool		(*t_m_inter)(struct s_obj, struct s_ray *);
+typedef bool		(*t_m_inter)(struct s_obj *, struct s_ray *);
 
 // Image MiniLibX
 typedef struct s_img {

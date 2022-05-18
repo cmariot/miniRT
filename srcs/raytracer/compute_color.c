@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:41:28 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 23:12:38 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 12:33:49 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list)
 	i = 0;
 	while (i < obj_list->nb_obj)
 	{
-		if (obj_list->obj[i].intersection(obj_list->obj[i], first_ray))
+		if (obj_list->obj[i].intersection(&obj_list->obj[i], first_ray))
 		{
 			if (first_ray->t < max_distance)
 			{
 				max_distance = first_ray->t;
-				second_ray = second_ray_generator(first_ray, obj_list->light);
-				if (is_shadow(&second_ray, obj_list->light, obj_list))
-					*color = compute_reflexion(obj_list->obj[i].color,
-							*obj_list, second_ray, true);
+				second_ray = second_ray_generator(first_ray, &obj_list->light);
+				if (is_shadow(&second_ray, &obj_list->light, obj_list))
+					*color = compute_reflexion(&obj_list->obj[i].color,
+							obj_list, &second_ray, true);
 				else
-					*color = compute_reflexion(obj_list->obj[i].color,
-							*obj_list, *first_ray, false);
+					*color = compute_reflexion(&obj_list->obj[i].color,
+							obj_list, first_ray, false);
 			}
 		}
 		i++;

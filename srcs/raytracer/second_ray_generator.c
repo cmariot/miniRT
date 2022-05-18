@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:43:50 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 14:42:21 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 13:03:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
  * Direction : Lumiere
  */
 
-t_ray	second_ray_generator(t_ray *first_ray, t_light light)
+t_ray	second_ray_generator(t_ray *first_ray, t_light *light)
 {
 	t_ray			second_ray;
 	t_v3			decalage;
-	const double	epsilon = 0.00001;
+	const double	epsilon = 0.001;
 
 	decalage = mul_vector(first_ray->normale, epsilon);
 	second_ray.position = add_vector(first_ray->intersection, decalage);
 	second_ray.direction
-		= normalize(sub_vector(light.position, first_ray->intersection));
+		= normalize(sub_vector(light->position, first_ray->intersection));
 	return (second_ray);
 }

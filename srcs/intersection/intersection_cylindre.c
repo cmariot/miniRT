@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 19:11:28 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 15:58:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,14 @@ static double	get_delta(double *abc, t_obj cyl, t_ray ray)
  * LE CYLINDRE EST DELIMITE PAR DEUX POINTS, RA1 et RA2 :
  * RA1 = mul_vector(add_vector(obj.position, obj.direction), obj.height / 2)
  * RA2 = mul_vector(add_vector(obj.position, obj.direction), -obj.height / 2)
- *
  */
 
-bool	intersection_cylinder(t_obj cyl, t_ray *ray)
+bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
 {
 	double	abc[3];
 	double	delta;
 
-	delta = get_delta(abc, cyl, *ray);
+	delta = get_delta(abc, *cyl, *ray);
 	if (delta < 0)
 		return (false);
 	else if (delta == 0)
@@ -97,13 +96,13 @@ bool	intersection_cylinder(t_obj cyl, t_ray *ray)
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	if (get_normale(cyl, ray))
+	if (get_normale(*cyl, ray))
 		return (true);
 	else if (delta != 0)
 	{
 		ray->t = t2(delta, abc);
 		ray->intersection = get_position(ray->position, ray->direction, ray->t);
-		if (get_normale(cyl, ray))
+		if (get_normale(*cyl, ray))
 			return (true);
 	}
 	return (false);
