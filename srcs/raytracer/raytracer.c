@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 13:08:45 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 17:03:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 // move scene (all objs) so the camera is on origin,
 // rotate each determining vectors of each object along all axis of camera direction
 // 		ex: sphere needs only its center rotated
-	printf("IMAGE\n");
+	translate_all(obj_list, camera);
+	// print_structure(*obj_list);
+	printf("\n\n");
+	rotate_all(obj_list, camera);
+	// print_structure(*obj_list);
 	y = 0;
 	while (y < camera->screen_height)
 	{

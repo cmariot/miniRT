@@ -56,7 +56,7 @@ int get_mouse_button(NSEventType eventtype)
 
 @implementation NSWindowEvent
 
-- (NSWindowEvent *) initWithContentRect:(NSRect)rect styleMask:(NSUInteger)winstyle backing:(NSBackingStoreType)bck defer:(BOOL) dfr
+- (NSWindowEvent *) initWithContentRect:(NSRect)rect styleMask:(NSUInteger)winstyle backing:(NSBackingStoreType)bck defer:(bool) dfr
 {
   int i;
 
@@ -99,7 +99,7 @@ int get_mouse_button(NSEventType eventtype)
   keyrepeat = mode;
 }
 
-- (BOOL) acceptsFirstResponder
+- (bool) acceptsFirstResponder
 {
   return (YES);
 }
@@ -383,7 +383,7 @@ int get_mouse_button(NSEventType eventtype)
       glFlush();
 
       //[win makeKeyAndOrderFront:nil];
-      // BOOL r = [win isKeyWindow];
+      // bool r = [win isKeyWindow];
       //  if (r==YES) printf("keywindow ok\n"); else printf("keywindow KO\n");
 
       // Window controller subclass to set title
@@ -393,7 +393,7 @@ int get_mouse_button(NSEventType eventtype)
       // MlxWinController *mlxWinCont = [[MlxWinController alloc] initWin:win andTitle:title];
 
       // after nswindowcontroller who will retake first responder
-      //      BOOL r = [win makeFirstResponder:nil];
+      //      bool r = [win makeFirstResponder:nil];
       //      if (r==YES) printf("responder ok\n"); else printf("responder KO\n");
 
       [pixFmt release];

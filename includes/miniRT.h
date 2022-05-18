@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 16:10:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 17:04:20 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "mlx.h"
 # include "keycodes.h"
 
-# define SCREEN_WIDTH 1440
+# define SCREEN_WIDTH 800
 
 /* ************************************************************************** */
 /*                              Main directory                                */
@@ -69,7 +69,10 @@ t_ray	ray_generator(t_cam	*camera, double *x, double *y);
 void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list);
 t_ray	second_ray_generator(t_ray *first_ray, t_light *light);
 bool	is_shadow(t_ray *second_ray, t_light *light, t_obj_list *obj_list);
-int		compute_reflexion(t_color *color, t_obj_list *list, t_ray *ray, bool shadow);
+int		compute_reflexion(t_color *pixel_color, t_obj_list *obj_list,
+			t_ray *ray, bool shadow);
+void	translate_all(t_obj_list *obj_list, t_cam *cam);
+void	rotate_all(t_obj_list *obj_list, t_cam *cam);
 
 /* ************************************************************************** */
 /*                           Intersection directory                           */

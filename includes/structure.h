@@ -19,6 +19,17 @@ struct				s_ray;
 typedef void		(*t_m_print)(void *);
 typedef bool		(*t_m_inter)(struct s_obj *, struct s_ray *);
 
+// typedef enum e_bool {
+// 	false,
+// 	true
+// } bool;
+
+typedef enum e_type {
+	sphere,
+	plan,
+	cylindre
+} t_type;
+
 // Image MiniLibX
 typedef struct s_img {
 	void			*img;
@@ -85,7 +96,7 @@ typedef struct s_cam {
 typedef struct s_obj {
 	t_m_inter		intersection;
 	t_m_print		print;
-	char			*type;
+	t_type			type;
 	t_v3			position;
 	t_v3			direction;
 	t_color			color;
