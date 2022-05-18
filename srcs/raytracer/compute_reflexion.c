@@ -6,11 +6,22 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 11:48:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 19:44:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+static t_color	ambient_reflexion(t_color color, t_amb *ambient);
+
+int	compute_shadow(t_color *obj_color, t_amb *ambient)
+{
+	t_color	shadow_color;
+
+	shadow_color = ambient_reflexion(*obj_color, ambient);
+	return (trgb_color(0, shadow_color.r, shadow_color.g,
+			shadow_color.b));
+}
 
 //Produit scalaire entre la lumiere et le rayon permet de voir si les angles
 //se croisent
@@ -20,13 +31,11 @@ static t_color	diffuse_reflexion(t_color *obj_color, t_ray *ray,
 {
 	t_color			diffuse_color;
 	t_v3			light_ray;
-	double			scalar;
-	double			intensite;
-	const double	intensite_lumiere = 20.0;
+	float			scalar;
+	float			intensite;
+	const float		intensite_lumiere = 20.0f;
 
-	diffuse_color.r = 0;
-	diffuse_color.g = 0;
-	diffuse_color.b = 0;
+	ft_memset(&diffuse_color, 0, sizeof(float) * 3);
 	light_ray = sub_vector(light->position, ray->intersection);
 	scalar = scalar_product(normalize(light_ray), ray->normale);
 	if (scalar > 0)
@@ -42,26 +51,22 @@ static t_color	diffuse_reflexion(t_color *obj_color, t_ray *ray,
 
 static t_color	ambient_reflexion(t_color color, t_amb *ambient)
 {
-	double	k;
+	float	k;
 
-	k = ambient->ratio / 255.0;
+	k = ambient->ratio / 255.0f;
 	color.r *= ambient->color.r * k;
 	color.g *= ambient->color.g * k;
 	color.b *= ambient->color.b * k;
 	return (color);
 }
 
-int	compute_reflexion(t_color *obj_color, t_obj_list *obj_list,
-		t_ray *ray, bool shadow)
+int	compute_reflexion(t_color *obj_color, t_obj_list *obj_list, t_ray *ray)
 {
 	t_color	pixel_color;
 	t_color	ambient_color;
 	t_color	diffuse_color;
 
 	ambient_color = ambient_reflexion(*obj_color, &obj_list->ambient);
-	if (shadow == true)
-		return (trgb_color(0, ambient_color.r, ambient_color.g,
-				ambient_color.b));
 	diffuse_color = diffuse_reflexion(obj_color, ray, &obj_list->light,
 			&ambient_color);
 	pixel_color.r = ambient_color.r + diffuse_color.r;

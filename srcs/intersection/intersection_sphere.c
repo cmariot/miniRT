@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 12:59:50 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:20:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ static t_v3	get_normale(t_ray *ray, t_obj *sphere)
  * DELTA = B^2 - 4AC
  */
 
-static double	get_solution(t_ray *ray, t_obj *sphere)
+static float	get_solution(t_ray *ray, t_obj *sphere)
 {
 	t_v3		origin;
-	double		abc[3];
-	double		delta;
+	float		abc[3];
+	float		delta;
 
 	origin = sub_vector(ray->position, sphere->position);
 	abc[0] = norm_square(ray->direction);

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 15:55:30 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:49:34 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ struct				s_ray;
 typedef void		(*t_m_print)(void *);
 typedef bool		(*t_m_inter)(struct s_obj *, struct s_ray *);
 
-// typedef enum e_bool {
-// 	false,
-// 	true
-// } bool;
+typedef enum e_bool {
+	false_,
+	true_
+}	t_bool;
 
 typedef enum e_type {
 	sphere,
 	plan,
 	cylindre
-} t_type;
+}	t_type;
 
 // Image MiniLibX
 typedef struct s_img {
@@ -48,9 +48,9 @@ typedef struct s_mlx {
 
 // Structure couleur RGB
 typedef struct s_color {
-	double			r;
-	double			g;
-	double			b;
+	float			r;
+	float			g;
+	float			b;
 	int				trgb;
 }	t_color;
 
@@ -58,21 +58,21 @@ typedef struct s_color {
 typedef struct s_light {
 	t_m_print		print;
 	t_v3			position;
-	double			ratio;
+	float			ratio;
 }	t_light;
 
 // Lumiere ambiante
 typedef struct t_amb {
 	t_m_print		print;
 	t_color			color;
-	double			ratio;
+	float			ratio;
 }	t_amb;
 
 // Rayon
 typedef struct s_ray {
 	t_v3			position;
 	t_v3			direction;
-	double			t;
+	float			t;
 	t_v3			intersection;
 	t_v3			normale;
 }	t_ray;
@@ -83,12 +83,12 @@ typedef struct s_cam {
 	t_v3			position;
 	t_v3			direction;
 	t_ray			ray;
-	double			screen_width;
-	double			screen_height;
-	double			fov_horizontal;
-	double			constant_x;
-	double			constant_y;
-	double			constant_z;
+	float			screen_width;
+	float			screen_height;
+	float			fov_horizontal;
+	float			constant_x;
+	float			constant_y;
+	float			constant_z;
 }	t_cam;
 
 // Structure utilisée pour les sphere, cylindres et plans
@@ -100,8 +100,8 @@ typedef struct s_obj {
 	t_v3			position;
 	t_v3			direction;
 	t_color			color;
-	double			radius;
-	double			height;
+	float			radius;
+	float			height;
 	t_v3			ext1;
 	t_v3			ext2;
 	t_v3			axe;

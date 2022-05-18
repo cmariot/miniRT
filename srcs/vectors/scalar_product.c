@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:44:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 11:03:00 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:57:24 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-extern inline double	scalar_product(t_v3 a, t_v3 b)
+extern inline float	scalar_product(const t_v3 a, const t_v3 b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }

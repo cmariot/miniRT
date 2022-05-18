@@ -5,7 +5,6 @@
 */
 static void translate(t_v3 *target, t_v3 value)
 {
-	printf("coucou\n");
 	target->x -= value.x;
 	target->y -= value.y;
 	target->z -= value.z;
@@ -20,12 +19,12 @@ void translate_all(t_obj_list *obj_list, t_cam *cam)
 	{
 		if (obj_list->obj[i].type == sphere)
 			translate(&(obj_list->obj[i].position), cam->position);
-		// else if (obj_list->obj[i].type == cylindre)
-		// {
-		// 	translate(&(obj_list->obj[i].position), cam->position);
-		// 	translate(&(obj_list->obj[i].ext1), cam->position);
-		// 	translate(&(obj_list->obj[i].ext2), cam->position);
-		// }
+		 else if (obj_list->obj[i].type == cylindre)
+		 {
+		 	translate(&(obj_list->obj[i].position), cam->position);
+		 	translate(&(obj_list->obj[i].ext1), cam->position);
+		 	translate(&(obj_list->obj[i].ext2), cam->position);
+		 }
 		else if (obj_list->obj[i].type == plan)
 			translate(&(obj_list->obj[i].position), cam->position);
 		i++;

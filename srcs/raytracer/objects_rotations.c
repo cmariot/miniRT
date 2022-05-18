@@ -92,11 +92,12 @@ static void rotate_vector(t_v3 *t, double rad_x, double rad_y, double rad_z)
 void rotate_all(t_obj_list *obj_list, t_cam *cam)
 {
 	size_t	i;
-	double x,y,z;
+	double x, y, z;
 
 	x = (cam->direction.x);
 	y = (cam->direction.y);
 	z = (cam->direction.z);
+	(void)z; //a supprimer, mis en void pour compiler
 	i = 0;
 	while (i < obj_list->nb_obj)
 	{

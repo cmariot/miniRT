@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 08:44:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:16:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	new_cylinder(t_obj *cylinder, char **array)
 		return (rt_error("Syntax error : Cylinder position"));
 	if (set_direction(&cylinder->direction, array[2]))
 		return (rt_error("Syntax error : Cylinder direction"));
-	if (set_double(&cylinder->radius, array[3], 0.0, INT_MAX))
+	if (set_float(&cylinder->radius, array[3], 0.0, INT_MAX))
 		return (rt_error("Syntax error : Cylinder diameter"));
-	if (set_double(&cylinder->height, array[4], 0.0, INT_MAX))
+	if (set_float(&cylinder->height, array[4], 0.0, INT_MAX))
 		return (rt_error("Syntax error : Cylinder height"));
 	if (set_colors(&cylinder->color, array[5]))
 		return (rt_error("Syntax error : Cylinder color"));

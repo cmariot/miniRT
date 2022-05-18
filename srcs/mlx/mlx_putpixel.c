@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 14:42:49 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 11:51:03 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:18:26 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	mlx_putpixel(t_img *data, double *x, double *y, int *color)
+void	mlx_putpixel(t_img *data, float *x, float *y, int *color)
 {
 	char	*dst;
 

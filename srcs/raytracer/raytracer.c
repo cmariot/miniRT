@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 17:03:14 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:19:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 {
 	int		color;
-	double	x;
-	double	y;
-// move scene (all objs) so the camera is on origin,
-// rotate each determining vectors of each object along all axis of camera direction
-// 		ex: sphere needs only its center rotated
+	float	x;
+	float	y;
+
+	//move scene (all objs) so the camera is on origin,
+	//rotate each determining vectors of each object along all axis of camera direction
+	//	ex: sphere needs only its center rotated
 	translate_all(obj_list, camera);
 	// print_structure(*obj_list);
-	printf("\n\n");
 	rotate_all(obj_list, camera);
 	// print_structure(*obj_list);
 	y = 0;

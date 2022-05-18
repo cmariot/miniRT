@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:25:43 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 13:08:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:19:19 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * Direction : Pixel (x ; y)
  */
 
-t_ray	ray_generator(t_cam	*camera, double *x, double *y)
+t_ray	ray_generator(t_cam	*camera, float *x, float *y)
 {
 	t_ray	ray;
 

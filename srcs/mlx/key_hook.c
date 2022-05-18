@@ -6,11 +6,20 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:26:42 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 16:02:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 19:25:32 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+int	refresh(void *ptr)
+{
+	t_world	*world;
+
+	world = ptr;
+	raytracer(&world->obj_list, &world->obj_list.camera, &world->mlx);
+	return (0);
+}
 
 int	key_handler(int keycode, t_world *world)
 {
@@ -26,5 +35,6 @@ int	key_handler(int keycode, t_world *world)
 		world->obj_list.camera.position.z += 1;
 	else
 		printf("KEYCODE = %d\n", keycode);
+	refresh(world);
 	return (0);
 }

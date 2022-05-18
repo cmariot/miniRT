@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 09:16:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 19:50:02 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:17:00 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	new_camera(t_cam *cam, char **array)
 		return (rt_error("Syntax error : cam position"));
 	if (set_direction(&(cam->direction), array[2]))
 		return (rt_error("Syntax error : cam direction"));
-	if (set_double(&(cam->fov_horizontal), array[3], 0.0, 180.0))
+	if (set_float(&(cam->fov_horizontal), array[3], 0.0, 180.0))
 		return (rt_error("Syntax error : cam FOV"));
 	cam->screen_width = round(SCREEN_WIDTH);
 	cam->screen_height = round(cam->screen_width / 1.6);

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:53:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 11:02:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 18:56:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * In mathematics, the double bar (||a||) notation indicates the
  * lentgh of a vector. */
 
-extern inline double	norm(t_v3 a)
+extern inline float	norm(const t_v3 a)
 {
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
