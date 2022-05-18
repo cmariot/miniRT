@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 15:28:50 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 09:10:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int		open_window(t_world *world);
 int		create_image(t_mlx *mlx, t_world *world);
 void	mlx_putpixel(t_img *data, size_t x, size_t y, int color);
 int		key_hook(int keycode, t_world *world);
+int		key_handler(int keycode, t_world *world);
 int		close_window(t_world *world);
+int		mouse_hook(int mouse_code, void *ptr);
 
 /* ************************************************************************** */
 /*                          Raytracinging directory                           */
@@ -67,7 +69,8 @@ t_ray	ray_generator(t_cam	*camera, double x, double y);
 void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list);
 t_ray	second_ray_generator(t_ray *first_ray, t_light light);
 bool	is_shadow(t_ray *second_ray, t_light light, t_obj_list *obj_list);
-int		compute_reflexion(t_color pixel_color, t_obj_list obj_list, t_ray ray);
+int		compute_reflexion(t_color pixel_color, t_obj_list obj_list,
+			t_ray ray, bool shadow);
 
 /* ************************************************************************** */
 /*                           Intersection directory                           */

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 14:29:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 08:43:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_cam {
 typedef struct s_obj {
 	t_m_inter		intersection;
 	t_m_print		print;
+	char			*type;
 	t_v3			position;
 	t_v3			direction;
 	t_color			color;

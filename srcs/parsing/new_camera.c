@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 09:16:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 18:03:34 by rballage         ###   ########.fr       */
+/*   Updated: 2022/05/17 19:50:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	new_camera(t_cam *cam, char **array)
 	cam->screen_height = round(cam->screen_width / 1.6);
 	cam->constant_x = 0.5 - cam->screen_width / 2.0;
 	cam->constant_y = 0.5 - cam->screen_height / 2.0;
-	cam->constant_z = -(cam->screen_width / (2 * tan((cam->fov_horizontal * M_PI / 180.0) * 0.5 )));
+	cam->constant_z = -(cam->screen_width
+			/ (2 * tan((cam->fov_horizontal * M_PI / 180.0) * 0.5)));
 	return (0);
 }

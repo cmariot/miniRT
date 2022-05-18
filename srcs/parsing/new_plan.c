@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:33:20 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 16:48:36 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 08:44:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	new_plan(t_obj *plan, char **array)
 {
 	plan->intersection = &intersection_plan;
 	plan->print = &print_plan;
+	plan->type = "pl";
 	if (ft_arraylen(array) != 4)
 		return (rt_error("Invalid plan declaration."));
 	else if (set_position(&(plan->position), array[1]))

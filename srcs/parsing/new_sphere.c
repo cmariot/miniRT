@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:32:00 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 14:32:55 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 08:44:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	new_sphere(t_obj *sphere, char **array)
 {
 	sphere->intersection = &intersection_sphere;
 	sphere->print = &print_sphere;
+	sphere->type = "sp";
 	if (ft_arraylen(array) != 4)
 		return (rt_error("Invalid sphere declaration."));
 	if (set_position(&(sphere->position), array[1]))

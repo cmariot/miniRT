@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:15:07 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/16 09:09:43 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 09:09:29 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ static void	init_mlx(t_mlx *mlx, t_img *image)
 	image->addr = NULL;
 }
 
+int	refresh(void *ptr)
+{
+	t_world	*world;
+
+	world = ptr;
+	raytracer(&world->obj_list, &world->obj_list.camera, &world->mlx);
+	return (0);
+}
+
 int	open_window(t_world *world)
 {
 	init_mlx(&world->mlx, &world->mlx.image);
@@ -29,6 +38,7 @@ int	open_window(t_world *world)
 		rt_error("MLX: mlx_init() failed.");
 		return (free_structure(world));
 	}
+	mlx_do_key_autorepeaton(world->mlx.mlx_ptr);
 	world->mlx.win_ptr = mlx_new_window(world->mlx.mlx_ptr,
 			world->obj_list.camera.screen_width,
 			world->obj_list.camera.screen_height,
@@ -39,9 +49,10 @@ int	open_window(t_world *world)
 		return (close_window(world));
 	}
 	create_image(&world->mlx, world);
-	raytracer(&world->obj_list, &world->obj_list.camera, &world->mlx);
-	mlx_key_hook(world->mlx.win_ptr, key_hook, world);
+	mlx_hook(world->mlx.win_ptr, 02, 1L << 0, key_handler, world);
 	mlx_hook(world->mlx.win_ptr, 17, 1L << 8, close_window, world);
+	mlx_mouse_hook (world->mlx.win_ptr, &mouse_hook, world);
+	mlx_loop_hook(world->mlx.mlx_ptr, &refresh, world);
 	mlx_loop(world->mlx.mlx_ptr);
 	return (0);
 }

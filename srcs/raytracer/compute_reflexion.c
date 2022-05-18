@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 16:06:11 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 23:57:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,16 @@ static t_color	ambient_reflexion(t_color color, t_amb ambient)
 	return (color);
 }
 
-int	compute_reflexion(t_color pixel_color, t_obj_list obj_list, t_ray ray)
+int	compute_reflexion(t_color pixel_color, t_obj_list obj_list,
+		t_ray ray, bool shadow)
 {
 	t_color	ambient_color;
 	t_color	diffuse_color;
 
 	ambient_color = ambient_reflexion(pixel_color, obj_list.ambient);
+	if (shadow == true)
+		return (trgb_color(0, ambient_color.r, ambient_color.g,
+				ambient_color.b));
 	diffuse_color = diffuse_reflexion(pixel_color, ray, obj_list.light,
 			ambient_color);
 	pixel_color.r = ambient_color.r + diffuse_color.r;

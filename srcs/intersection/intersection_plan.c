@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 14:53:47 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 17:32:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_v3	get_normale(t_ray ray, t_obj obj)
 
 	origine = add_vector(ray.position, ray.intersection);
 	normale1 = obj.direction;
-	normale2 = mul_vector(obj.direction, -1);
+	normale2 = mul_vector(normale1, -1);
 	if (norm_square(add_vector(origine, normale1))
 		< norm_square(add_vector(origine, normale2)))
 		return (normale1);

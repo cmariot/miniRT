@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/17 14:55:43 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/18 08:51:57 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,7 +122,8 @@ INTER			= intersection_sphere.c \
 MLX_DIR			= open_window.c \
 				  create_image.c \
 				  mlx_putpixel.c \
-				  key_hook.c
+				  key_hook.c \
+				  mouse_hook.c
 
 				  ifeq ($(UNAME), arm64)
 				  	MLX_DIR	+= close_window_macos.c

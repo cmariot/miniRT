@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:41:28 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/17 14:25:33 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/17 23:12:38 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list)
 				second_ray = second_ray_generator(first_ray, obj_list->light);
 				if (is_shadow(&second_ray, obj_list->light, obj_list))
 					*color = compute_reflexion(obj_list->obj[i].color,
-							*obj_list, second_ray);
+							*obj_list, second_ray, true);
 				else
 					*color = compute_reflexion(obj_list->obj[i].color,
-							*obj_list, *first_ray);
+							*obj_list, *first_ray, false);
 			}
 		}
 		i++;
