@@ -28,7 +28,9 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 
 	translate_all(obj_list, camera);
 	// print_structure(*obj_list);
+	printf("\n\n");
 	rotate_all(obj_list, camera);
+	// print_structure(*obj_list);
 	y = 0;
 	while (y < camera->screen_height)
 	{

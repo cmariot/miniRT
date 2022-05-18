@@ -69,21 +69,22 @@ static void rotate_vector(t_v3 *t, double rad_x, double rad_y, double rad_z)
 	double *m;
 
 	m = (double *)malloc(sizeof(double) * 9);
-	// if (rad_x)
-	// {
+	if (rad_x)
+	{
 		x_rotation_matrix(rad_x, m);
 		*t = la_matmut(m, *t);
-	// }
-	// if (rad_y)
-	// {
+	}
+	if (rad_y)
+	{
 		y_rotation_matrix(rad_y, m);
 		*t = la_matmut(m, *t);
-	// }
-	// if (rad_z)
-	// {
+	}
+	if (rad_z)
+	{
 		z_rotation_matrix(rad_z, m);
 		*t = la_matmut(m, *t);
-	// }
+	}
+	// (void)rad_z;
 	free(m);
 	// return (t);
 }
@@ -93,23 +94,26 @@ void rotate_all(t_obj_list *obj_list, t_cam *cam)
 	size_t	i;
 	double x,y,z;
 
-	x = (cam->direction.x) * -1.0;
-	y = (cam->direction.y) * -1.0;
-	z = (cam->direction.z) * -1.0;
+	x = (cam->direction.x);
+	y = (cam->direction.y);
+	z = (cam->direction.z);
 	i = 0;
 	while (i < obj_list->nb_obj)
 	{
 		if (obj_list->obj[i].type == sphere)
-			rotate_vector(&(obj_list->obj[i].position), x, y, z);
-		// else if (obj_list->obj[i].type == cylindre)
-		// {
-		// 	translate(&(obj_list->obj[i].position), cam->position);
-		// 	translate(&(obj_list->obj[i].ext1), cam->position);
-		// 	translate(&(obj_list->obj[i].ext2), cam->position);
-		// // }
+			rotate_vector(&(obj_list->obj[i].position), x, y, 0);
+		else if (obj_list->obj[i].type == cylindre)
+		{
+			rotate_vector(&(obj_list->obj[i].position), x, y, 0);
+			rotate_vector(&(obj_list->obj[i].ext1), x, y, 0);
+			rotate_vector(&(obj_list->obj[i].ext2), x, y, 0);
+		}
 		// else if (obj_list->obj[i].type == plan)
-		// 	translate(&(obj_list->obj[i].position), cam->position);
+		// 	rotate_vector(&(obj_list->obj[i].position),  x, y, z);
 		i++;
 	}
-	// translate(&(obj_list->light.position), cam->position);
+	// rotate_vector(&(obj_list->light.position), x, y, z);
+	cam->direction.x = 0;
+	cam->direction.y = 0;
+	cam->direction.z = 1;
 }
