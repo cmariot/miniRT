@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 20:38:38 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 21:43:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static t_v3	get_plan_normale(t_ray *ray, t_obj *obj)
  * on va selectionner celle qui est dirigee vers la camera
  */
 
-static float	get_plan_solution(t_ray *ray, t_obj *plan)
+static double	get_plan_solution(t_ray *ray, t_obj *plan)
 {
 	return ((scalar_product(plan->direction, plan->position)
 			- scalar_product(plan->direction, ray->position))

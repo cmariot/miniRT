@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:13:55 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 21:44:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ static t_color	diffuse_reflexion(t_color *obj_color, t_ray *ray,
 {
 	t_color			diffuse_color;
 	t_v3			light_ray;
-	float			scalar;
-	float			intensite;
-	const float		intensite_lumiere = 20.0f;
+	double			scalar;
+	double			intensite;
+	const double	intensite_lumiere = 20.0;
 
-	ft_memset(&diffuse_color, 0, sizeof(float) * 3);
+	ft_memset(&diffuse_color, 0, sizeof(double) * 3);
 	light_ray = sub_vector(light->position, ray->intersection);
 	scalar = scalar_product(normalize(light_ray), ray->normale);
 	if (scalar > 0)

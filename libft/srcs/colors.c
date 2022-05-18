@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 04:02:55 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 18:24:47 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 21:42:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	trgb_color(int t, float r, float g, float b)
+int	trgb_color(int t, double r, double g, double b)
 {
 	r = fmax(0, fmin(r, 255));
 	g = fmax(0, fmin(g, 255));

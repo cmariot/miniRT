@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:17:13 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 21:45:13 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 {
 	int		color;
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 
 	//move scene (all objs) so the camera is on origin,
 	//rotate each determining vectors of each object along all axis of camera direction

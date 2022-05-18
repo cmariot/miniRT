@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:58:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 18:57:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 21:46:26 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 extern inline t_v3	normalize(const t_v3 a)
 {
-	float		norme;
+	double		norme;
 
 	norme = norm(a);
 	return (new_vector(a.x / norme, a.y / norme, a.z / norme));

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 20:39:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 21:43:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	get_cyl_normale(t_obj cyl, t_ray *ray)
 {
 	t_v3	origine;
-	float	ext_distance;
+	double	ext_distance;
 	t_v3	axe_point;
 	t_v3	normale1;
 	t_v3	normale2;
@@ -37,7 +37,7 @@ static bool	get_cyl_normale(t_obj cyl, t_ray *ray)
 	return (true);
 }
 
-static float	get_cyl_delta(float *abc, t_obj cyl, t_ray ray)
+static double	get_cyl_delta(double *abc, t_obj cyl, t_ray ray)
 {
 	t_v3	va;
 	t_v3	ra0;
@@ -83,8 +83,8 @@ static float	get_cyl_delta(float *abc, t_obj cyl, t_ray ray)
 
 bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
 {
-	float	abc[3];
-	float	delta;
+	double	abc[3];
+	double	delta;
 
 	delta = get_cyl_delta(abc, *cyl, *ray);
 	if (delta < 0)

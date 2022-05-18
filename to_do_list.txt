@@ -1,4 +1,3 @@
 - [ ] Position lumiere sur cylindre
 - [ ] Direction 0,0,0 et gestion erreur
-- [ ] Mapping touches / souris appel fonction raffraichissement image
-- [ ] Translation/rotation camera
+- [ ] Rotation camera

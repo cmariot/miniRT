@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:41:28 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:19:46 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 21:44:32 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list)
 {
-	float	max_distance;
+	double	max_distance;
 	t_ray	second_ray;
 	size_t	i;
 
