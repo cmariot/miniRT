@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 18:20:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 20:38:38 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static t_v3	get_normale(t_ray *ray, t_obj *obj)
+static t_v3	get_plan_normale(t_ray *ray, t_obj *obj)
 {
 	t_v3	origine;
 	t_v3	normale1;
@@ -83,7 +83,7 @@ static t_v3	get_normale(t_ray *ray, t_obj *obj)
  * on va selectionner celle qui est dirigee vers la camera
  */
 
-static float	get_solution(t_ray *ray, t_obj *plan)
+static float	get_plan_solution(t_ray *ray, t_obj *plan)
 {
 	return ((scalar_product(plan->direction, plan->position)
 			- scalar_product(plan->direction, ray->position))
@@ -92,10 +92,10 @@ static float	get_solution(t_ray *ray, t_obj *plan)
 
 bool	intersection_plan(t_obj *plan, t_ray *ray)
 {
-	ray->t = get_solution(ray, plan);
+	ray->t = get_plan_solution(ray, plan);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	ray->normale = get_normale(ray, plan);
+	ray->normale = get_plan_normale(ray, plan);
 	return (true);
 }

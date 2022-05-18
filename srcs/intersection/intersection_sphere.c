@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 18:20:12 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 20:39:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static t_v3	get_normale(t_ray *ray, t_obj *sphere)
+static t_v3	get_sphere_normale(t_ray *ray, t_obj *sphere)
 {
 	t_v3	origine;
 	t_v3	normale1;
@@ -69,7 +69,7 @@ static t_v3	get_normale(t_ray *ray, t_obj *sphere)
  * DELTA = B^2 - 4AC
  */
 
-static float	get_solution(t_ray *ray, t_obj *sphere)
+static float	get_sphere_solution(t_ray *ray, t_obj *sphere)
 {
 	t_v3		origin;
 	float		abc[3];
@@ -103,10 +103,10 @@ static float	get_solution(t_ray *ray, t_obj *sphere)
 //Vecteur(x) =  direction * x + t
 bool	intersection_sphere(t_obj *sphere, t_ray *ray)
 {
-	ray->t = get_solution(ray, sphere);
+	ray->t = get_sphere_solution(ray, sphere);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	ray->normale = get_normale(ray, sphere);
+	ray->normale = get_sphere_normale(ray, sphere);
 	return (true);
 }

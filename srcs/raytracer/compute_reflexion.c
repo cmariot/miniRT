@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 19:44:48 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 21:13:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	compute_shadow(t_color *obj_color, t_amb *ambient)
 	t_color	shadow_color;
 
 	shadow_color = ambient_reflexion(*obj_color, ambient);
-	return (trgb_color(0, shadow_color.r, shadow_color.g,
-			shadow_color.b));
+	return (trgb_color(0, shadow_color.r, shadow_color.g, shadow_color.b));
 }
 
 //Produit scalaire entre la lumiere et le rayon permet de voir si les angles
@@ -51,12 +50,9 @@ static t_color	diffuse_reflexion(t_color *obj_color, t_ray *ray,
 
 static t_color	ambient_reflexion(t_color color, t_amb *ambient)
 {
-	float	k;
-
-	k = ambient->ratio / 255.0f;
-	color.r *= ambient->color.r * k;
-	color.g *= ambient->color.g * k;
-	color.b *= ambient->color.b * k;
+	color.r *= ambient->color.r * ambient->ambient_constant;
+	color.g *= ambient->color.g * ambient->ambient_constant;
+	color.b *= ambient->color.b * ambient->ambient_constant;
 	return (color);
 }
 

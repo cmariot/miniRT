@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 18:49:34 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 20:44:04 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct t_amb {
 	t_m_print		print;
 	t_color			color;
 	float			ratio;
+	float			ambient_constant;
 }	t_amb;
 
 // Rayon

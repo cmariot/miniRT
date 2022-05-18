@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/18 08:51:57 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/18 20:32:46 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ SCENE_TEST		 = scenes/00_test.rt
 CC				 = clang
 
 
-CFLAGS			 = -Wall -Wextra -Werror -g3 -O3
-LFLAGS			 = -Wall -Wextra -Werror -g3 -O3
+CFLAGS			 = -Wall -Wextra -Werror -O3
+LFLAGS			 = -Wall -Wextra -Werror -O3
 
 
 INCLUDES		 = -I includes
@@ -111,8 +111,8 @@ RAYTRACER		= raytracer.c \
 				  second_ray_generator.c \
 				  is_shadow.c \
 				  compute_reflexion.c \
-					objects_translation.c\
-					objects_rotations.c
+				  objects_translation.c\
+				  objects_rotations.c
 
 
 INTER			= intersection_sphere.c \
@@ -170,7 +170,7 @@ OBJ_DIR 		= $(shell find ./srcs -type d | sed s/".\/srcs"/".\/objs"/g)
 
 OBJS			= $(addprefix $(OBJ_ROOTDIR), $(OBJ_SUBDIR))
 
-DEPS			:= $(OBJS:.o=.d)
+DEPENDS			:= $(OBJS:.o=.d)
 
 
 
@@ -227,7 +227,7 @@ norm :
 
 
 clean :
-				@rm -rf $(OBJ_ROOTDIR) $(DEPS)
+				@rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@make clean -C libft
 				@make clean -C $(MLX)
 				@printf "$(RED)"
@@ -237,7 +237,7 @@ clean :
 
 fclean :
 				@-rm -f $(NAME)
-				@-rm -rf $(OBJ_ROOTDIR) $(DEPS)
+				@-rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@make fclean -C libft --no-print-directory
 				@make clean -C $(MLX) --no-print-directory
 				@printf "$(RED)"
@@ -262,7 +262,7 @@ footer :
 				@printf "./$(NAME) scene.rt\n"
 
 
--include $(DEPS)
+-include $(DEPENDS)
 
 
 .PHONY : 		all clean fclean re

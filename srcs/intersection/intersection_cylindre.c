@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 18:20:02 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/18 20:39:16 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static bool	get_normale(t_obj cyl, t_ray *ray)
+static bool	get_cyl_normale(t_obj cyl, t_ray *ray)
 {
 	t_v3	origine;
 	float	ext_distance;
@@ -37,7 +37,7 @@ static bool	get_normale(t_obj cyl, t_ray *ray)
 	return (true);
 }
 
-static float	get_delta(float *abc, t_obj cyl, t_ray ray)
+static float	get_cyl_delta(float *abc, t_obj cyl, t_ray ray)
 {
 	t_v3	va;
 	t_v3	ra0;
@@ -86,7 +86,7 @@ bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
 	float	abc[3];
 	float	delta;
 
-	delta = get_delta(abc, *cyl, *ray);
+	delta = get_cyl_delta(abc, *cyl, *ray);
 	if (delta < 0)
 		return (false);
 	else if (delta == 0)
@@ -96,13 +96,13 @@ bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	if (get_normale(*cyl, ray))
+	if (get_cyl_normale(*cyl, ray))
 		return (true);
 	else if (delta != 0)
 	{
 		ray->t = t2(delta, abc);
 		ray->intersection = get_position(ray->position, ray->direction, ray->t);
-		if (get_normale(*cyl, ray))
+		if (get_cyl_normale(*cyl, ray))
 			return (true);
 	}
 	return (false);
