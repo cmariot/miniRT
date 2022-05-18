@@ -18,7 +18,7 @@
   int		size_x;
   int		size_y;
 }
-- (NSWindowEvent *) initWithContentRect:(NSRect)rect styleMask:(NSUInteger)winstyle backing:(NSBackingStoreType)bck defer:(BOOL) dfr;
+- (NSWindowEvent *) initWithContentRect:(NSRect)rect styleMask:(NSUInteger)winstyle backing:(NSBackingStoreType)bck defer:(bool) dfr;
 - (void) setEvent:(int)event andFunc:(func_t)func andParam:(void *)param;
 - (void) setKeyRepeat:(int)mode;
 - (void) exposeNotification:(NSNotification *)note;

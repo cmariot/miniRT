@@ -49,10 +49,11 @@ int	open_window(t_world *world)
 		return (close_window(world));
 	}
 	create_image(&world->mlx, world);
+	refresh(world);
 	mlx_hook(world->mlx.win_ptr, 02, 1L << 0, key_handler, world);
 	mlx_hook(world->mlx.win_ptr, 17, 1L << 8, close_window, world);
 	mlx_mouse_hook (world->mlx.win_ptr, &mouse_hook, world);
-	mlx_loop_hook(world->mlx.mlx_ptr, &refresh, world);
+	// mlx_loop_hook(world->mlx.mlx_ptr, &refresh, world);
 	mlx_loop(world->mlx.mlx_ptr);
 	return (0);
 }

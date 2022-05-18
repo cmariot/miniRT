@@ -16,7 +16,7 @@ int	new_cylinder(t_obj *cylinder, char **array)
 {
 	cylinder->intersection = &intersection_cylinder;
 	cylinder->print = &print_cylinder;
-	cylinder->type = "cy";
+	cylinder->type = cylindre;
 	if (ft_arraylen(array) != 6)
 		return (rt_error("Invalid cylinder declaration."));
 	if (set_position(&cylinder->position, array[1]))

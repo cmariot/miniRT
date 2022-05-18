@@ -110,7 +110,9 @@ RAYTRACER		= raytracer.c \
 				  compute_color.c \
 				  second_ray_generator.c \
 				  is_shadow.c \
-				  compute_reflexion.c
+				  compute_reflexion.c \
+					objects_translation.c\
+					objects_rotations.c
 
 
 INTER			= intersection_sphere.c \

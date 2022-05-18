@@ -19,7 +19,7 @@
 # include "mlx.h"
 # include "keycodes.h"
 
-# define SCREEN_WIDTH 1440
+# define SCREEN_WIDTH 800
 
 /* ************************************************************************** */
 /*                              Main directory                                */
@@ -71,6 +71,9 @@ t_ray	second_ray_generator(t_ray *first_ray, t_light light);
 bool	is_shadow(t_ray *second_ray, t_light light, t_obj_list *obj_list);
 int		compute_reflexion(t_color pixel_color, t_obj_list obj_list,
 			t_ray ray, bool shadow);
+void	translate_all(t_obj_list *obj_list, t_cam *cam);
+void	rotate_all(t_obj_list *obj_list, t_cam *cam);
+
 
 /* ************************************************************************** */
 /*                           Intersection directory                           */

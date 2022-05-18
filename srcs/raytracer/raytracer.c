@@ -25,6 +25,10 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 // move scene (all objs) so the camera is on origin,
 // rotate each determining vectors of each object along all axis of camera direction
 // 		ex: sphere needs only its center rotated
+
+	translate_all(obj_list, camera);
+	// print_structure(*obj_list);
+	rotate_all(obj_list, camera);
 	y = 0;
 	while (y < camera->screen_height)
 	{

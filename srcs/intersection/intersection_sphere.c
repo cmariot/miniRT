@@ -58,7 +58,7 @@ static t_v3	get_normale(t_ray ray, t_obj sphere)
  * + ray->position.x^2 + ray->position.y^2 + ray->position.z^2
  * - (sphere.radius)^2 = 0
  *
- * ON DETERMINE A B ET C DU DISCRIMINANT 
+ * ON DETERMINE A B ET C DU DISCRIMINANT
  * A = ((ray->direction.x)^2 + (ray->direction.y)^2 + (ray->direction.z)^2)
  * B = ((ray->direction.x * ray->position.x)
  *     + (ray->direction.y * ray->position.y)

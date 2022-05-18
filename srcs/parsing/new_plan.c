@@ -12,18 +12,18 @@
 
 #include "miniRT.h"
 
-int	new_plan(t_obj *plan, char **array)
+int	new_plan(t_obj *o_plan, char **array)
 {
-	plan->intersection = &intersection_plan;
-	plan->print = &print_plan;
-	plan->type = "pl";
+	o_plan->intersection = &intersection_plan;
+	o_plan->print = &print_plan;
+	o_plan->type = plan;
 	if (ft_arraylen(array) != 4)
 		return (rt_error("Invalid plan declaration."));
-	else if (set_position(&(plan->position), array[1]))
+	else if (set_position(&(o_plan->position), array[1]))
 		return (rt_error("Syntax error : Plan position"));
-	else if (set_direction(&(plan->direction), array[2]))
+	else if (set_direction(&(o_plan->direction), array[2]))
 		return (rt_error("Syntax error : Plan direction"));
-	else if (set_colors(&(plan->color), array[3]))
+	else if (set_colors(&(o_plan->color), array[3]))
 		return (rt_error("Syntax error : Plan color"));
 	return (0);
 }
