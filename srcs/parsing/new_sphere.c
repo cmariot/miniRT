@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:32:00 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:44:18 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 19:30:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	new_sphere(t_obj *o_sphere, char **array)
 {
 	o_sphere->intersection = &intersection_sphere;
+	o_sphere->second_intersection = &second_intersection_sphere;
 	o_sphere->print = &print_sphere;
 	o_sphere->type = sphere;
 	if (ft_arraylen(array) != 4)

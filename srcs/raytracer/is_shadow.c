@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:42:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 10:31:30 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 19:19:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
  * au CARRE entre le rayon et la lumiere
  */
 
-bool	is_shadow(t_ray *second_ray, t_light *light, t_obj_list *obj_list)
+bool	in_light(t_ray *second_ray, t_light *light, t_obj_list *obj_list)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < obj_list->nb_obj)
 	{
-		if (obj_list->obj[i].intersection(&obj_list->obj[i], second_ray)
+		if (obj_list->obj[i].second_intersection(&obj_list->obj[i], second_ray)
 			&& pow(second_ray->t + 1, 2.0) < norm_square(
 				sub_vector(second_ray->position, light->position)))
-			return (true);
+			return (false);
 		i++;
 	}
-	return (false);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 14:43:18 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 16:46:01 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_light {
 	t_m_print		print;
 	t_v3			position;
 	double			ratio;
+	bool			color_set;
+	t_color			color;
 }	t_light;
 
 // Lumiere ambiante

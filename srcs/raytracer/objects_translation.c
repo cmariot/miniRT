@@ -1,24 +1,24 @@
 #include "miniRT.h"
 
-/*
-*
-*/
+//typedef struct s_m4 {
+//	double	m[16];
+//}	t_m4;
+//
+//void	create_matrix(t_m4 *matrix, double x, double y, double z)
+//{
+//	ft_bzero(matrix, sizeof(double) * 16);
+//	matrix->m[0] = 1;
+//	matrix->m[3] = x;
+//	matrix->m[5] = 1;
+//	matrix->m[7] = y;
+//	matrix->m[10] = 1;
+//	matrix->m[11] = z;
+//	matrix->m[15] = 1;
+//}
 
-typedef struct s_m4 {
-	double	m[16];
-}	t_m4;
+//	t_m4	translation_matrix;
 
-void	create_matrix(t_m4 *matrix, double x, double y, double z)
-{
-	ft_bzero(matrix, sizeof(double) * 16);
-	matrix->m[0] = 1;
-	matrix->m[5] = 1;
-	matrix->m[10] = 1;
-	matrix->m[15] = 1;
-	matrix->m[3] = x;
-	matrix->m[7] = y;
-	matrix->m[11] = z;
-}
+//	create_matrix(&translation_matrix, cam->position.x, cam->position.y, cam->position.z);
 
 static void translate(t_v3 *target, t_v3 value)
 {
@@ -30,9 +30,7 @@ static void translate(t_v3 *target, t_v3 value)
 void translate_all(t_obj_list *obj_list, t_cam *cam)
 {
 	size_t	i;
-	t_m4	translation_matrix;
-
-	create_matrix(&translation_matrix, cam->position.x, cam->position.y, cam->position.z);
+	
 	i = 0;
 	while (i < obj_list->nb_obj)
 	{

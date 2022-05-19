@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 09:11:43 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 19:30:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	new_cylinder(t_obj *cylinder, char **array)
 {
 	cylinder->intersection = &intersection_cylinder;
+	cylinder->second_intersection = &second_intersection_cylinder;
 	cylinder->print = &print_cylinder;
 	cylinder->type = cylindre;
 	if (ft_arraylen(array) != 6)

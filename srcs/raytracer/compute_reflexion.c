@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 09:23:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 19:15:30 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 //Produit scalaire entre la lumiere et le rayon permet de voir si les angles
 //se croisent
 
-static t_color	diffuse_reflexion(t_color *obj_color, t_ray *ray,
-		t_light *light, t_color *ambient_color)
+void	diffuse(t_color *color, t_color *obj_color, t_obj_list *obj_list)
 {
 	t_color			diffuse_color;
 	t_v3			light_ray;
@@ -25,38 +24,28 @@ static t_color	diffuse_reflexion(t_color *obj_color, t_ray *ray,
 	const double	intensite_lumiere = 20.0;
 
 	ft_memset(&diffuse_color, 0, sizeof(double) * 3);
-	light_ray = sub_vector(light->position, ray->intersection);
-	scalar = scalar_product(normalize(light_ray), ray->normale);
+	light_ray = sub_vector(obj_list->light.position,
+			obj_list->camera.ray.intersection);
+	scalar = scalar_product(normalize(light_ray), obj_list->camera.ray.normale);
 	if (scalar > 0)
 	{
-		intensite = scalar * intensite_lumiere * light->ratio
+		intensite = scalar * intensite_lumiere * obj_list->light.ratio
 			/ norm_square(light_ray);
-		diffuse_color.r = intensite * obj_color->r * ambient_color->r;
-		diffuse_color.g = intensite * obj_color->g * ambient_color->g;
-		diffuse_color.b = intensite * obj_color->b * ambient_color->b;
+		diffuse_color.r = intensite * obj_color->r * color->r;
+		diffuse_color.g = intensite * obj_color->g * color->g;
+		diffuse_color.b = intensite * obj_color->b * color->b;
 	}
-	return (diffuse_color);
+	color->r += diffuse_color.r;
+	color->g += diffuse_color.g;
+	color->b += diffuse_color.b;
 }
 
-t_color	ambient_reflexion(t_color color, t_amb *ambient)
+t_color	ambient(t_obj *obj, t_amb *amb)
 {
-	color.r *= ambient->color.r * ambient->ambient_constant;
-	color.g *= ambient->color.g * ambient->ambient_constant;
-	color.b *= ambient->color.b * ambient->ambient_constant;
-	return (color);
-}
+	t_color	ambient;
 
-int	compute_reflexion(t_color *obj_color, t_obj_list *obj_list, t_ray *ray)
-{
-	t_color	pixel_color;
-	t_color	ambient_color;
-	t_color	diffuse_color;
-
-	ambient_color = ambient_reflexion(*obj_color, &obj_list->ambient);
-	diffuse_color = diffuse_reflexion(obj_color, ray, &obj_list->light,
-			&ambient_color);
-	pixel_color.r = ambient_color.r + diffuse_color.r;
-	pixel_color.g = ambient_color.g + diffuse_color.g;
-	pixel_color.b = ambient_color.b + diffuse_color.b;
-	return (trgb_color(0, pixel_color.r, pixel_color.g, pixel_color.b));
+	ambient.r = obj->color.r * amb->color.r * amb->ambient_constant;
+	ambient.g = obj->color.g * amb->color.g * amb->ambient_constant;
+	ambient.b = obj->color.b * amb->color.b * amb->ambient_constant;
+	return (ambient);
 }

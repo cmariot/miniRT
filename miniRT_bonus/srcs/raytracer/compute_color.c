@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:41:28 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 15:16:21 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 16:18:56 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list)
 	size_t	j;
 
 	*color = 0;
+	ft_bzero(&pixel_color, sizeof(t_color));
 	max_distance = INFINITY;
 	i = 0;
 	while (i < obj_list->nb_obj)
@@ -40,7 +41,7 @@ void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list)
 				j = 0;
 				while (j < obj_list->nb_light)
 				{
-					second_ray = second_ray_generator(first_ray, &obj_list->light[i]);
+					second_ray = second_ray_generator(first_ray, &obj_list->light[j]);
 					if (!is_shadow(&second_ray, &obj_list->light[j], obj_list))
 						compute_reflexion(&obj_list->obj[i].color,
 								&obj_list->light[j], first_ray, &pixel_color);

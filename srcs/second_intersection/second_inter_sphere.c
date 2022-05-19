@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersection_sphere.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/19 19:28:54 by cmariot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "miniRT.h"
+
+static void	get_sphere_solution(t_ray *ray, t_obj *sphere)
+{
+	t_v3		origin;
+	double		abc[3];
+	double		delta;
+
+	origin = sub_vector(ray->position, sphere->position);
+	abc[0] = norm_square(ray->direction);
+	abc[1] = scalar_product(ray->direction, origin) * 2.0;
+	abc[2] = norm_square(origin) - pow(sphere->radius, 2);
+	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
+	if (delta < 0)
+		ray->t = -1;
+	else
+		ray->t = t2(delta, abc);
+}
+
+bool	second_intersection_sphere(t_obj *sphere, t_ray *ray)
+{
+	get_sphere_solution(ray, sphere);
+	if (ray->t < 0)
+		return (false);
+	return (true);
+}

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 09:11:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 19:20:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ typedef struct s_mlx {
 	void			*win_ptr;
 	t_img			image;
 }	t_mlx;
+
+typedef struct s_discriminant {
+	double	abc[3];
+	double	delta;
+}	t_discriminant;
 
 // Structure couleur RGB
 typedef struct s_color {
@@ -96,6 +101,7 @@ typedef struct s_cam {
 // Pointeurs sur fonction (type commencant par 't_m_') = methodes
 typedef struct s_obj {
 	t_m_inter		intersection;
+	t_m_inter		second_intersection;
 	t_m_print		print;
 	t_type			type;
 	t_v3			position;

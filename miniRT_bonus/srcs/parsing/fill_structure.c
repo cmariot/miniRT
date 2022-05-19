@@ -6,11 +6,24 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:22:46 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 14:47:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 16:50:42 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+static void	set_missing_light_color(t_obj_list *obj_list)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < obj_list->nb_light)
+	{
+		if (obj_list->light[i].color_set == false)
+			obj_list->light[i].color = obj_list->ambient.color;
+		i++;
+	}
+}
 
 static int	set_world(t_obj_list *obj_list, char *line, size_t *obj_index, size_t *light_index)
 {
@@ -61,6 +74,7 @@ int	fill_structure(t_world *world, const char *filename)
 		free(line);
 	}
 	close(file_descriptor);
+	set_missing_light_color(&world->obj_list);
 	if (error == true)
 		return (1);
 	return (0);

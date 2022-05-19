@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 15:09:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 16:37:49 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static t_color	diffuse_reflexion(t_color *obj_color, t_ray *ray, t_light *light)
 	{
 		intensite = scalar * intensite_lumiere * light->ratio
 			/ norm_square(light_ray);
-		diffuse_color.r = intensite * pow(obj_color->r, 2); // * ambient_color->r;
-		diffuse_color.g = intensite * pow(obj_color->g, 2); // * ambient_color->g;
-		diffuse_color.b = intensite * pow(obj_color->b, 2); // * ambient_color->b;
+		diffuse_color.r = intensite * obj_color->r * light->color.r;
+		diffuse_color.g = intensite * obj_color->g * light->color.g;
+		diffuse_color.b = intensite * obj_color->b * light->color.b;
 	}
 	return (diffuse_color);
 }

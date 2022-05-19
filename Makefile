@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/19 14:34:07 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/19 19:36:21 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,12 +79,13 @@ SRC_ROOTDIR		= srcs/
 
 
 SRC_SUBDIR	    = $(MAIN) \
-				  $(addprefix parsing/, $(PARSING)) \
-				  $(addprefix utils/, $(UTILS)) \
-				  $(addprefix mlx/, $(MLX_DIR)) \
 				  $(addprefix vectors/, $(VECTORS)) \
+				  $(addprefix intersection/, $(INTER)) \
+				  $(addprefix second_intersection/, $(2ND_INTER)) \
+				  $(addprefix utils/, $(UTILS)) \
 				  $(addprefix raytracer/, $(RAYTRACER)) \
-				  $(addprefix intersection/, $(INTER))
+				  $(addprefix parsing/, $(PARSING)) \
+				  $(addprefix mlx/, $(MLX_DIR))
 
 
 MAIN			= main.c
@@ -111,7 +112,6 @@ RAYTRACER		= raytracer.c \
 				  second_ray_generator.c \
 				  is_shadow.c \
 				  compute_reflexion.c \
-				  compute_shadow.c \
 				  objects_translation.c\
 				  objects_rotations.c
 
@@ -122,11 +122,15 @@ INTER			= intersection_sphere.c \
 				  utils.c
 
 
+2ND_INTER		= second_inter_cyl.c \
+				  second_inter_plan.c \
+				  second_inter_sphere.c \
+
+
 MLX_DIR			= open_window.c \
 				  create_image.c \
 				  mlx_putpixel.c \
-				  key_hook.c \
-				  mouse_hook.c
+				  key_handler.c
 
 				  ifeq ($(UNAME), arm64)
 				  	MLX_DIR	+= close_window_macos.c
@@ -197,7 +201,8 @@ RESET			= \033[0m
 all : 			header $(NAME) footer
 
 
-bonus : 		all
+bonus:
+				make -C miniRT_bonus --no-print-directory 
 
 
 $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.c

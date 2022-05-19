@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:33:20 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 08:44:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 19:30:01 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	new_plan(t_obj *o_plan, char **array)
 {
 	o_plan->intersection = &intersection_plan;
+	o_plan->second_intersection = &second_intersection_plan;
 	o_plan->print = &print_plan;
 	o_plan->type = plan;
 	if (ft_arraylen(array) != 4)
