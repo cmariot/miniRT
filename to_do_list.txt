@@ -1,3 +1,1 @@
-- [ ] Position lumiere sur cylindre
-- [ ] Direction 0,0,0 et gestion erreur
 - [ ] Rotation camera

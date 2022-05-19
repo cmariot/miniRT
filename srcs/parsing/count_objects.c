@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:22:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 08:53:56 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 13:03:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	get_element_type(t_obj_list *obj_list, char *line)
 		obj_list->nb_camera++;
 	else if (ft_strcmp(splitted_line[0], "L") == 0)
 		obj_list->nb_light++;
-	else if (splitted_line[0] != NULL)
+	else if (splitted_line[0] != NULL && *splitted_line[0] != '#')
 	{
 		ft_free_array(splitted_line);
 		return (rt_error("Unknown object in the scene file."));
