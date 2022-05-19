@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:41:39 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 09:11:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_obj {
 	t_color			color;
 	double			radius;
 	double			height;
+	double			demi_height;
 	t_v3			ext1;
 	t_v3			ext2;
 	t_v3			axe;

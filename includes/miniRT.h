@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:41:32 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 09:22:38 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list);
 t_ray	second_ray_generator(t_ray *first_ray, t_light *light);
 bool	is_shadow(t_ray *second_ray, t_light *light, t_obj_list *obj_list);
 int		compute_reflexion(t_color *color, t_obj_list *obj_list, t_ray *ray);
+t_color	ambient_reflexion(t_color color, t_amb *ambient);
 int		compute_shadow(t_color *obj_color, t_amb *ambient);
 void	translate_all(t_obj_list *obj_list, t_cam *cam);
 void	rotate_all(t_obj_list *obj_list, t_cam *cam);

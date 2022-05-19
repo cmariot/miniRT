@@ -6,21 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:44:55 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 09:23:08 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-static t_color	ambient_reflexion(t_color color, t_amb *ambient);
-
-int	compute_shadow(t_color *obj_color, t_amb *ambient)
-{
-	t_color	shadow_color;
-
-	shadow_color = ambient_reflexion(*obj_color, ambient);
-	return (trgb_color(0, shadow_color.r, shadow_color.g, shadow_color.b));
-}
 
 //Produit scalaire entre la lumiere et le rayon permet de voir si les angles
 //se croisent
@@ -48,7 +38,7 @@ static t_color	diffuse_reflexion(t_color *obj_color, t_ray *ray,
 	return (diffuse_color);
 }
 
-static t_color	ambient_reflexion(t_color color, t_amb *ambient)
+t_color	ambient_reflexion(t_color color, t_amb *ambient)
 {
 	color.r *= ambient->color.r * ambient->ambient_constant;
 	color.g *= ambient->color.g * ambient->ambient_constant;

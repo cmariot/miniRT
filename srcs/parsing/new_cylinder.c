@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:36:54 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:44:06 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 09:11:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	new_cylinder(t_obj *cylinder, char **array)
 			mul_vector(cylinder->direction, -cylinder->height / 2.0));
 	cylinder->axe = normalize(div_vector(sub_vector(cylinder->ext2,
 					cylinder->ext1), length(cylinder->ext1, cylinder->ext2)));
+	cylinder->demi_height = cylinder->height / 2.0;
 	return (0);
 }

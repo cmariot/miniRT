@@ -6,49 +6,59 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:43:02 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 09:17:17 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static bool	get_cyl_normale(t_obj cyl, t_ray *ray)
+typedef struct s_discriminant {
+	double	abc[3];
+	double	delta;
+}	t_discriminant;
+
+static bool	get_cyl_normale(t_obj *cyl, t_ray *ray)
 {
 	t_v3	origine;
 	double	ext_distance;
 	t_v3	axe_point;
-	t_v3	normale1;
-	t_v3	normale2;
+	t_v3	inverse_normale;
 
-	origine = sub_vector(cyl.position, ray->intersection);
-	ext_distance = scalar_product(origine, cyl.direction);
-	if (fabs(ext_distance) > cyl.height / 2.0)
+	origine = sub_vector(cyl->position, ray->intersection);
+	ext_distance = scalar_product(origine, cyl->direction);
+	if (fabs(ext_distance) > cyl->demi_height)
 		return (false);
-	axe_point = get_position(cyl.position, cyl.direction, -ext_distance);
-	normale1 = normalize(sub_vector(axe_point, ray->intersection));
-	normale2 = mul_vector(normale1, -1);
+	axe_point = get_position(cyl->position, cyl->direction, -ext_distance);
+	ray->normale = normalize(sub_vector(axe_point, ray->intersection));
+	inverse_normale = mul_vector(ray->normale, -1);
 	if (norm_square(sub_vector(ray->position,
-				add_vector(ray->intersection, normale1)))
-		< norm_square(sub_vector(ray->position,
-				add_vector(ray->intersection, normale2))))
-		ray->normale = normale1;
-	else
-		ray->normale = normale2;
+				add_vector(ray->intersection, ray->normale)))
+		>= norm_square(sub_vector(ray->position,
+				add_vector(ray->intersection, inverse_normale))))
+		ray->normale = inverse_normale;
 	return (true);
 }
 
-static double	get_cyl_delta(double *abc, t_obj cyl, t_ray ray)
+static void	get_cyl_solution(t_obj *cyl, t_ray *ray, t_discriminant *delta)
 {
 	t_v3	va;
 	t_v3	ra0;
 
-	va = cross_product(cross_product(ray.direction, cyl.axe), cyl.axe);
-	ra0 = cross_product(cross_product(sub_vector(ray.position, cyl.ext1),
-				cyl.axe), cyl.axe);
-	abc[0] = scalar_product(va, va);
-	abc[1] = 2 * scalar_product(ra0, va);
-	abc[2] = scalar_product(ra0, ra0) - pow(cyl.radius, 2);
-	return (pow(abc[1], 2) - (4.0 * abc[0] * abc[2]));
+	va = cross_product(cross_product(ray->direction, cyl->axe), cyl->axe);
+	ra0 = cross_product(cross_product(sub_vector(ray->position, cyl->ext1),
+				cyl->axe), cyl->axe);
+	delta->abc[0] = scalar_product(va, va);
+	delta->abc[1] = 2 * scalar_product(ra0, va);
+	delta->abc[2] = scalar_product(ra0, ra0) - pow(cyl->radius, 2);
+	delta->delta = pow(delta->abc[1], 2)
+		- (4.0 * delta->abc[0] * delta->abc[2]);
+	if (delta < 0)
+		ray->t = -1;
+	else if (delta == 0)
+		ray->t = t1(delta->delta, delta->abc);
+	else
+		ray->t = min_positive(t1(delta->delta, delta->abc),
+				t2(delta->delta, delta->abc));
 }
 
 /*
@@ -83,26 +93,19 @@ static double	get_cyl_delta(double *abc, t_obj cyl, t_ray ray)
 
 bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
 {
-	double	abc[3];
-	double	delta;
+	t_discriminant	delta;
 
-	delta = get_cyl_delta(abc, *cyl, *ray);
-	if (delta < 0)
-		return (false);
-	else if (delta == 0)
-		ray->t = t1(delta, abc);
-	else
-		ray->t = min_positive(t1(delta, abc), t2(delta, abc));
+	get_cyl_solution(cyl, ray, &delta);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	if (get_cyl_normale(*cyl, ray))
+	if (get_cyl_normale(cyl, ray))
 		return (true);
-	else if (delta != 0)
+	else if (delta.delta != 0)
 	{
-		ray->t = t2(delta, abc);
+		ray->t = t2(delta.delta, delta.abc);
 		ray->intersection = get_position(ray->position, ray->direction, ray->t);
-		if (get_cyl_normale(*cyl, ray))
+		if (get_cyl_normale(cyl, ray))
 			return (true);
 	}
 	return (false);

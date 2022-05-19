@@ -6,26 +6,23 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:30:17 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:43:11 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 09:17:23 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static t_v3	get_sphere_normale(t_ray *ray, t_obj *sphere)
+static void	get_sphere_normale(t_ray *ray, t_obj *sphere)
 {
 	t_v3	origine;
-	t_v3	normale1;
-	t_v3	normale2;
+	t_v3	inverse_normale;
 
 	origine = sub_vector(ray->position, ray->intersection);
-	normale1 = normalize(sub_vector(ray->intersection, sphere->position));
-	normale2 = mul_vector(normale1, -1);
-	if (norm_square(sub_vector(origine, normale1))
-		< norm_square(sub_vector(origine, normale2)))
-		return (normale1);
-	else
-		return (normale2);
+	ray->normale = normalize(sub_vector(ray->intersection, sphere->position));
+	inverse_normale = mul_vector(ray->normale, -1);
+	if (norm_square(sub_vector(origine, ray->normale))
+		>= norm_square(sub_vector(origine, inverse_normale)))
+		ray->normale = inverse_normale;
 }
 
 /*
@@ -69,7 +66,7 @@ static t_v3	get_sphere_normale(t_ray *ray, t_obj *sphere)
  * DELTA = B^2 - 4AC
  */
 
-static double	get_sphere_solution(t_ray *ray, t_obj *sphere)
+static void	get_sphere_solution(t_ray *ray, t_obj *sphere)
 {
 	t_v3		origin;
 	double		abc[3];
@@ -81,11 +78,11 @@ static double	get_sphere_solution(t_ray *ray, t_obj *sphere)
 	abc[2] = norm_square(origin) - pow(sphere->radius, 2);
 	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
 	if (delta < 0)
-		return (-1.0);
+		ray->t = -1;
 	else if (delta == 0)
-		return (t1(delta, abc));
+		ray->t = t1(delta, abc);
 	else
-		return (min_positive(t1(delta, abc), t2(delta, abc)));
+		ray->t = min_positive(t1(delta, abc), t2(delta, abc));
 }
 
 /*
@@ -103,10 +100,10 @@ static double	get_sphere_solution(t_ray *ray, t_obj *sphere)
 //Vecteur(x) =  direction * x + t
 bool	intersection_sphere(t_obj *sphere, t_ray *ray)
 {
-	ray->t = get_sphere_solution(ray, sphere);
+	get_sphere_solution(ray, sphere);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	ray->normale = get_sphere_normale(ray, sphere);
+	get_sphere_normale(ray, sphere);
 	return (true);
 }

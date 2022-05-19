@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/18 20:32:46 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/19 09:23:28 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ RAYTRACER		= raytracer.c \
 				  second_ray_generator.c \
 				  is_shadow.c \
 				  compute_reflexion.c \
+				  compute_shadow.c \
 				  objects_translation.c\
 				  objects_rotations.c
 
