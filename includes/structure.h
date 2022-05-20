@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 19:20:14 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 13:51:05 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_cam {
 	t_m_print		print;
 	t_v3			position;
 	t_v3			direction;
+	double			matrix[9];
 	t_ray			ray;
 	double			screen_width;
 	double			screen_height;

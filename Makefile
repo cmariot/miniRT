@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/19 22:33:27 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/20 14:02:09 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,8 +112,7 @@ RAYTRACER		= raytracer.c \
 				  second_ray_generator.c \
 				  in_light.c \
 				  light_reflexion.c \
-				  objects_translation.c\
-				  objects_rotations.c
+				  objects_translation.c
 
 
 INTER			= intersection_sphere.c \

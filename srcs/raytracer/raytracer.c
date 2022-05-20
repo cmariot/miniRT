@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 11:08:25 by rballage         ###   ########.fr       */
+/*   Updated: 2022/05/20 13:59:18 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 /*
  * Générer un rayon partant de la camera en direction de chaque pixel de l'écran,
  * regarder si ce rayon percute un objet, si oui calculer la couleur de ce pixel
+ *
+ * move scene (all objs) so the camera is on origin,
+ * rotate each determining vectors of each object along all axis of
+ * camera direction
+ * ex: sphere needs only its center rotated
  */
 
 void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
@@ -23,11 +28,7 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 	double	x;
 	double	y;
 
-	//move scene (all objs) so the camera is on origin,
-	//rotate each determining vectors of each object along all axis of camera direction
-	//	ex: sphere needs only its center rotated
 	translate_all(obj_list, camera);
-	// rotate_all(obj_list, camera);
 	y = 0;
 	while (y < camera->screen_height)
 	{
