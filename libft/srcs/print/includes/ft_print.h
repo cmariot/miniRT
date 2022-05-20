@@ -6,18 +6,15 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 23:26:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/12 21:49:41 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 16:19:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINT_H
 # define FT_PRINT_H
 
-# include <stdlib.h>
-# include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
-# include <limits.h>
+
 # include "../../../includes/libft.h"
 
 typedef struct s_flags
