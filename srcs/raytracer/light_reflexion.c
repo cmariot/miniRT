@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 22:35:03 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 15:21:22 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	diffuse(t_color *color, t_color *obj_color, t_obj_list *obj_list)
 	double			intensite;
 	const double	intensite_lumiere = 20.0;
 
-	ft_memset(&diffuse_color, 0, sizeof(double) * 3);
+	ft_bzero(&diffuse_color, sizeof(t_color));
 	light_ray = sub_vector(obj_list->light.position,
 			obj_list->camera.ray.intersection);
 	scalar = scalar_product(normalize(light_ray), obj_list->camera.ray.normale);

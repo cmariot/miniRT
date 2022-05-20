@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 13:51:05 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 14:55:15 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,12 @@ struct				s_ray;
 
 typedef void		(*t_m_print)(void *);
 typedef bool		(*t_m_inter)(struct s_obj *, struct s_ray *);
+typedef void		(*t_m_trans)(struct s_obj *, struct s_v3);
 
 typedef enum e_bool {
 	false_,
 	true_
 }	t_bool;
-
-typedef enum e_type {
-	sphere,
-	plan,
-	cylindre
-}	t_type;
 
 // Image MiniLibX
 typedef struct s_img {
@@ -103,8 +98,8 @@ typedef struct s_cam {
 typedef struct s_obj {
 	t_m_inter		intersection;
 	t_m_inter		second_intersection;
+	t_m_trans		translate;
 	t_m_print		print;
-	t_type			type;
 	t_v3			position;
 	t_v3			direction;
 	t_color			color;

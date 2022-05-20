@@ -1,7 +1,7 @@
 #ID      POSITION          DIRECTION            COULEUR
 
 #Camera
-C        0,0,0              0,0,-1      60
+C        0,0,00              0,0,-1      60
 
 #Lumiere
 L        0,-9,-40                      0.2
@@ -9,23 +9,7 @@ L        0,-9,-40                      0.2
 #Lumiere ambiente
 A                                      0.2     255,255,255
 
-#plafond
-pl       20,-10,0           0,1,0              255,255,255
 
-#sol
-pl       20,10,0            0,1,0              255,255,255
-
-#mur du fond
-pl       0,30,-70           0,0,1              255,255,255
-
-#mur de droite
-pl       15,10,0            1,0,0              255,255,255
-
-#mur de gauche
-pl       -15,10,0            1,0,0             255,255,255
-
-#cylindre
-cy       -7,0,-55            1,0,1    6   5    150,150,200
 
 #sphere
-sp        7,0,-55                       6      200,50,50
+sp        0,0,-40                       6      200,50,50

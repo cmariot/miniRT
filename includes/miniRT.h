@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 19:29:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 14:55:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ bool	in_light(t_ray *second_ray, t_light *light, t_obj_list *obj_list);
 void	diffuse(t_color *color, t_color *obj_color, t_obj_list *obj_list);
 void	translate_all(t_obj_list *obj_list, t_cam *cam);
 void	rotate_all(t_obj_list *obj_list, t_cam *cam);
+
+/* ************************************************************************** */
+/*                                Translation                                 */
+/* ************************************************************************** */
+
+void	translate_plan(t_obj *plan, t_v3 cam_position);
+void	translate_sphere(t_obj *sphere, t_v3 cam_position);
+void	translate_cylinder(t_obj *cylinder, t_v3 cam_position);
 
 /* ************************************************************************** */
 /*                           Intersection directory                           */
