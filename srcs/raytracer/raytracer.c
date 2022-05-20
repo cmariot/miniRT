@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 17:19:00 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 11:08:25 by rballage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 	//rotate each determining vectors of each object along all axis of camera direction
 	//	ex: sphere needs only its center rotated
 	translate_all(obj_list, camera);
-	rotate_all(obj_list, camera);
+	// rotate_all(obj_list, camera);
 	y = 0;
 	while (y < camera->screen_height)
 	{
