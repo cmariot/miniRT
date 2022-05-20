@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 16:16:53 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 19:15:45 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		close_window(t_world *world);
 /* ************************************************************************** */
 
 void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx);
+void	lookat(t_v3 cam_dir, double *matrix);
 t_ray	ray_generator(t_cam	*camera, double *x, double *y);
 void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list);
 t_color	ambient(t_obj *obj, t_amb *ambient);

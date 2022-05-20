@@ -6,29 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 18:57:21 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 19:15:16 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-void	lookat(t_v3 cam_dir, double *m)
-{
-	t_v3	placeholder;
-	t_v3	right;
-	t_v3	up;
-
-	placeholder.x = 0;
-	placeholder.y = 1;
-	placeholder.z = 0;
-	if (cam_dir.x == 0 && cam_dir.z == 0)
-		placeholder.z = 0.000001;
-	right = normalize(cross_product(placeholder, cam_dir));
-	up = normalize(cross_product(cam_dir, right));
-	*(t_v3 *)(&m[0]) = right;
-	*(t_v3 *)(&m[3]) = up;
-	*(t_v3 *)(&m[6]) = cam_dir;
-}
 
 /*
  * Générer un rayon partant de la camera en direction de chaque pixel de l'écran,

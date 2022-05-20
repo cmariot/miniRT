@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/20 14:02:09 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/20 19:16:32 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ PARSING			= parsing.c \
 
 
 RAYTRACER		= raytracer.c \
+				  lookat.c \
 				  ray_generator.c \
 				  compute_color.c \
 				  second_ray_generator.c \
