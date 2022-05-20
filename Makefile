@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/19 19:36:21 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/19 22:33:27 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,8 +110,8 @@ RAYTRACER		= raytracer.c \
 				  ray_generator.c \
 				  compute_color.c \
 				  second_ray_generator.c \
-				  is_shadow.c \
-				  compute_reflexion.c \
+				  in_light.c \
+				  light_reflexion.c \
 				  objects_translation.c\
 				  objects_rotations.c
 
@@ -202,7 +202,7 @@ all : 			header $(NAME) footer
 
 
 bonus:
-				make -C miniRT_bonus --no-print-directory 
+				@make -C miniRT_bonus --no-print-directory 
 
 
 $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.c
@@ -234,8 +234,9 @@ norm :
 
 clean :
 				@rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
-				@make clean -C libft
-				@make clean -C $(MLX)
+				@make clean -C libft --no-print-directory
+				@make clean -C $(MLX) --no-print-directory
+				@make clean -C miniRT_bonus --no-print-directory
 				@printf "$(RED)"
 				@printf "Object files removed\n"
 				@printf "$(RESET)"
@@ -246,6 +247,7 @@ fclean :
 				@-rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@make fclean -C libft --no-print-directory
 				@make clean -C $(MLX) --no-print-directory
+				@make fclean -C miniRT_bonus --no-print-directory
 				@printf "$(RED)"
 				@printf "Binary and object files removed\n"
 				@printf "$(RESET)"

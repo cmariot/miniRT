@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compute_reflexion.c                                :+:      :+:    :+:   */
+/*   light_reflexion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 19:15:30 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 22:35:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	diffuse(t_color *color, t_color *obj_color, t_obj_list *obj_list)
 	if (scalar > 0)
 	{
 		intensite = scalar * intensite_lumiere * obj_list->light.ratio
-			/ norm_square(light_ray);
+			* fmin(1.0, 1 / norm_square(light_ray));
 		diffuse_color.r = intensite * obj_color->r * color->r;
 		diffuse_color.g = intensite * obj_color->g * color->g;
 		diffuse_color.b = intensite * obj_color->b * color->b;

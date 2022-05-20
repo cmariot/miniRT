@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/19 14:39:33 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/19 22:18:56 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -231,9 +231,6 @@ clean :
 				@rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@make clean -C ../libft
 				@make clean -C $(MLX)
-				@printf "$(RED)"
-				@printf "Object files removed\n"
-				@printf "$(RESET)"
 
 
 fclean :
@@ -241,9 +238,6 @@ fclean :
 				@-rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@make fclean -C ../libft --no-print-directory
 				@make clean -C $(MLX) --no-print-directory
-				@printf "$(RED)"
-				@printf "Binary and object files removed\n"
-				@printf "$(RESET)"
 
 
 re :			fclean all
