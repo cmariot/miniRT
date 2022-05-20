@@ -1,7 +1,6 @@
 #ID      POSITION          DIRECTION            COULEUR
-
 #Camera
-C        0,0,0              1,0,0      60
+C        0,0,0              0,0,-1      60
 
 #Lumiere
 L        0,0,-10                      0.2

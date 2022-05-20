@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:25:43 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 12:04:56 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 12:30:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,9 @@ static inline double *lookat(t_v3 cam_dir)
 	m = (double *)malloc(sizeof(double) * 9); // need to protect this malloc mais flemme la xD
 	right = normalize(cross_product(placeholder, cam_dir));
 	up = normalize(cross_product(cam_dir, right));
-	m[0] = right.x;
-	m[1] = right.y;
-	m[2] = right.z;
-	m[3] = up.x;
-	m[4] = up.y;
-	m[5] = up.z;
-	m[6] = cam_dir.x;
-	m[7] = cam_dir.y;
-	m[8] = cam_dir.z;
+	*(t_v3 *)(&m[0]) = right;
+	*(t_v3 *)(&m[3]) = up;
+	*(t_v3 *)(&m[6]) = cam_dir;
 	return (m);
 }
 
@@ -59,10 +53,10 @@ t_ray	ray_generator(t_cam	*camera, double *x, double *y)
 
 	m = lookat(camera->direction);
 	ray.position = camera->position;
-	ray.direction = new_vector(
-			*x + camera->constant_x,
-			*y + camera->constant_y,
-			camera->constant_z);
+   ray.direction = new_vector(
+            *x + camera->constant_x,
+            *y + camera->constant_y,
+            -camera->constant_z); 
 	ray.direction = normalize(la_matmut(m, ray.direction));
 	free(m);
 	return (ray);
