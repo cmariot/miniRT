@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 19:28:22 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:45:54 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 22:58:38 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 /* Return the distance between two points, a and b, 
  * which have 3d positions */
-extern inline double	length(const t_v3 point_a, const t_v3 point_b)
+
+extern inline double	length(const t_v3 a, const t_v3 b)
 {
-	return (sqrt((point_b.x - point_a.x) * (point_b.x - point_a.x)
-			+ (point_b.y - point_a.y) * (point_b.y - point_a.y)
-			+ (point_b.z - point_a.z) * (point_b.z - point_a.z)));
+	return (norm(sub_vector(b, a)));
 }

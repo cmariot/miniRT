@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 16:43:27 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 15:14:28 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/11 17:53:01 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,7 @@ void	print_structure(t_obj_list objs_list)
 
 	objs_list.camera.print(&objs_list.camera);
 	objs_list.ambient.print(&objs_list.ambient);
-	i = 0;
-	while (i < objs_list.nb_light)
-	{
-		objs_list.light[i].print(&objs_list.light[i]);
-		i++;
-	}
+	objs_list.light.print(&objs_list.light);
 	i = 0;
 	while (i < objs_list.nb_obj)
 	{

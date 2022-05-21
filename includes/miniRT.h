@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 19:15:45 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 19:20:53 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ double	t1(double delta, double *abc);
 double	t2(double delta, double *abc);
 double	min_positive(double t1, double t2);
 t_v3	get_position(t_v3 origine, t_v3 direction, double t);
+float	q_rsqrt(float number);
 
 /* ************************************************************************** */
 /*                              Utils directory                               */

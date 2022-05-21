@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 09:17:04 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 15:34:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 static void	get_plan_normale(t_ray *ray, t_obj *obj)
 {
-	t_v3	origine;
 	t_v3	inverse_normale;
 
-	origine = add_vector(ray->position, ray->intersection);
 	ray->normale = obj->direction;
 	inverse_normale = mul_vector(ray->normale, -1.0);
-	if (norm_square(add_vector(origine, ray->normale))
-		>= norm_square(add_vector(origine, inverse_normale)))
+	if (norm_square(add_vector(ray->intersection, ray->normale))
+		>= norm_square(add_vector(ray->intersection, inverse_normale)))
 		ray->normale = inverse_normale;
 }
 
@@ -82,8 +80,7 @@ static void	get_plan_normale(t_ray *ray, t_obj *obj)
 
 static void	get_plan_solution(t_ray *ray, t_obj *plan)
 {
-	ray->t = (scalar_product(plan->direction, plan->position)
-			- scalar_product(plan->direction, ray->position))
+	ray->t = scalar_product(plan->direction, plan->position)
 		/ scalar_product(plan->direction, ray->direction);
 }
 

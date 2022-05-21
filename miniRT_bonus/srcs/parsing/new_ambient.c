@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:36:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 21:43:55 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 16:48:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	new_ambient(t_amb *ambient, char **array)
 		return (rt_error("Syntax error : Ambient ratio"));
 	if (set_colors(&(ambient->color), array[2]))
 		return (rt_error("Syntax error : Ambient color"));
-	ambient->ambient_constant = ambient->ratio / 255.0f;
+	ambient->ambient_constant = ambient->ratio / 255.0;
 	return (0);
 }

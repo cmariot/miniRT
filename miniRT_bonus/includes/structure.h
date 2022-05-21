@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 16:46:01 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/20 14:55:15 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,12 @@ struct				s_ray;
 
 typedef void		(*t_m_print)(void *);
 typedef bool		(*t_m_inter)(struct s_obj *, struct s_ray *);
+typedef void		(*t_m_trans)(struct s_obj *, struct s_v3);
 
 typedef enum e_bool {
 	false_,
 	true_
 }	t_bool;
-
-typedef enum e_type {
-	sphere,
-	plan,
-	cylindre
-}	t_type;
 
 // Image MiniLibX
 typedef struct s_img {
@@ -46,6 +41,11 @@ typedef struct s_mlx {
 	t_img			image;
 }	t_mlx;
 
+typedef struct s_discriminant {
+	double	abc[3];
+	double	delta;
+}	t_discriminant;
+
 // Structure couleur RGB
 typedef struct s_color {
 	double			r;
@@ -59,8 +59,6 @@ typedef struct s_light {
 	t_m_print		print;
 	t_v3			position;
 	double			ratio;
-	bool			color_set;
-	t_color			color;
 }	t_light;
 
 // Lumiere ambiante
@@ -85,6 +83,7 @@ typedef struct s_cam {
 	t_m_print		print;
 	t_v3			position;
 	t_v3			direction;
+	double			matrix[9];
 	t_ray			ray;
 	double			screen_width;
 	double			screen_height;
@@ -98,8 +97,9 @@ typedef struct s_cam {
 // Pointeurs sur fonction (type commencant par 't_m_') = methodes
 typedef struct s_obj {
 	t_m_inter		intersection;
+	t_m_inter		second_intersection;
+	t_m_trans		translate;
 	t_m_print		print;
-	t_type			type;
 	t_v3			position;
 	t_v3			direction;
 	t_color			color;
@@ -120,7 +120,7 @@ typedef struct s_obj_list {
 	t_obj			*obj;
 	t_cam			camera;
 	t_amb			ambient;
-	t_light			*light;
+	t_light			light;
 }	t_obj_list;
 
 // Structure principale

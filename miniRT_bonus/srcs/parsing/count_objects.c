@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:22:12 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 15:13:05 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 13:03:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	check_nb_elements(t_obj_list *obj_list)
 		return (rt_error("The scene must have one ambient light."));
 	else if (obj_list->nb_camera != 1)
 		return (rt_error("The scene must have one camera."));
-	else if (obj_list->nb_light == 0)
-		return (rt_error("The scene must have at least one light."));
+	else if (obj_list->nb_light != 1)
+		return (rt_error("The scene must have one light."));
 	return (0);
 }
 
@@ -63,7 +63,6 @@ static void	init_obj_list(t_obj_list *obj_list)
 	obj_list->nb_light = 0;
 	obj_list->nb_ambient = 0;
 	obj_list->obj = NULL;
-	obj_list->light = NULL;
 }
 
 int	count_objects(t_obj_list *obj_list, const char *filename)

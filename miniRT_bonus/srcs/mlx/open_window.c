@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:15:07 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 10:08:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 17:16:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	open_window(t_world *world)
 	}
 	create_image(&world->mlx, world);
 	raytracer(&world->obj_list, &world->obj_list.camera, &world->mlx);
-	//mlx_mouse_hook(world->mlx.win_ptr, &mouse_hook, world);
 	mlx_hook(world->mlx.win_ptr, 02, 1L << 0, key_handler, world);
 	mlx_hook(world->mlx.win_ptr, 17, 1L << 8, close_window, world);
 	mlx_loop(world->mlx.mlx_ptr);

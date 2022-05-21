@@ -6,16 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 09:17:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/19 17:14:53 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-typedef struct s_discriminant {
-	double	abc[3];
-	double	delta;
-}	t_discriminant;
 
 static bool	get_cyl_normale(t_obj *cyl, t_ray *ray)
 {

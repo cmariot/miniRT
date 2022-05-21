@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/19 22:18:56 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/20 20:04:50 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,12 +79,13 @@ SRC_ROOTDIR		= srcs/
 
 
 SRC_SUBDIR	    = $(MAIN) \
-				  $(addprefix parsing/, $(PARSING)) \
-				  $(addprefix utils/, $(UTILS)) \
-				  $(addprefix mlx/, $(MLX_DIR)) \
 				  $(addprefix vectors/, $(VECTORS)) \
+				  $(addprefix intersection/, $(INTER)) \
+				  $(addprefix second_intersection/, $(2ND_INTER)) \
+				  $(addprefix utils/, $(UTILS)) \
 				  $(addprefix raytracer/, $(RAYTRACER)) \
-				  $(addprefix intersection/, $(INTER))
+				  $(addprefix parsing/, $(PARSING)) \
+				  $(addprefix mlx/, $(MLX_DIR))
 
 
 MAIN			= main.c
@@ -106,14 +107,13 @@ PARSING			= parsing.c \
 
 
 RAYTRACER		= raytracer.c \
+				  lookat.c \
 				  ray_generator.c \
 				  compute_color.c \
 				  second_ray_generator.c \
-				  is_shadow.c \
-				  compute_reflexion.c \
-				  compute_shadow.c \
-				  objects_translation.c\
-				  objects_rotations.c
+				  in_light.c \
+				  light_reflexion.c \
+				  objects_translation.c
 
 
 INTER			= intersection_sphere.c \
@@ -122,11 +122,15 @@ INTER			= intersection_sphere.c \
 				  utils.c
 
 
+2ND_INTER		= second_inter_cyl.c \
+				  second_inter_plan.c \
+				  second_inter_sphere.c \
+
+
 MLX_DIR			= open_window.c \
 				  create_image.c \
 				  mlx_putpixel.c \
-				  key_hook.c \
-				  mouse_hook.c
+				  key_handler.c
 
 				  ifeq ($(UNAME), arm64)
 				  	MLX_DIR	+= close_window_macos.c
@@ -155,7 +159,6 @@ VECTORS			= new_vector.c \
 
 
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
-
 
 
 # **************************************************************************** #
