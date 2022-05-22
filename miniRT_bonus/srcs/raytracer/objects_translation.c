@@ -6,7 +6,7 @@
 /*   By: rballage <rballage@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 14:00:44 by rballage           #+#    #+#            */
-/*   Updated: 2022/05/20 15:26:38 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/21 20:42:25 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void	translate_all(t_obj_list *obj_list, t_cam *cam)
 		obj_list->obj[i].translate(&obj_list->obj[i], cam->position);
 		i++;
 	}
-	translate(&(obj_list->light.position), cam->position);
+	i = 0;
+	while (i < obj_list->nb_light)
+	{
+		translate(&(obj_list->light[i].position), cam->position);
+		i++;
+	}
 	ft_bzero(&cam->position, sizeof(double) * 3);
 }

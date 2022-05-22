@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_world.c                                       :+:      :+:    :+:   */
+/*   free_structure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:04:10 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 15:48:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/21 20:43:13 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@ int	free_structure(t_world *world)
 {
 	if (world->obj_list.obj)
 		free(world->obj_list.obj);
+	if (world->obj_list.light)
+		free(world->obj_list.light);
 	return (1);
 }

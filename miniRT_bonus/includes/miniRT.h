@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 19:20:53 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/22 11:59:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list);
 t_color	ambient(t_obj *obj, t_amb *ambient);
 t_ray	second_ray_generator(t_ray *first_ray, t_light *light);
 bool	in_light(t_ray *second_ray, t_light *light, t_obj_list *obj_list);
-void	diffuse(t_color *color, t_color *obj_color, t_obj_list *obj_list);
+void	compute_reflexion(t_obj_list *list, t_ray *ray, t_color *c, t_obj *obj);
 
 /* ************************************************************************** */
 /*                                Translation                                 */

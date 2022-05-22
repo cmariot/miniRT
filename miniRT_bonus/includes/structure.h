@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 14:55:15 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/21 23:30:51 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_light {
 	t_m_print		print;
 	t_v3			position;
 	double			ratio;
+	t_color			color;
+	bool			color_set;
 }	t_light;
 
 // Lumiere ambiante
@@ -120,7 +122,7 @@ typedef struct s_obj_list {
 	t_obj			*obj;
 	t_cam			camera;
 	t_amb			ambient;
-	t_light			light;
+	t_light			*light;
 }	t_obj_list;
 
 // Structure principale
