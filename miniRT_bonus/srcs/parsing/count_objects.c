@@ -39,6 +39,7 @@ static int	get_element_type(t_obj_list *obj_list, char *line)
 		return (rt_error("The ft_split function failed in get_element_type()"));
 	if (ft_strcmp(splitted_line[0], "sp") == 0
 		|| ft_strcmp(splitted_line[0], "pl") == 0
+		|| ft_strcmp(splitted_line[0], "tr") == 0
 		|| ft_strcmp(splitted_line[0], "cy") == 0)
 		obj_list->nb_obj++;
 	else if (ft_strcmp(splitted_line[0], "A") == 0)

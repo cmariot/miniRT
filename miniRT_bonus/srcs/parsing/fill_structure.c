@@ -30,6 +30,8 @@ static int	set_world(t_obj_list *obj_list, char *line, size_t *index)
 		ret = new_plan(&obj_list->obj[index[OBJ]++], splitted_line);
 	else if (!ft_strcmp(*splitted_line, "cy"))
 		ret = new_cylinder(&obj_list->obj[index[OBJ]++], splitted_line);
+	else if (!ft_strcmp(*splitted_line, "tr"))
+		ret = new_triangle(&obj_list->obj[index[OBJ]++], splitted_line);
 	else if (!ft_strcmp(*splitted_line, "C"))
 		ret = new_camera(&obj_list->camera, splitted_line);
 	else if (!ft_strcmp(*splitted_line, "A"))

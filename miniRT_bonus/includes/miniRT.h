@@ -47,6 +47,8 @@ int		set_position(t_v3 *position, char *str);
 int		set_direction(t_v3 *direction, char *str);
 int		set_colors(t_color *color, char *rgb);
 int		set_double(double *dbl, char *str, double min, double max);
+int		new_triangle(t_obj *plan, char **array);
+
 
 /* ************************************************************************** */
 /*                               Mlx directory                                */
@@ -111,5 +113,7 @@ void	print_cylinder(void *ptr);
 void	print_camera(void *ptr);
 void	print_ambient(void *ptr);
 void	print_light(void *ptr);
+void	print_triangle(void *ptr);
+
 
 #endif

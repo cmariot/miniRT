@@ -76,6 +76,30 @@ void	print_cylinder(void *ptr)
 		cylinder->color.b,
 		cylinder->color.trgb);
 }
+void	print_triangle(void *ptr)
+{
+	t_obj	*triangle;
+
+	triangle = (t_obj *)ptr;
+	printf("\nTriangle :\n");
+	printf("|\A  : x = %.3f ; y = %.3f ; z = %.3f\n",
+		triangle->ext1.x,
+		triangle->ext1.y,
+		triangle->ext1.z);
+	printf("|\B : x = %.3f ; y = %.3f ; z = %.3f\n",
+		triangle->ext2.x,
+		triangle->ext2.y,
+		triangle->ext2.z);
+	printf("|\C : x = %.3f ; y = %.3f ; z = %.3f\n",
+		triangle->axe.x,
+		triangle->axe.y,
+		triangle->axe.z);
+	printf("|\tColor     : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n\n",
+		triangle->color.r,
+		triangle->color.g,
+		triangle->color.b,
+		triangle->color.trgb);
+}
 
 void	print_structure(t_obj_list objs_list)
 {
