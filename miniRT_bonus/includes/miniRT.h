@@ -81,6 +81,7 @@ void	translate_all(t_obj_list *obj_list, t_cam *cam);
 void	translate_plan(t_obj *plan, t_v3 cam_position);
 void	translate_sphere(t_obj *sphere, t_v3 cam_position);
 void	translate_cylinder(t_obj *cylinder, t_v3 cam_position);
+void	translate_triangle(t_obj *triangle, t_v3 cam_position);
 
 /* ************************************************************************** */
 /*                           Intersection directory                           */
@@ -89,6 +90,7 @@ void	translate_cylinder(t_obj *cylinder, t_v3 cam_position);
 bool	intersection_sphere(t_obj *sphere, t_ray *ray);
 bool	intersection_plan(t_obj *plan, t_ray *ray);
 bool	intersection_cylinder(t_obj *cyl, t_ray *ray);
+bool	intersection_triangle(t_obj *cyl, t_ray *ray);
 
 bool	second_intersection_sphere(t_obj *sphere, t_ray *ray);
 bool	second_intersection_plan(t_obj *plan, t_ray *ray);

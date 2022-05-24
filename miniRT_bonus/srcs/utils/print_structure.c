@@ -82,18 +82,18 @@ void	print_triangle(void *ptr)
 
 	triangle = (t_obj *)ptr;
 	printf("\nTriangle :\n");
-	printf("|\A  : x = %.3f ; y = %.3f ; z = %.3f\n",
-		triangle->ext1.x,
-		triangle->ext1.y,
-		triangle->ext1.z);
-	printf("|\B : x = %.3f ; y = %.3f ; z = %.3f\n",
-		triangle->ext2.x,
-		triangle->ext2.y,
-		triangle->ext2.z);
-	printf("|\C : x = %.3f ; y = %.3f ; z = %.3f\n",
-		triangle->axe.x,
-		triangle->axe.y,
-		triangle->axe.z);
+	printf("|\tA  : x = %.3f ; y = %.3f ; z = %.3f\n",
+		triangle->a.x,
+		triangle->a.y,
+		triangle->a.z);
+	printf("|\tB : x = %.3f ; y = %.3f ; z = %.3f\n",
+		triangle->b.x,
+		triangle->b.y,
+		triangle->b.z);
+	printf("|\tC : x = %.3f ; y = %.3f ; z = %.3f\n",
+		triangle->c.x,
+		triangle->c.y,
+		triangle->c.z);
 	printf("|\tColor     : r = %.f ; g = %.f ; b = %.f ; trgb = %d\n\n",
 		triangle->color.r,
 		triangle->color.g,
