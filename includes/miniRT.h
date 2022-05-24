@@ -96,6 +96,7 @@ double	t1(double delta, double *abc);
 double	t2(double delta, double *abc);
 double	min_positive(double t1, double t2);
 t_v3	get_position(t_v3 origine, t_v3 direction, double t);
+t_v3	get_position_lvalue(t_v3 *origine, t_v3 *direction, double t);
 float	q_rsqrt(float number);
 
 /* ************************************************************************** */

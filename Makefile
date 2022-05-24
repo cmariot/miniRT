@@ -202,7 +202,7 @@ all : 			header $(NAME) footer
 
 
 bonus:
-				@make -C miniRT_bonus --no-print-directory 
+				@make -C miniRT_bonus --no-print-directory
 
 
 $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.c

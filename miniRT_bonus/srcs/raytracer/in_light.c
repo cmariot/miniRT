@@ -27,7 +27,7 @@ bool	in_light(t_ray *second_ray, t_light *light, t_obj_list *obj_list)
 	{
 		if (obj_list->obj[i].second_intersection(&obj_list->obj[i], second_ray)
 			&& pow(second_ray->t + 1, 2.0) < norm_square(
-				sub_vector(second_ray->position, light->position)))
+				sub(second_ray->position, light->position)))
 			return (false);
 		i++;
 	}

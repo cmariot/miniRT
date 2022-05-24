@@ -36,3 +36,8 @@ extern inline double	norm(const t_v3 a)
 {
 	return (1.0 / q_rsqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
+
+extern inline double	norm_lvalue(const t_v3 *a)
+{
+	return (1.0 / q_rsqrt(a->x * a->x + a->y * a->y + a->z * a->z));
+}

@@ -19,17 +19,17 @@ static bool	get_cyl_normale(t_obj *cyl, t_ray *ray)
 	t_v3	axe_point;
 	t_v3	inverse_normale;
 
-	origine = sub_vector(cyl->position, ray->intersection);
-	ext_distance = scalar_product(origine, cyl->direction);
+	origine = sub_lvalue(&cyl->position, &ray->intersection);
+	ext_distance = dot_lvalue(&origine, &cyl->direction);
 	if (fabs(ext_distance) > cyl->demi_height)
 		return (false);
-	axe_point = get_position(cyl->position, cyl->direction, -ext_distance);
-	ray->normale = normalize(sub_vector(axe_point, ray->intersection));
-	inverse_normale = mul_vector(ray->normale, -1);
-	if (norm_square(sub_vector(ray->position,
-				add_vector(ray->intersection, ray->normale)))
-		>= norm_square(sub_vector(ray->position,
-				add_vector(ray->intersection, inverse_normale))))
+	axe_point = get_position_lvalue(&cyl->position, &cyl->direction, -ext_distance);
+	ray->normale = normalize(sub_lvalue(&axe_point, &ray->intersection));
+	inverse_normale = multiply_lvalue(&ray->normale, -1);
+	if (norm_square(sub(ray->position,
+				add_lvalue(&ray->intersection, &ray->normale)))
+		>= norm_square(sub(ray->position,
+				add_lvalue(&ray->intersection, &inverse_normale))))
 		ray->normale = inverse_normale;
 	return (true);
 }
@@ -39,12 +39,12 @@ static void	get_cyl_solution(t_obj *cyl, t_ray *ray, t_discriminant *delta)
 	t_v3	va;
 	t_v3	ra0;
 
-	va = cross_product(cross_product(ray->direction, cyl->axe), cyl->axe);
-	ra0 = cross_product(cross_product(sub_vector(ray->position, cyl->ext1),
+	va = cross(cross_lvalue(&ray->direction, &cyl->axe), cyl->axe);
+	ra0 = cross(cross(sub_lvalue(&ray->position, &cyl->ext1),
 				cyl->axe), cyl->axe);
-	delta->abc[0] = scalar_product(va, va);
-	delta->abc[1] = 2 * scalar_product(ra0, va);
-	delta->abc[2] = scalar_product(ra0, ra0) - pow(cyl->radius, 2);
+	delta->abc[0] = dot_lvalue(&va, &va);
+	delta->abc[1] = 2 * dot_lvalue(&ra0, &va);
+	delta->abc[2] = dot_lvalue(&ra0, &ra0) - pow(cyl->radius, 2);
 	delta->delta = pow(delta->abc[1], 2)
 		- (4.0 * delta->abc[0] * delta->abc[2]);
 	if (delta < 0)
@@ -72,18 +72,18 @@ static void	get_cyl_solution(t_obj *cyl, t_ray *ray, t_discriminant *delta)
  *
  * AVEC :
  *
- * A = scalar_product(VA, VA)
- * B = 2 * scalar_product(RA0, VA)
- * C = scalar_product(RA0, RA0) - pow(obj.height, 2)
+ * A = dot(VA, VA)
+ * B = 2 * dot(RA0, VA)
+ * C = dot(RA0, RA0) - pow(obj.height, 2)
  *
- * S   = div_vector(sub_vector(RA2, RA1),
- *		 absolute_vector(sub_vector(RA2, RA1)))
- * VA  = mul_vector(mul_vector(S, ray.direction), S);
- * RA0 = mul_vector(mul_vector(S, sub_vector(ray.position, RA1)), S);
+ * S   = divide(sub(RA2, RA1),
+ *		 absolute_vector(sub(RA2, RA1)))
+ * VA  = multiply(multiply(S, ray.direction), S);
+ * RA0 = multiply(multiply(S, sub(ray.position, RA1)), S);
  *
  * LE CYLINDRE EST DELIMITE PAR DEUX POINTS, RA1 et RA2 :
- * RA1 = mul_vector(add_vector(obj.position, obj.direction), obj.height / 2)
- * RA2 = mul_vector(add_vector(obj.position, obj.direction), -obj.height / 2)
+ * RA1 = multiply(add(obj.position, obj.direction), obj.height / 2)
+ * RA2 = multiply(add(obj.position, obj.direction), -obj.height / 2)
  */
 
 bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
@@ -93,13 +93,13 @@ bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
 	get_cyl_solution(cyl, ray, &delta);
 	if (ray->t < 0)
 		return (false);
-	ray->intersection = get_position(ray->position, ray->direction, ray->t);
+	ray->intersection = get_position_lvalue(&ray->position, &ray->direction, ray->t);
 	if (get_cyl_normale(cyl, ray))
 		return (true);
 	else if (delta.delta != 0)
 	{
 		ray->t = t2(delta.delta, delta.abc);
-		ray->intersection = get_position(ray->position, ray->direction, ray->t);
+		ray->intersection = get_position_lvalue(&ray->position, &ray->direction, ray->t);
 		if (get_cyl_normale(cyl, ray))
 			return (true);
 	}

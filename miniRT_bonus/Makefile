@@ -146,16 +146,16 @@ UTILS			= error.c \
 
 
 VECTORS			= new_vector.c \
-				  add_vector.c \
-				  div_vector.c \
+				  add.c \
+				  divide.c \
 				  length.c \
-				  mul_vector.c \
+				  multiply.c \
 				  normalize.c \
 				  norm.c \
 				  norm_square.c \
-				  scalar_product.c \
-				  cross_product.c \
-				  sub_vector.c
+				  dot.c \
+				  cross.c \
+				  sub.c
 
 
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))

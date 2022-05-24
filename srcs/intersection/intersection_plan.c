@@ -17,11 +17,28 @@ static void	get_plan_normale(t_ray *ray, t_obj *obj)
 	t_v3	inverse_normale;
 
 	ray->normale = obj->direction;
-	inverse_normale = mul_vector(ray->normale, -1.0);
-	if (norm_square(add_vector(ray->intersection, ray->normale))
-		>= norm_square(add_vector(ray->intersection, inverse_normale)))
+	inverse_normale = multiply_lvalue(&ray->normale, -1.0);
+	if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
+		>= norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
 		ray->normale = inverse_normale;
 }
+
+static void	get_plan_solution(t_ray *ray, t_obj *plan)
+{
+	ray->t = dot_lvalue(&plan->direction, &plan->position)
+		/ dot_lvalue(&plan->direction, &ray->direction);
+}
+
+bool	intersection_plan(t_obj *plan, t_ray *ray)
+{
+	get_plan_solution(ray, plan);
+	if (ray->t < 0)
+		return (false);
+	ray->intersection = multiply_lvalue(&ray->direction, ray->t); //get_position(ray->position, ray->direction, ray->t);
+	get_plan_normale(ray, plan);
+	return (true);
+}
+
 
 /*
  * SYSTEME D'ÉQUATION PARAMETRIQUES DU RAYON :
@@ -48,48 +65,32 @@ static void	get_plan_normale(t_ray *ray, t_obj *obj)
  *   plan.direction.x * x(t)
  * + plan.direction.y * y(t)
  * + plan.direction.z * z(t)
- * - scalar_product(plan.direction, plan.position) = 0
+ * - dot(plan.direction, plan.position) = 0
  *
  *   plan.direction.x * (ray.direction.x * t + ray.position.x)
  * + plan.direction.y * (ray.direction.y * t + ray.position.y)
  * + plan.direction.z * (ray.direction.z * t + ray.position.z)
- * - scalar_product(plan.direction, plan.position) = 0
+ * - dot(plan.direction, plan.position) = 0
  *
  *   plan.direction.x * ray.direction.x * t + plan.direction.x * ray.position.x
  * + plan.direction.y * ray.direction.y * t + plan.direction.y * ray.position.y
  * + plan.direction.z * ray.direction.z * t + plan.direction.z * ray.position.z
- * - scalar_product(plan.direction, plan.position) = 0
+ * - dot(plan.direction, plan.position) = 0
  *
  *   plan.direction.x * ray.direction.x * t
  * + plan.direction.y * ray.direction.y * t
  * + plan.direction.z * ray.direction.z * t
- * - scalar_product(plan.direction, plan.position)
- * + scalar_product(plan.direction, ray.position) = 0
+ * - dot(plan.direction, plan.position)
+ * + dot(plan.direction, ray.position) = 0
  *
- *   t * (scalar_product(plan.direction, ray.direction))
- * - scalar_product(plan.direction, plan.position)
- * + scalar_product(plan.direction, ray.position) = 0
+ *   t * (dot(plan.direction, ray.direction))
+ * - dot(plan.direction, plan.position)
+ * + dot(plan.direction, ray.position) = 0
  *
- * t = (scalar_product(plan.direction, plan.position)
- *     - scalar_product(plan.direction, ray.position))
- *     / scalar_product(plan.direction, ray.direction)
+ * t = (dot(plan.direction, plan.position)
+ *     - dot(plan.direction, ray.position))
+ *     / dot(plan.direction, ray.direction)
  *
  * Dans le cas d'un plan on a deux normales pour un point,
  * on va selectionner celle qui est dirigee vers la camera
  */
-
-static void	get_plan_solution(t_ray *ray, t_obj *plan)
-{
-	ray->t = scalar_product(plan->direction, plan->position)
-		/ scalar_product(plan->direction, ray->direction);
-}
-
-bool	intersection_plan(t_obj *plan, t_ray *ray)
-{
-	get_plan_solution(ray, plan);
-	if (ray->t < 0)
-		return (false);
-	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	get_plan_normale(ray, plan);
-	return (true);
-}

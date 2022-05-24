@@ -31,11 +31,11 @@ int	new_cylinder(t_obj *cylinder, char **array)
 	if (set_colors(&cylinder->color, array[5]))
 		return (rt_error("Syntax error : Cylinder color"));
 	cylinder->radius /= 2.0;
-	cylinder->ext1 = add_vector(cylinder->position,
-			mul_vector(cylinder->direction, cylinder->height / 2.0));
-	cylinder->ext2 = add_vector(cylinder->position,
-			mul_vector(cylinder->direction, -cylinder->height / 2.0));
-	cylinder->axe = normalize(div_vector(sub_vector(cylinder->ext2,
+	cylinder->ext1 = add(cylinder->position,
+			multiply(cylinder->direction, cylinder->height / 2.0));
+	cylinder->ext2 = add(cylinder->position,
+			multiply(cylinder->direction, -cylinder->height / 2.0));
+	cylinder->axe = normalize(divide(sub(cylinder->ext2,
 					cylinder->ext1), length(cylinder->ext1, cylinder->ext2)));
 	cylinder->demi_height = cylinder->height / 2.0;
 	return (0);

@@ -30,9 +30,9 @@ void	diffuse(t_color *color, t_color *obj_color, t_obj_list *obj_list,
 	const double	intensite_lumiere = 1.0;
 
 	ft_bzero(&diffuse_color, sizeof(t_color));
-	light_ray = sub_vector(light.position,
+	light_ray = sub(light.position,
 			obj_list->camera.ray.intersection);
-	scalar = scalar_product(normalize(light_ray), obj_list->camera.ray.normale);
+	scalar = dot(normalize(light_ray), obj_list->camera.ray.normale);
 	if (scalar > 0)
 	{
 		intensite = scalar * intensite_lumiere * light.ratio

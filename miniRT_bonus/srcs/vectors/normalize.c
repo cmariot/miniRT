@@ -17,5 +17,5 @@
 
 extern inline t_v3	normalize(const t_v3 a)
 {
-	return (div_vector(a, norm(a)));
+	return (divide(a, norm(a)));
 }
