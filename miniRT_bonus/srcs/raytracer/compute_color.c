@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:41:28 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/22 12:00:02 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/24 22:16:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list)
 			if (first_ray->t < obj_distance)
 			{
 				obj_distance = first_ray->t;
-				pixel_color = ambient(&obj_list->obj[i], &obj_list->ambient);
 				compute_reflexion(obj_list, first_ray, &pixel_color,
 					&obj_list->obj[i]);
 			}
