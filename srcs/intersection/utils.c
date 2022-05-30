@@ -39,7 +39,7 @@ extern inline t_v3	get_position(t_v3 origine, t_v3 direction, double t)
 	return (add(origine, multiply(direction, t)));
 }
 
-extern inline t_v3	get_position_lvalue(t_v3 *origine, t_v3 *direction, double t)
+extern inline t_v3	get_position_lvalue(t_v3 *origine, t_v3 *dir, double t)
 {
-	return (add(*origine, multiply_lvalue(direction, t)));
+	return (add(*origine, multiply_lvalue(dir, t)));
 }

@@ -15,15 +15,15 @@
 static bool	get_cyl_normale(t_obj *cyl, t_ray *ray)
 {
 	t_v3	origine;
-	double	ext_distance;
+	double	ext_dist;
 	t_v3	axe_point;
 	t_v3	inverse_normale;
 
 	origine = sub_lvalue(&cyl->position, &ray->intersection);
-	ext_distance = dot_lvalue(&origine, &cyl->direction);
-	if (fabs(ext_distance) > cyl->demi_height)
+	ext_dist = dot_lvalue(&origine, &cyl->direction);
+	if (fabs(ext_dist) > cyl->demi_height)
 		return (false);
-	axe_point = get_position_lvalue(&cyl->position, &cyl->direction, -ext_distance);
+	axe_point = get_position_lvalue(&cyl->position, &cyl->direction, -ext_dist);
 	ray->normale = normalize(sub_lvalue(&axe_point, &ray->intersection));
 	inverse_normale = multiply_lvalue(&ray->normale, -1);
 	if (norm_square(sub(ray->position,
@@ -93,13 +93,15 @@ bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
 	get_cyl_solution(cyl, ray, &delta);
 	if (ray->t < 0)
 		return (false);
-	ray->intersection = get_position_lvalue(&ray->position, &ray->direction, ray->t);
+	ray->intersection = get_position_lvalue(&ray->position,
+			&ray->direction, ray->t);
 	if (get_cyl_normale(cyl, ray))
 		return (true);
 	else if (delta.delta != 0)
 	{
 		ray->t = t2(delta.delta, delta.abc);
-		ray->intersection = get_position_lvalue(&ray->position, &ray->direction, ray->t);
+		ray->intersection = get_position_lvalue(&ray->position,
+				&ray->direction, ray->t);
 		if (get_cyl_normale(cyl, ray))
 			return (true);
 	}

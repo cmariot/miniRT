@@ -28,9 +28,9 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 	int		color;
 	double	x;
 	double	y;
-	double start_time;
+	double	st;
 
-	start_time = (double)clock();
+	st = (double)clock();
 	lookat(obj_list->camera.direction, obj_list->camera.matrix);
 	translate_all(obj_list, camera);
 	y = 0;
@@ -47,6 +47,5 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 		y++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image.img, 0, 0);
-	double elapsed_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
-	printf("Done in %f seconds\n", elapsed_time);
+	printf("Done in %f seconds\n", (double)(clock() - st) / CLOCKS_PER_SEC);
 }

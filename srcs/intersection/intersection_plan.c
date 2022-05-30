@@ -34,11 +34,10 @@ bool	intersection_plan(t_obj *plan, t_ray *ray)
 	get_plan_solution(ray, plan);
 	if (ray->t < 0)
 		return (false);
-	ray->intersection = multiply_lvalue(&ray->direction, ray->t); //get_position(ray->position, ray->direction, ray->t);
+	ray->intersection = multiply_lvalue(&ray->direction, ray->t);
 	get_plan_normale(ray, plan);
 	return (true);
 }
-
 
 /*
  * SYSTEME D'ÉQUATION PARAMETRIQUES DU RAYON :

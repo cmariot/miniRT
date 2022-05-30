@@ -25,7 +25,6 @@ void	compute_color(int *color, t_ray *first_ray, t_obj_list *obj_list)
 	t_ray	second_ray;
 	size_t	i;
 
-	// ft_bzero(&pixel_color, sizeof(t_color));
 	pixel_color = (const t_color){0};
 	obj_distance = INFINITY;
 	i = 0;
