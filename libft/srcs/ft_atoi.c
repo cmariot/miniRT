@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:43:39 by cmariot           #+#    #+#             */
-/*   Updated: 2021/12/12 11:51:53 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 11:23:25 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,30 @@
 
 /* ft_atoi converts an array of char into an integer */
 
-static int	long_nb_return(int nb_len, int sign)
+long	ft_atoi(const char *str)
 {
-	if (nb_len > 10 && sign != -1)
-		return (-1);
-	else if (nb_len > 10 && sign == -1)
-		return (0);
-	else
-		return (1);
-}
+	int					sign;
+	unsigned long long	n;
 
-int	ft_atoi(const char *str)
-{
-	int		result;
-	int		result_len;
-	int		sign;
-	int		i;
-
-	i = 0;
 	sign = 1;
-	if (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			sign = -1;
-	result = 0;
-	result_len = 0;
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	n = 0;
+	while ((*str <= 13 && *str >= 9) || *str == 32)
+		str++;
+	while ((ft_isdigit(*str) || *str == '+' || *str == '-') && *str != '\0')
 	{
-		result = result * 10 + str[i++] - '0';
-		result_len++;
+		if ((*str == '-' || *str == '+') && n)
+			break ;
+		if ((*str == '-' || *str == '+') && !(ft_isdigit(str[1])))
+			return (0);
+		if (*str == '-' && ft_isdigit(str[1]))
+			sign = -1;
+		else if (ft_isdigit(*str))
+			n = n * 10 + (*str - 48);
+		str++;
 	}
-	if (result_len > 10)
-		return (long_nb_return(result_len, sign));
-	return (sign * result);
+	if (n > 9223372036854775807 && sign == -1)
+		return (0);
+	else if (n > 9223372036854775807 && sign == 0)
+		return (-1);
+	return ((long)(n * sign));
 }

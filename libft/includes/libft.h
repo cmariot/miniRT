@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:34:23 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 16:18:54 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 11:20:08 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_list
 /* LIBFT */
 int			ft_arraylen(char **array);
 double		ft_atodouble(char *str, bool *error);
-int			ft_atoi(const char *str);
+long		ft_atoi(const char *str);
 void		ft_bzero(void *b, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_free_array(char **array);

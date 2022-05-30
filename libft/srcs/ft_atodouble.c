@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 20:49:22 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 20:36:53 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 11:21:40 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static double	to_double_error(bool *error)
 {
 	*error = true;
-	return (0.0);
+	return (1.0);
 }
 
 static double	get_partie_decimale(char *str, int *index, bool *error)
@@ -58,8 +58,6 @@ static double	get_partie_entiere(char *str, int *index, bool *error)
 	i = *index;
 	while (str[i] != '\0' && ft_isdigit(str[i++]) == 1)
 		partie_entiere_len++;
-	if (partie_entiere_len > 9)
-		return (to_double_error(error));
 	entier = ft_substr(str, *index, partie_entiere_len);
 	if (!entier)
 		return (to_double_error(error));
@@ -100,14 +98,14 @@ double	ft_atodouble(char *str, bool *error)
 	index = 0;
 	signe = get_signe(str, &index, error);
 	if (*error == true)
-		return (0.0);
+		return (1.0);
 	partie_entiere = get_partie_entiere(str, &index, error);
 	if (*error == true)
-		return (0.0);
+		return (1.0);
 	partie_decimale = get_partie_decimale(str, &index, error);
 	if (str[index] != '\0')
 		*error = true;
 	if (*error == true)
-		return (0.0);
+		return (1.0);
 	return (signe * (partie_entiere + partie_decimale));
 }
