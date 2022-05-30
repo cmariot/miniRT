@@ -52,7 +52,7 @@ bool	intersection_triangle(t_obj *obj, t_ray *ray)
 	d = dot_lvalue(&ray->normale, &obj->a);
 	if (!d)
 		return (false);
-	ray->t = -(dot_lvalue(&ray->normale, &ray->position) + d)
+	ray->t = (dot_lvalue(&ray->normale, &ray->position) + d)
 			/ dot_lvalue(&ray->normale, &ray->direction);
 	if (ray->t < 0)
 		return (false);
