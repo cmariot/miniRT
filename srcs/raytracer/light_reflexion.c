@@ -23,7 +23,8 @@ void	diffuse(t_color *color, t_color *obj_color, t_obj_list *obj_list)
 	double			intensite;
 	const double	intensite_lumiere = 20.0;
 
-	ft_bzero(&diffuse_color, sizeof(t_color));
+	// ft_bzero(&diffuse_color, sizeof(t_color));  = (const t_color){0};
+	diffuse_color = (const t_color){0};
 	light_ray = sub_lvalue(&obj_list->light.position,
 			&obj_list->camera.ray.intersection);
 	scalar = dot(normalize_lvalue(&light_ray), obj_list->camera.ray.normale);

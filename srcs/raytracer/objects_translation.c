@@ -49,5 +49,6 @@ void	translate_all(t_obj_list *obj_list, t_cam *cam)
 		i++;
 	}
 	translate(&(obj_list->light.position), &cam->position);
-	ft_bzero(&cam->position, sizeof(double) * 3);
+	cam->position = (const t_v3){0};
+	// ft_bzero(&cam->position, sizeof(double) * 3);
 }
