@@ -111,7 +111,7 @@ typedef struct s_obj {
 	t_v3			ext1;
 	t_v3			ext2;
 	t_v3			axe;
-	t_v3			a; //triangle
+	t_v3			a;
 	t_v3			b;
 	t_v3			c;
 }	t_obj;
