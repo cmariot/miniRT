@@ -28,8 +28,8 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 	double	x;
 	double	y;
 
-	lookat(obj_list->camera.direction, obj_list->camera.matrix);
 	translate_all(obj_list, camera);
+	lookat(obj_list->camera.direction, obj_list->camera.matrix);
 	y = 0;
 	while (y < camera->screen_height)
 	{

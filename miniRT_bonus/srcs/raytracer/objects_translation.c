@@ -31,6 +31,13 @@ void	translate_cylinder(t_obj *cylinder, t_v3 cam_position)
 	translate(&cylinder->ext2, cam_position);
 }
 
+void	translate_triangle(t_obj *triangle, t_v3 cam_position)
+{
+	translate(&triangle->a, cam_position);
+	translate(&triangle->b, cam_position);
+	translate(&triangle->c, cam_position);
+}
+
 void	translate_plan(t_obj *plan, t_v3 cam_position)
 {
 	translate(&plan->position, cam_position);

@@ -103,6 +103,7 @@ PARSING			= parsing.c \
 				  new_camera.c \
 				  new_ambient.c \
 				  new_light.c \
+				  new_triangle.c \
 				  utils.c
 
 
@@ -119,6 +120,7 @@ RAYTRACER		= raytracer.c \
 INTER			= intersection_sphere.c \
 				  intersection_plan.c \
 				  intersection_cylindre.c \
+				  intersection_triangle.c \
 				  utils.c
 
 
