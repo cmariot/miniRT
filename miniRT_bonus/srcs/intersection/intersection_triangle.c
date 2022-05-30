@@ -19,27 +19,29 @@ static void	get_triangle_normale(t_ray *ray, t_obj *obj)
 
 	ab = sub_lvalue(&obj->b, &obj->a);
 	ac = sub_lvalue(&obj->c, &obj->a);
-	ray->normale = cross_lvalue(&ab, &ac);
+	ray->normale = normalize(cross_lvalue(&ab, &ac));
 }
 
 static bool pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 {
-	t_v3 edge_ab;
-	t_v3 edge_bc;
-	t_v3 edge_ca;
 	t_v3 c[3];
+	t_v3 p;
+	t_v3 norm_pbc;
+	t_v3 norm_pca;
+	t_v3 norm_pab;
 
-	edge_ab = sub_lvalue(&obj->b, &obj->a);
-	edge_bc = sub_lvalue(&obj->c, &obj->b);
-	edge_ca = sub_lvalue(&obj->a, &obj->c);
-	c[0] = sub_lvalue(&ray->intersection, &obj->a);
-	c[1] = sub_lvalue(&ray->intersection, &obj->b);
-	c[2] = sub_lvalue(&ray->intersection, &obj->c);
-	if (dot(ray->normale, cross_lvalue(&edge_ab, &c[0])) > 0
-		&& dot(ray->normale, cross_lvalue(&edge_bc, &c[1])) > 0
-		&& dot(ray->normale, cross_lvalue(&edge_ca, &c[2])) > 0)
-		return (true);
-	return (false);
+	p = ray->intersection;
+	c[0] = sub_lvalue(&obj->a, &p);
+	c[1] = sub_lvalue(&obj->b, &p);
+	c[2] = sub_lvalue(&obj->c, &p);
+	norm_pbc = cross_lvalue(&c[1], &c[2]);
+	norm_pca = cross_lvalue(&c[2], &c[0]);
+	norm_pab = cross_lvalue(&c[0], &c[1]);
+	if (dot_lvalue(&norm_pbc, &norm_pca) < 0.0)
+		return (false);
+	if (dot_lvalue(&norm_pbc, &norm_pab) < 0.0)
+		return (false);
+	return (true);
 }
 
 bool	intersection_triangle(t_obj *obj, t_ray *ray)
