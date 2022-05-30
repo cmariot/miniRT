@@ -17,11 +17,11 @@ static void	get_sphere_normale(t_ray *ray, t_obj *sphere)
 	t_v3	origine;
 	t_v3	inverse_normale;
 
-	origine = sub_vector(ray->position, ray->intersection);
-	ray->normale = normalize(sub_vector(ray->intersection, sphere->position));
-	inverse_normale = mul_vector(ray->normale, -1);
-	if (norm_square(sub_vector(origine, ray->normale))
-		>= norm_square(sub_vector(origine, inverse_normale)))
+	origine = sub_lvalue(&ray->position, &ray->intersection);
+	ray->normale = normalize(sub_lvalue(&ray->intersection, &sphere->position));
+	inverse_normale = multiply_lvalue(&ray->normale, -1);
+	if (norm_square(sub_lvalue(&origine, &ray->normale))
+		>= norm_square(sub_lvalue(&origine, &inverse_normale)))
 		ray->normale = inverse_normale;
 }
 
@@ -72,10 +72,10 @@ static void	get_sphere_solution(t_ray *ray, t_obj *sphere)
 	double		abc[3];
 	double		delta;
 
-	origin = sub_vector(ray->position, sphere->position);
-	abc[0] = norm_square(ray->direction);
-	abc[1] = scalar_product(ray->direction, origin) * 2.0;
-	abc[2] = norm_square(origin) - pow(sphere->radius, 2);
+	origin = sub_lvalue(&ray->position, &sphere->position);
+	abc[0] = norm_square_lvalue(&ray->direction);
+	abc[1] = dot_lvalue(&ray->direction, &origin) * 2.0;
+	abc[2] = norm_square_lvalue(&origin) - pow(sphere->radius, 2);
 	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
 	if (delta < 0)
 		ray->t = -1;
@@ -103,7 +103,7 @@ bool	intersection_sphere(t_obj *sphere, t_ray *ray)
 	get_sphere_solution(ray, sphere);
 	if (ray->t < 0)
 		return (false);
-	ray->intersection = get_position(ray->position, ray->direction, ray->t);
+	ray->intersection = multiply_lvalue(&ray->direction, ray->t); //get_position(ray->position, ray->direction, ray->t);
 	get_sphere_normale(ray, sphere);
 	return (true);
 }

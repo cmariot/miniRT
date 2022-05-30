@@ -13,7 +13,7 @@
 #include "miniRT.h"
 
 /*
- * Opti : pour eviter calcul de racine carre, comparer si la distance entre 
+ * Opti : pour eviter calcul de racine carre, comparer si la distance entre
  * le rayon secondaire et l'intersection au CARRE est inferieure a la distance
  * au CARRE entre le rayon et la lumiere
  */
@@ -27,7 +27,7 @@ bool	in_light(t_ray *second_ray, t_light *light, t_obj_list *obj_list)
 	{
 		if (obj_list->obj[i].second_intersection(&obj_list->obj[i], second_ray)
 			&& pow(second_ray->t + 1, 2.0) < norm_square(
-				sub_vector(second_ray->position, light->position)))
+				sub_lvalue(&second_ray->position, &light->position)))
 			return (false);
 		i++;
 	}

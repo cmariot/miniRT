@@ -23,16 +23,16 @@ typedef struct s_v3
 
 t_v3		new_vector(const double x, const double y, const double z);
 
-t_v3		add_vector(const t_v3 a, const t_v3 b);
-t_v3		sub_vector(const t_v3 a, const t_v3 b);
-t_v3		div_vector(const t_v3 a, const double b);
-t_v3		mul_vector(const t_v3 a, const double b);
+t_v3		add(const t_v3 a, const t_v3 b);
+t_v3		sub(const t_v3 a, const t_v3 b);
+t_v3		divide(const t_v3 a, const double b);
+t_v3		multiply(const t_v3 a, const double b);
 
 t_v3		normalize(const t_v3 a);
-t_v3		cross_product(const t_v3 a, const t_v3 b);
+t_v3		cross(const t_v3 a, const t_v3 b);
 double		norm_square(const t_v3 a);
 double		norm(const t_v3 a);
-double		scalar_product(const t_v3 a, const t_v3 b);
+double		dot(const t_v3 a, const t_v3 b);
 double		length(const t_v3 point_a, const t_v3 point_b);
 
 #endif

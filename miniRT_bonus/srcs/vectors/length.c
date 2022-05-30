@@ -17,5 +17,5 @@
 
 extern inline double	length(const t_v3 a, const t_v3 b)
 {
-	return (norm(sub_vector(b, a)));
+	return (norm(sub(b, a)));
 }

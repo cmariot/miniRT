@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_vector.c                                       :+:      :+:    :+:   */
+/*   add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,12 @@
 
 #include "miniRT.h"
 
-extern inline t_v3	add_vector(const t_v3 a, const t_v3 b)
+extern inline t_v3	add(const t_v3 a, const t_v3 b)
 {
 	return (new_vector(a.x + b.x, a.y + b.y, a.z + b.z));
+}
+
+extern inline t_v3	add_lvalue(const t_v3 *a, const t_v3 *b)
+{
+	return (new_vector(a->x + b->x, a->y + b->y, a->z + b->z));
 }

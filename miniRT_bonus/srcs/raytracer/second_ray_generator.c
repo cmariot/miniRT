@@ -24,9 +24,9 @@ t_ray	second_ray_generator(t_ray *first_ray, t_light *light)
 	t_v3			decalage;
 	const double	epsilon = 0.0001;
 
-	decalage = mul_vector(first_ray->normale, epsilon);
-	second_ray.position = add_vector(first_ray->intersection, decalage);
+	decalage = multiply(first_ray->normale, epsilon);
+	second_ray.position = add(first_ray->intersection, decalage);
 	second_ray.direction
-		= normalize(sub_vector(light->position, first_ray->intersection));
+		= normalize(sub(light->position, first_ray->intersection));
 	return (second_ray);
 }

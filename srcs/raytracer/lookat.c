@@ -23,8 +23,8 @@ void	lookat(t_v3 cam_dir, double *m)
 	placeholder.z = 0;
 	if (cam_dir.x == 0 && cam_dir.z == 0)
 		placeholder.z = 0.000001;
-	right = normalize(cross_product(placeholder, cam_dir));
-	up = normalize(cross_product(cam_dir, right));
+	right = normalize(cross(placeholder, cam_dir));
+	up = normalize(cross(cam_dir, right));
 	*(t_v3 *)(&m[0]) = right;
 	*(t_v3 *)(&m[3]) = up;
 	*(t_v3 *)(&m[6]) = cam_dir;

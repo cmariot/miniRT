@@ -16,7 +16,7 @@ static bool	get_2nd_cyl_normale(t_obj *cyl, t_ray *ray)
 {
 	double	ext_distance;
 
-	ext_distance = scalar_product(sub_vector(cyl->position,
+	ext_distance = dot(sub(cyl->position,
 				ray->intersection), cyl->direction);
 	if (fabs(ext_distance) > cyl->demi_height)
 		return (false);
@@ -28,12 +28,12 @@ static void	get_2nd_cyl_solution(t_obj *cyl, t_ray *ray, t_discriminant *delta)
 	t_v3	va;
 	t_v3	ra0;
 
-	va = cross_product(cross_product(ray->direction, cyl->axe), cyl->axe);
-	ra0 = cross_product(cross_product(sub_vector(ray->position, cyl->ext1),
+	va = cross(cross(ray->direction, cyl->axe), cyl->axe);
+	ra0 = cross(cross(sub(ray->position, cyl->ext1),
 				cyl->axe), cyl->axe);
-	delta->abc[0] = scalar_product(va, va);
-	delta->abc[1] = 2 * scalar_product(ra0, va);
-	delta->abc[2] = scalar_product(ra0, ra0) - pow(cyl->radius, 2);
+	delta->abc[0] = dot(va, va);
+	delta->abc[1] = 2 * dot(ra0, va);
+	delta->abc[2] = dot(ra0, ra0) - pow(cyl->radius, 2);
 	delta->delta = pow(delta->abc[1], 2)
 		- (4.0 * delta->abc[0] * delta->abc[2]);
 	if (delta < 0)
