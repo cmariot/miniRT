@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:53:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 19:25:33 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 18:15:48 by rballage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ float	q_rsqrt(float number)
 
 extern inline double	norm(const t_v3 a)
 {
-	return (1.0 / q_rsqrt(a.x * a.x + a.y * a.y + a.z * a.z));
+	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
 
 extern inline double	norm_lvalue(const t_v3 *a)
 {
-	return (1.0 / q_rsqrt(a->x * a->x + a->y * a->y + a->z * a->z));
+	return (sqrt(a->x * a->x + a->y * a->y + a->z * a->z));
 }
