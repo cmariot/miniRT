@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 23:00:11 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 10:25:36 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 11:01:47 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	set_double(double *dbl, char *str, double min_limit, double max_limit)
 {
 	bool	error_checker;
 
-	error_checker = false;
 	*dbl = ft_atodouble(str, &error_checker);
 	if (error_checker == true || *dbl < min_limit || *dbl > max_limit)
 		return (1);

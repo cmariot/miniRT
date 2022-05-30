@@ -6,16 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/25 08:42:24 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 11:23:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-void	specular(t_color *pixel_color)
-{
-	(void)pixel_color;
-}
 
 //Produit scalaire entre la lumiere et le rayon permet de voir si les angles
 //se croisent
@@ -68,10 +63,7 @@ void	compute_reflexion(t_obj_list *obj_list, t_ray *first_ray,
 	{
 		second_ray = second_ray_generator(first_ray, &obj_list->light[j]);
 		if (in_light(&second_ray, &obj_list->light[j], obj_list))
-		{
 			diffuse(color, obj_list, obj_list->light[j]);
-			//specular(pixel_color);
-		}
 		j++;
 	}
 }
