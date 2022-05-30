@@ -104,5 +104,6 @@ bool	intersection_sphere(t_obj *sphere, t_ray *ray)
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = multiply_lvalue(&ray->direction, ray->t);
+	get_sphere_normale(ray, sphere);
 	return (true);
 }

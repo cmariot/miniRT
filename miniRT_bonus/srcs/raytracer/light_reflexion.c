@@ -24,7 +24,6 @@ void	diffuse(t_color *color, t_obj_list *obj_list,
 	double			intensite;
 	const double	intensite_lumiere = 20.0;
 
-	// ft_bzero(&diffuse_color, sizeof(t_color));
 	diffuse_color = (const t_color){0};
 	light_ray = sub(light.position,
 			obj_list->camera.ray.intersection);

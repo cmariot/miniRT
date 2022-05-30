@@ -24,6 +24,5 @@ int	parsing(t_world *world, const char *filename)
 		return (free_structure(world));
 	if (fill_structure(world, filename))
 		return (free_structure(world));
-	print_structure(world->obj_list);
 	return (0);
 }

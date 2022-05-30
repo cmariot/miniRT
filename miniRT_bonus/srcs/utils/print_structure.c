@@ -76,6 +76,7 @@ void	print_cylinder(void *ptr)
 		cylinder->color.b,
 		cylinder->color.trgb);
 }
+
 void	print_triangle(void *ptr)
 {
 	t_obj	*triangle;
