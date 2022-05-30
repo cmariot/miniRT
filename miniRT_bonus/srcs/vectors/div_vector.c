@@ -16,3 +16,8 @@ extern inline t_v3	divide(const t_v3 a, const double b)
 {
 	return (new_vector(a.x / b, a.y / b, a.z / b));
 }
+
+extern inline t_v3	divide_lvalue(const t_v3 *a, const double b)
+{
+	return (new_vector(a->x / b, a->y / b, a->z / b));
+}

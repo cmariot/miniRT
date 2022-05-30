@@ -12,10 +12,15 @@
 
 #include "miniRT.h"
 
-/* Return the distance between two points, a and b, 
+/* Return the distance between two points, a and b,
  * which have 3d positions */
 
 extern inline double	length(const t_v3 a, const t_v3 b)
 {
 	return (norm(sub(b, a)));
+}
+
+extern inline double	length_lvalue(const t_v3 *a, const t_v3 *b)
+{
+	return (norm(sub_lvalue(b, a)));
 }

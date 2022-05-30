@@ -35,4 +35,16 @@ double		norm(const t_v3 a);
 double		dot(const t_v3 a, const t_v3 b);
 double		length(const t_v3 point_a, const t_v3 point_b);
 
+t_v3		sub_lvalue(const t_v3 *a, const t_v3 *b);
+t_v3		add_lvalue(const t_v3 *a, const t_v3 *b);
+t_v3		divide_lvalue(const t_v3 *a, const double b);
+t_v3		multiply_lvalue(const t_v3 *a, const double b);
+
+t_v3		normalize_lvalue(const t_v3 *a);
+t_v3		cross_lvalue(const t_v3 *a, const t_v3 *b);
+double		norm_square_lvalue(const t_v3 *a);
+double		norm_lvalue(const t_v3 *a);
+double		dot_lvalue(const t_v3 *a, const t_v3 *b);
+double		length_lvalue(const t_v3 *point_a, const t_v3 *point_b);
+
 #endif

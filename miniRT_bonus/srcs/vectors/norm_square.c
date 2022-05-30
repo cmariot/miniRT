@@ -17,3 +17,8 @@ extern inline double	norm_square(const t_v3 a)
 {
 	return (a.x * a.x + a.y * a.y + a.z * a.z);
 }
+
+extern inline double	norm_square_lvalue(const t_v3 *a)
+{
+	return (a->x * a->x + a->y * a->y + a->z * a->z);
+}

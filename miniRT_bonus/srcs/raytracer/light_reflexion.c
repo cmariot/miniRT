@@ -22,11 +22,7 @@ void	diffuse(t_color *color, t_obj_list *obj_list,
 	t_v3			light_ray;
 	double			scalar;
 	double			intensite;
-<<<<<<< HEAD
 	const double	intensite_lumiere = 20.0;
-=======
-	// const double	intensite_lumiere = 1.0;
->>>>>>> perf
 
 	ft_bzero(&diffuse_color, sizeof(t_color));
 	light_ray = sub(light.position,
@@ -34,7 +30,7 @@ void	diffuse(t_color *color, t_obj_list *obj_list,
 	scalar = dot(normalize(light_ray), obj_list->camera.ray.normale);
 	if (scalar > 0)
 	{
-		intensite = scalar * light.ratio
+		intensite = scalar * light.ratio * intensite_lumiere
 			* fmin(1.0, 1 / norm_square(light_ray));
 		diffuse_color.r = intensite * color->r * light.color.r;
 		diffuse_color.g = intensite * color->g * light.color.g;
