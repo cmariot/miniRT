@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/30 18:31:04 by rballage         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:39:08 by rballage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static bool pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 
 bool	intersection_triangle(t_obj *obj, t_ray *ray)
 {
+	ray->normale = obj->direction;
 	if (!obj->radius)
 		return (false);
 	ray->t = obj->radius / dot_lvalue(&obj->direction, &ray->direction);
