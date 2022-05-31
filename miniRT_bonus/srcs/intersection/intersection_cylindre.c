@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:25:48 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 17:14:53 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 15:24:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,14 @@ bool	intersection_cylinder(t_obj *cyl, t_ray *ray)
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
-			ray->t));
+				ray->t));
 	if (get_cyl_normale(cyl, ray))
 		return (true);
 	else if (delta.delta != 0)
 	{
 		ray->t = t2(delta.delta, delta.abc);
 		ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
-				ray->t));
+					ray->t));
 		if (get_cyl_normale(cyl, ray))
 			return (true);
 	}

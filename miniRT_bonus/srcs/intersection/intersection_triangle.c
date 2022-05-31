@@ -6,21 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/31 14:11:27 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 15:22:19 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-// static void	get_triangle_normale(t_ray *ray, t_obj *obj)
-// {
-// 	t_v3	ab;
-// 	t_v3	ac;
-//
-// 	ab = sub_lvalue(&obj->b, &obj->a);
-// 	ac = sub_lvalue(&obj->c, &obj->a);
-// 	ray->normale = normalize(cross_lvalue(&ab, &ac));
-// }
 
 static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 {
@@ -46,7 +36,7 @@ static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 
 bool	intersection_triangle(t_obj *obj, t_ray *ray)
 {
-	ray->normale = obj->direction;
+	ray->normale = multiply(obj->direction, -1);
 	if (!obj->radius)
 		return (false);
 	ray->t = obj->radius / dot_lvalue(&obj->direction, &ray->direction);

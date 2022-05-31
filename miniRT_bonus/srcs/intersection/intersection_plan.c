@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/31 08:43:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 15:25:06 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	intersection_plan(t_obj *plan, t_ray *ray)
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
-			ray->t));
+				ray->t));
 	get_plan_normale(ray, plan);
 	return (true);
 }

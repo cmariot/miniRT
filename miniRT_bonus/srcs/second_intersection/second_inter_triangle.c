@@ -6,21 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 18:22:25 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/31 14:14:47 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 15:23:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-//
-// static void	get_triangle_normale(t_ray *ray, t_obj *obj)
-// {
-// 	t_v3	ab;
-// 	t_v3	ac;
-//
-// 	ab = sub_lvalue(&obj->b, &obj->a);
-// 	ac = sub_lvalue(&obj->c, &obj->a);
-// 	ray->normale = normalize(cross_lvalue(&ab, &ac));
-// }
 
 static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 {
@@ -46,21 +36,16 @@ static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 
 bool	second_intersection_triangle(t_obj *obj, t_ray *ray)
 {
-	// t_v3	inverse_normale;
-	double angle;
+	double	angle;
 
 	angle = dot_lvalue(&obj->direction, &ray->direction);
 	if (fabs(angle) < 1e-6)
 		return (false);
 	ray->normale = obj->direction;
-	// inverse_normale = multiply_lvalue(&ray->normale, -1.0);
 	ray->t = (dot(ray->normale, sub(obj->a, ray->position)) / angle);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
-			ray->t));
-	// if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
-	// 	> norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
-	// 	ray->normale = inverse_normale;
+				ray->t));
 	return (pts_lies_in_triangle(ray, obj));
 }
