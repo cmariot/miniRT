@@ -12,15 +12,15 @@
 
 #include "miniRT.h"
 
-static void	get_triangle_normale(t_ray *ray, t_obj *obj)
-{
-	t_v3	ab;
-	t_v3	ac;
-
-	ab = sub_lvalue(&obj->b, &obj->a);
-	ac = sub_lvalue(&obj->c, &obj->a);
-	ray->normale = normalize(cross_lvalue(&ab, &ac));
-}
+// static void	get_triangle_normale(t_ray *ray, t_obj *obj)
+// {
+// 	t_v3	ab;
+// 	t_v3	ac;
+//
+// 	ab = sub_lvalue(&obj->b, &obj->a);
+// 	ac = sub_lvalue(&obj->c, &obj->a);
+// 	ray->normale = normalize(cross_lvalue(&ab, &ac));
+// }
 
 static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 {
@@ -46,16 +46,16 @@ static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 
 bool	intersection_triangle(t_obj *obj, t_ray *ray)
 {
-	double	d;
-
-	get_triangle_normale(ray, obj);
-	d = dot_lvalue(&ray->normale, &obj->a);
-	if (!d)
-		return (false);
-	ray->t = (dot_lvalue(&ray->normale, &ray->position) + d)
-		/ dot_lvalue(&ray->normale, &ray->direction);
+	// double	d;
+	//
+	// get_triangle_normale(ray, obj);
+	// d = dot_lvalue(&ray->normale, &obj->a);
+	// if (!d)
+	// 	return (false);
+	// ray->t = (dot_lvalue(&ray->normale, &ray->position) + d)
+	// 	/ dot_lvalue(&ray->normale, &ray->direction);
 	ray->normale = obj->direction;
-	if (!obj->radius)
+	if (!obj->radius) // = ray perpendiculaire au triangle
 		return (false);
 	ray->t = obj->radius / dot_lvalue(&obj->direction, &ray->direction);
 	if (ray->t < 0)

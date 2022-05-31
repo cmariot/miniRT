@@ -22,7 +22,7 @@ void	diffuse(t_color *color, t_obj_list *obj_list,
 	t_v3			light_ray;
 	double			scalar;
 	double			intensite;
-	const double	intensite_lumiere = 20.0;
+	const double	intensite_lumiere = 10.0;
 
 	diffuse_color = (const t_color){0};
 	light_ray = sub(light.position,

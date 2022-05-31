@@ -14,9 +14,9 @@
 
 static void	get_plan_solution(t_ray *ray, t_obj *plan)
 {
-	ray->t = (dot(plan->direction, plan->position)
-			- dot(plan->direction, ray->position))
-		/ dot(plan->direction, ray->direction);
+	ray->t = (dot_lvalue(&plan->direction, &plan->position)
+			- dot_lvalue(&plan->direction, &ray->position))
+		/ dot_lvalue(&plan->direction, &ray->direction);
 }
 
 bool	second_intersection_plan(t_obj *plan, t_ray *ray)
