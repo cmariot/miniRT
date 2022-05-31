@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/31 15:26:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 15:29:22 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	intersection_triangle(t_obj *obj, t_ray *ray)
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
-			ray->t));
+				ray->t));
 	if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
 		> norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
 		ray->normale = inverse_normale;
