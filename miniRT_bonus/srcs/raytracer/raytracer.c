@@ -6,11 +6,18 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/31 09:08:48 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 20:54:23 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+void	print_percentage(t_cam *camera, double y)
+{
+	write(1, "\t", 1);
+	ft_putnbr((int)(y / camera->screen_height * 100));
+	write(1, "%\r", 2);
+}
 
 /*
  * Générer un rayon partant de la camera en direction de chaque pixel de l'écran,
@@ -43,6 +50,7 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 			mlx_putpixel(&mlx->image, &x, &y, &color);
 			x++;
 		}
+		print_percentage(camera, y);
 		y++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image.img, 0, 0);
