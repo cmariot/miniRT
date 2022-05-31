@@ -46,19 +46,21 @@ static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 
 bool	second_intersection_triangle(t_obj *obj, t_ray *ray)
 {
-	t_v3	inverse_normale;
+	// t_v3	inverse_normale;
+	double angle;
 
-	if (!obj->radius)
+	angle = dot_lvalue(&obj->direction, &ray->direction);
+	if (fabs(angle) < 1e-6)
 		return (false);
 	ray->normale = obj->direction;
-	inverse_normale = multiply_lvalue(&ray->normale, -1.0);
-	ray->t = obj->radius / dot_lvalue(&inverse_normale, &ray->direction);
+	// inverse_normale = multiply_lvalue(&ray->normale, -1.0);
+	ray->t = (dot(ray->normale, sub(obj->a, ray->position)) / angle);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
 			ray->t));
-	if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
-		> norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
-		ray->normale = inverse_normale;
+	// if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
+	// 	> norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
+	// 	ray->normale = inverse_normale;
 	return (pts_lies_in_triangle(ray, obj));
 }
