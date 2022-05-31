@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_plan.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
+/*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 15:34:21 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 19:01:50 by rballage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@ static void	get_plan_normale(t_ray *ray, t_obj *obj)
 		>= norm_square(add(ray->intersection, inverse_normale)))
 		ray->normale = inverse_normale;
 }
+
+static void	get_plan_solution(t_ray *ray, t_obj *plan)
+{
+	ray->t = dot(plan->direction, plan->position)
+		/ dot(plan->direction, ray->direction);
+}
+
+bool	intersection_plan(t_obj *plan, t_ray *ray)
+{
+	get_plan_solution(ray, plan);
+	if (ray->t < 0)
+		return (false);
+	ray->intersection = get_position(ray->position, ray->direction, ray->t);
+	get_plan_normale(ray, plan);
+	return (true);
+}
+
 
 /*
  * SYSTEME D'ÉQUATION PARAMETRIQUES DU RAYON :
@@ -77,19 +94,3 @@ static void	get_plan_normale(t_ray *ray, t_obj *obj)
  * Dans le cas d'un plan on a deux normales pour un point,
  * on va selectionner celle qui est dirigee vers la camera
  */
-
-static void	get_plan_solution(t_ray *ray, t_obj *plan)
-{
-	ray->t = dot(plan->direction, plan->position)
-		/ dot(plan->direction, ray->direction);
-}
-
-bool	intersection_plan(t_obj *plan, t_ray *ray)
-{
-	get_plan_solution(ray, plan);
-	if (ray->t < 0)
-		return (false);
-	ray->intersection = get_position(ray->position, ray->direction, ray->t);
-	get_plan_normale(ray, plan);
-	return (true);
-}
