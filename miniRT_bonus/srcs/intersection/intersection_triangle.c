@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_triangle.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
+/*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/30 18:30:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 08:34:21 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 	c[2] = sub_lvalue(&obj->c, &p);
 	norm_pbc = cross_lvalue(&c[1], &c[2]);
 	norm_pca = cross_lvalue(&c[2], &c[0]);
-	norm_pab = cross_lvalue(&c[0], &c[1]);
 	if (dot_lvalue(&norm_pbc, &norm_pca) < 0.0)
 		return (false);
+	norm_pab = cross_lvalue(&c[0], &c[1]);
 	if (dot_lvalue(&norm_pbc, &norm_pab) < 0.0)
 		return (false);
 	return (true);
@@ -54,6 +54,10 @@ bool	intersection_triangle(t_obj *obj, t_ray *ray)
 		return (false);
 	ray->t = (dot_lvalue(&ray->normale, &ray->position) + d)
 		/ dot_lvalue(&ray->normale, &ray->direction);
+	ray->normale = obj->direction;
+	if (!obj->radius)
+		return (false);
+	ray->t = obj->radius / dot_lvalue(&obj->direction, &ray->direction);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = multiply_lvalue(&ray->direction, ray->t);
