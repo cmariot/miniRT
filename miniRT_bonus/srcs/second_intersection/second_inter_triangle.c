@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 18:22:25 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/31 08:56:39 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 14:14:47 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ bool	second_intersection_triangle(t_obj *obj, t_ray *ray)
 		return (false);
 	ray->normale = obj->direction;
 	inverse_normale = multiply_lvalue(&ray->normale, -1.0);
-	if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
-		>= norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
-		ray->normale = inverse_normale;
-	ray->t = obj->radius / dot_lvalue(&ray->normale, &ray->direction);
+	ray->t = obj->radius / dot_lvalue(&inverse_normale, &ray->direction);
 	if (ray->t < 0)
 		return (false);
 	ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
 			ray->t));
+	if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
+		> norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
+		ray->normale = inverse_normale;
 	return (pts_lies_in_triangle(ray, obj));
 }
