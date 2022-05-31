@@ -6,11 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:33:20 by cmariot           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/05/31 08:32:55 by cmariot          ###   ########.fr       */
-=======
-/*   Updated: 2022/05/30 19:00:50 by rballage         ###   ########.fr       */
->>>>>>> 49a8b99c3cd1db679c63da8838eb7e7b48ed2df0
+/*   Updated: 2022/05/31 08:59:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +19,14 @@ void	translate_triangle(t_obj *triangle, t_v3 cam_position)
 	translate(&triangle->c, cam_position);
 }
 
-static void	get_triangle_normale(t_obj *obj)
+static void	get_triangle_normale(t_obj *triangle)
 {
 	t_v3	ab;
 	t_v3	ac;
 
-	ab = sub_lvalue(&obj->b, &obj->a);
-	ac = sub_lvalue(&obj->c, &obj->a);
-	obj->direction = normalize(cross_lvalue(&ab, &ac));
-	// obj->direction.x *= -1.0;
-	// obj->direction.y *= -1.0;
-	// obj->direction.z *= -1.0;
+	ab = sub_lvalue(&triangle->b, &triangle->a);
+	ac = sub_lvalue(&triangle->c, &triangle->a);
+	triangle->direction = normalize(cross_lvalue(&ab, &ac));
 }
 
 int	new_triangle(t_obj *triangle, char **array)

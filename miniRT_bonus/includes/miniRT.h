@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/30 18:32:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 09:09:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "structure.h"
 # include "mlx.h"
 # include "keycodes.h"
+
+# include <time.h>
 
 # define SCREEN_WIDTH 1440
 
