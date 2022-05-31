@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/31 15:22:19 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 15:26:42 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,21 @@ static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 
 bool	intersection_triangle(t_obj *obj, t_ray *ray)
 {
-	ray->normale = multiply(obj->direction, -1);
-	if (!obj->radius)
+	double	angle;
+	t_v3	inverse_normale;
+
+	angle = dot_lvalue(&obj->direction, &ray->direction);
+	if (fabs(angle) < 1e-6)
 		return (false);
-	ray->t = obj->radius / dot_lvalue(&obj->direction, &ray->direction);
+	ray->normale = obj->direction;
+	inverse_normale = multiply_lvalue(&ray->normale, -1.0);
+	ray->t = (dot(ray->normale, sub(obj->a, ray->position)) / angle);
 	if (ray->t < 0)
 		return (false);
-	ray->intersection = multiply_lvalue(&ray->direction, ray->t);
+	ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
+			ray->t));
+	if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
+		> norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
+		ray->normale = inverse_normale;
 	return (pts_lies_in_triangle(ray, obj));
 }
