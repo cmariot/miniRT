@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/30 18:32:45 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/31 13:51:35 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ SCENE_TEST		 = scenes/00_test.rt
 CC				 = clang
 
 
-CFLAGS			 = -Wall -Wextra -Werror -O3
-LFLAGS			 = -Wall -Wextra -Werror -O3
+CFLAGS			 = -Wall -Wextra -Werror -g3 -O3
+LFLAGS			 = -Wall -Wextra -Werror -g3 -O3
 
 
 INCLUDES		 = -I includes
@@ -222,7 +222,8 @@ $(NAME)	: 		$(OBJS)
 
 
 leaks :			all
-				valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME) $(SCENE_TEST)
+				valgrind --leak-check=full --show-leak-kinds=all \
+									  --track-fds=yes ./$(NAME) $(SCENE_TEST)
 
 
 test :			all
