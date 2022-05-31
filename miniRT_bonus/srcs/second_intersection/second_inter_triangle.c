@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersection_triangle.c                            :+:      :+:    :+:   */
+/*   second_inter_triangle.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmariot <cmariot@student.42/fr>            +#+  +:+       +#+        */
+/*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 15:59:38 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/30 18:30:08 by cmariot          ###   ########.fr       */
+/*   Created: 2022/05/30 18:22:25 by cmariot           #+#    #+#             */
+/*   Updated: 2022/05/30 18:25:34 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 	return (true);
 }
 
-bool	intersection_triangle(t_obj *obj, t_ray *ray)
+bool	second_intersection_triangle(t_obj *obj, t_ray *ray)
 {
 	double	d;
 

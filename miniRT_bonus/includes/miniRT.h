@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:07:39 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/22 11:59:35 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 18:32:16 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	compute_reflexion(t_obj_list *list, t_ray *ray, t_color *c, t_obj *obj);
 /* ************************************************************************** */
 
 void	translate_all(t_obj_list *obj_list, t_cam *cam);
+void	translate(t_v3 *target, t_v3 value);
 void	translate_plan(t_obj *plan, t_v3 cam_position);
 void	translate_sphere(t_obj *sphere, t_v3 cam_position);
 void	translate_cylinder(t_obj *cylinder, t_v3 cam_position);
@@ -94,6 +95,7 @@ bool	intersection_triangle(t_obj *cyl, t_ray *ray);
 bool	second_intersection_sphere(t_obj *sphere, t_ray *ray);
 bool	second_intersection_plan(t_obj *plan, t_ray *ray);
 bool	second_intersection_cylinder(t_obj *cyl, t_ray *ray);
+bool	second_intersection_triangle(t_obj *obj, t_ray *ray);
 
 double	t1(double delta, double *abc);
 double	t2(double delta, double *abc);

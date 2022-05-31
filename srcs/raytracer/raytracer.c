@@ -6,12 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:15:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 19:15:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 19:08:15 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include <time.h>
 
 /*
  * Générer un rayon partant de la camera en direction de chaque pixel de l'écran,
@@ -28,9 +27,7 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 	int		color;
 	double	x;
 	double	y;
-	double	st;
 
-	st = (double)clock();
 	lookat(obj_list->camera.direction, obj_list->camera.matrix);
 	translate_all(obj_list, camera);
 	y = 0;
@@ -47,5 +44,4 @@ void	raytracer(t_obj_list *obj_list, t_cam *camera, t_mlx *mlx)
 		y++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image.img, 0, 0);
-	printf("Done in %f seconds\n", (double)(clock() - st) / CLOCKS_PER_SEC);
 }

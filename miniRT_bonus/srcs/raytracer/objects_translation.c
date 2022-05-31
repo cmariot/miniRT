@@ -6,13 +6,13 @@
 /*   By: rballage <rballage@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 14:00:44 by rballage           #+#    #+#            */
-/*   Updated: 2022/05/21 20:42:25 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/30 18:31:58 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static void	translate(t_v3 *target, t_v3 value)
+void	translate(t_v3 *target, t_v3 value)
 {
 	target->x -= value.x;
 	target->y -= value.y;
@@ -29,13 +29,6 @@ void	translate_cylinder(t_obj *cylinder, t_v3 cam_position)
 	translate(&cylinder->position, cam_position);
 	translate(&cylinder->ext1, cam_position);
 	translate(&cylinder->ext2, cam_position);
-}
-
-void	translate_triangle(t_obj *triangle, t_v3 cam_position)
-{
-	translate(&triangle->a, cam_position);
-	translate(&triangle->b, cam_position);
-	translate(&triangle->c, cam_position);
 }
 
 void	translate_plan(t_obj *plan, t_v3 cam_position)

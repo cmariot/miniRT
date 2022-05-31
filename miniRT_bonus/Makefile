@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/22 12:02:02 by cmariot          ###   ########.fr        #
+#    Updated: 2022/05/30 18:32:45 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,6 +127,7 @@ INTER			= intersection_sphere.c \
 2ND_INTER		= second_inter_cyl.c \
 				  second_inter_plan.c \
 				  second_inter_sphere.c \
+				  second_inter_triangle.c
 
 
 MLX_DIR			= open_window.c \
