@@ -18,10 +18,10 @@ static void	get_sphere_solution(t_ray *ray, t_obj *sphere)
 	double		abc[3];
 	double		delta;
 
-	origin = sub(ray->position, sphere->position);
-	abc[0] = norm_square(ray->direction);
-	abc[1] = dot(ray->direction, origin) * 2.0;
-	abc[2] = norm_square(origin) - pow(sphere->radius, 2);
+	origin = sub_lvalue(&ray->position, &sphere->position);
+	abc[0] = norm_square_lvalue(&ray->direction);
+	abc[1] = dot_lvalue(&ray->direction, &origin) * 2.0;
+	abc[2] = norm_square_lvalue(&origin) - pow(sphere->radius, 2);
 	delta = pow(abc[1], 2) - (4.0 * abc[0] * abc[2]);
 	if (delta < 0)
 		ray->t = -1;

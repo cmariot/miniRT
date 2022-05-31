@@ -17,16 +17,16 @@ static void	get_plan_normale(t_ray *ray, t_obj *obj)
 	t_v3	inverse_normale;
 
 	ray->normale = obj->direction;
-	inverse_normale = multiply(ray->normale, -1.0);
-	if (norm_square(add(ray->intersection, ray->normale))
-		>= norm_square(add(ray->intersection, inverse_normale)))
+	inverse_normale = multiply_lvalue(&ray->normale, -1.0);
+	if (norm_square(add_lvalue(&ray->intersection, &ray->normale))
+		>= norm_square(add_lvalue(&ray->intersection, &inverse_normale)))
 		ray->normale = inverse_normale;
 }
 
 static void	get_plan_solution(t_ray *ray, t_obj *plan)
 {
-	ray->t = dot(plan->direction, plan->position)
-		/ dot(plan->direction, ray->direction);
+	ray->t = dot_lvalue(&plan->direction, &plan->position)
+		/ dot_lvalue(&plan->direction, &ray->direction);
 }
 
 bool	intersection_plan(t_obj *plan, t_ray *ray)
@@ -34,7 +34,8 @@ bool	intersection_plan(t_obj *plan, t_ray *ray)
 	get_plan_solution(ray, plan);
 	if (ray->t < 0)
 		return (false);
-	ray->intersection = get_position(ray->position, ray->direction, ray->t);
+	ray->intersection = add(ray->position, multiply_lvalue(&ray->direction,
+			ray->t));
 	get_plan_normale(ray, plan);
 	return (true);
 }
