@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 19:33:20 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/30 18:28:18 by rballage         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:00:50 by rballage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static void	get_triangle_normale(t_obj *obj)
 	ab = sub_lvalue(&obj->b, &obj->a);
 	ac = sub_lvalue(&obj->c, &obj->a);
 	obj->direction = normalize(cross_lvalue(&ab, &ac));
+	// obj->direction.x *= -1.0;
+	// obj->direction.y *= -1.0;
+	// obj->direction.z *= -1.0;
 }
 
 int	new_triangle(t_obj *triangle, char **array)
