@@ -31,7 +31,7 @@ SCENE_TEST		 = scenes/00_test.rt
 CC				 = clang
 
 
-CFLAGS			 = -Wall -Wextra -Werror -O3  -g3
+CFLAGS			 = -Wall -Wextra -Werror -O3 -g3
 LFLAGS			 = -Wall -Wextra -Werror -O3 -g3
 
 
