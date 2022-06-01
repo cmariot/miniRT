@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/22 12:01:35 by cmariot          ###   ########.fr        #
+#    Updated: 2022/06/01 16:18:28 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -201,7 +201,7 @@ RESET			= \033[0m
 all : 			header $(NAME) footer
 
 
-bonus:
+bonus :
 				@make -C miniRT_bonus --no-print-directory
 
 
