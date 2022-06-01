@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:05:44 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/30 11:23:02 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/05/31 23:51:36 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	diffuse(t_color *color, t_obj_list *obj_list,
 	t_v3			light_ray;
 	double			scalar;
 	double			intensite;
-	const double	intensite_lumiere = 10.0;
+	const double	intensite_lumiere = 20.0;
 
 	diffuse_color = (const t_color){0};
 	light_ray = sub(light.position,
