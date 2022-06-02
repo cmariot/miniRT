@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/05/31 13:51:35 by cmariot          ###   ########.fr        #
+#    Updated: 2022/06/02 08:54:23 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -222,8 +222,7 @@ $(NAME)	: 		$(OBJS)
 
 
 leaks :			all
-				valgrind --leak-check=full --show-leak-kinds=all \
-									  --track-fds=yes ./$(NAME) $(SCENE_TEST)
+				valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(SCENE_TEST)
 
 
 test :			all

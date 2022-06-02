@@ -6,23 +6,15 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:15:07 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/19 17:16:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/06/01 18:31:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static void	init_mlx(t_mlx *mlx, t_img *image)
-{
-	mlx->mlx_ptr = NULL;
-	mlx->win_ptr = NULL;
-	image->img = NULL;
-	image->addr = NULL;
-}
-
 int	open_window(t_world *world)
 {
-	init_mlx(&world->mlx, &world->mlx.image);
+	ft_bzero(&world->mlx, sizeof(t_mlx));
 	world->mlx.mlx_ptr = mlx_init();
 	if (!world->mlx.mlx_ptr)
 	{
@@ -32,8 +24,7 @@ int	open_window(t_world *world)
 	mlx_do_key_autorepeaton(world->mlx.mlx_ptr);
 	world->mlx.win_ptr = mlx_new_window(world->mlx.mlx_ptr,
 			world->obj_list.camera.screen_width,
-			world->obj_list.camera.screen_height,
-			"miniRT");
+			world->obj_list.camera.screen_height, "miniRT");
 	if (!world->mlx.win_ptr)
 	{
 		rt_error("MLX: mlx_open_window() failed.");
