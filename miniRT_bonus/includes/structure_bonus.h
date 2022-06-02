@@ -6,12 +6,12 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:38:52 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/21 23:30:51 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/06/02 10:38:39 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTURE_H
-# define STRUCTURE_H
+#ifndef STRUCTURE_BONUS_H
+# define STRUCTURE_BONUS_H
 
 struct				s_obj;
 struct				s_ray;

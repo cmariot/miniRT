@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/06/02 08:54:23 by cmariot          ###   ########.fr        #
+#    Updated: 2022/06/02 10:37:26 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,86 +79,86 @@ SRC_ROOTDIR		= srcs/
 
 
 SRC_SUBDIR	    = $(MAIN) \
-				  $(addprefix vectors/, $(VECTORS)) \
-				  $(addprefix intersection/, $(INTER)) \
-				  $(addprefix second_intersection/, $(2ND_INTER)) \
-				  $(addprefix utils/, $(UTILS)) \
-				  $(addprefix raytracer/, $(RAYTRACER)) \
-				  $(addprefix parsing/, $(PARSING)) \
-				  $(addprefix mlx/, $(MLX_DIR))
+				  $(addprefix vectors_bonus/, $(VECTORS)) \
+				  $(addprefix intersection_bonus/, $(INTER)) \
+				  $(addprefix second_intersection_bonus/, $(2ND_INTER)) \
+				  $(addprefix utils_bonus/, $(UTILS)) \
+				  $(addprefix raytracer_bonus/, $(RAYTRACER)) \
+				  $(addprefix parsing_bonus/, $(PARSING)) \
+				  $(addprefix mlx_bonus/, $(MLX_DIR))
 
 
-MAIN			= main.c
+MAIN			= main_bonus.c
 
 
-PARSING			= parsing.c \
-				  check_extension.c \
-				  check_reading_access.c \
-				  count_objects.c \
-				  memory_allocation.c \
-				  fill_structure.c \
-				  new_sphere.c \
-				  new_plan.c \
-				  new_cylinder.c \
-				  new_camera.c \
-				  new_ambient.c \
-				  new_light.c \
-				  new_triangle.c \
-				  utils.c
+PARSING			= parsing_bonus.c \
+				  check_extension_bonus.c \
+				  check_reading_access_bonus.c \
+				  count_objects_bonus.c \
+				  memory_allocation_bonus.c \
+				  fill_structure_bonus.c \
+				  new_sphere_bonus.c \
+				  new_plan_bonus.c \
+				  new_cylinder_bonus.c \
+				  new_camera_bonus.c \
+				  new_ambient_bonus.c \
+				  new_light_bonus.c \
+				  new_triangle_bonus.c \
+				  utils_bonus.c
 
 
-RAYTRACER		= raytracer.c \
-				  lookat.c \
-				  ray_generator.c \
-				  compute_color.c \
-				  second_ray_generator.c \
-				  in_light.c \
-				  light_reflexion.c \
-				  objects_translation.c
+RAYTRACER		= raytracer_bonus.c \
+				  lookat_bonus.c \
+				  ray_generator_bonus.c \
+				  compute_color_bonus.c \
+				  second_ray_generator_bonus.c \
+				  in_light_bonus.c \
+				  light_reflexion_bonus.c \
+				  objects_translation_bonus.c
 
 
-INTER			= intersection_sphere.c \
-				  intersection_plan.c \
-				  intersection_cylindre.c \
-				  intersection_triangle.c \
-				  utils.c
+INTER			= intersection_sphere_bonus.c \
+				  intersection_plan_bonus.c \
+				  intersection_cylindre_bonus.c \
+				  intersection_triangle_bonus.c \
+				  utils_bonus.c
 
 
-2ND_INTER		= second_inter_cyl.c \
-				  second_inter_plan.c \
-				  second_inter_sphere.c \
-				  second_inter_triangle.c
+2ND_INTER		= second_inter_cyl_bonus.c \
+				  second_inter_plan_bonus.c \
+				  second_inter_sphere_bonus.c \
+				  second_inter_triangle_bonus.c
 
 
-MLX_DIR			= open_window.c \
-				  create_image.c \
-				  mlx_putpixel.c \
-				  key_handler.c
+MLX_DIR			= open_window_bonus.c \
+				  create_image_bonus.c \
+				  mlx_putpixel_bonus.c \
+				  key_handler_bonus.c
 
 				  ifeq ($(UNAME), arm64)
-				  	MLX_DIR	+= close_window_macos.c
+				  	MLX_DIR	+= close_window_macos_bonus.c
 				  else
-				  	MLX_DIR	+= close_window_linux.c
+				  	MLX_DIR	+= close_window_linux_bonus.c
 				  endif
 
 
-UTILS			= error.c \
-				  print_structure.c \
-				  print_structure2.c \
-				  free_structure.c
+UTILS			= error_bonus.c \
+				  print_structure_bonus.c \
+				  print_structure2_bonus.c \
+				  free_structure_bonus.c
 
 
-VECTORS			= new_vector.c \
-				  add_vector.c \
-				  div_vector.c \
-				  length.c \
-				  mul_vector.c \
-				  normalize.c \
-				  norm.c \
-				  norm_square.c \
-				  scalar_product.c \
-				  cross_product.c \
-				  sub_vector.c
+VECTORS			= new_vector_bonus.c \
+				  add_vector_bonus.c \
+				  div_vector_bonus.c \
+				  length_bonus.c \
+				  mul_vector_bonus.c \
+				  normalize_bonus.c \
+				  norm_bonus.c \
+				  norm_square_bonus.c \
+				  scalar_product_bonus.c \
+				  cross_product_bonus.c \
+				  sub_vector_bonus.c
 
 
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))

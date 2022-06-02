@@ -6,12 +6,12 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 10:38:11 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/18 17:54:49 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/06/02 10:38:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYCODES_H
-# define KEYCODES_H
+#ifndef KEYCODES_BONUS_H
+# define KEYCODES_BONUS_H
 
 # if defined __APPLE__
 

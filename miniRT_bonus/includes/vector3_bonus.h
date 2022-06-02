@@ -6,12 +6,12 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 22:25:15 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/20 11:44:39 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/06/02 10:38:45 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR3_H
-# define VECTOR3_H
+#ifndef VECTOR3_BONUS_H
+# define VECTOR3_BONUS_H
 
 typedef struct s_v3
 {
