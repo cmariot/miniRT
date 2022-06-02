@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/06/01 16:18:28 by cmariot          ###   ########.fr        #
+#    Updated: 2022/06/02 10:42:24 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -202,7 +202,7 @@ all : 			header $(NAME) footer
 
 
 bonus :
-				@make -C miniRT_bonus --no-print-directory
+				@make -C bonus --no-print-directory
 
 
 $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.c
@@ -273,4 +273,4 @@ footer :
 -include $(DEPENDS)
 
 
-.PHONY : 		all clean fclean re
+.PHONY : 		all clean fclean bonus re
