@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2022/06/02 10:42:24 by cmariot          ###   ########.fr        #
+#    Updated: 2022/06/02 11:08:13 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -229,14 +229,14 @@ test :			all
 
 
 norm :
-				@norminette srcs includes libft miniRT_bonus/srcs miniRT_bonus/includes
+				@norminette srcs includes libft bonus/srcs bonus/includes
 
 
 clean :
 				@rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@make clean -C libft --no-print-directory
 				@make clean -C $(MLX) --no-print-directory
-				@make clean -C miniRT_bonus --no-print-directory
+				@make clean -C bonus --no-print-directory
 				@printf "$(RED)"
 				@printf "Object files removed\n"
 				@printf "$(RESET)"
@@ -247,7 +247,7 @@ fclean :
 				@-rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@make fclean -C libft --no-print-directory
 				@make clean -C $(MLX) --no-print-directory
-				@make fclean -C miniRT_bonus --no-print-directory
+				@make fclean -C bonus --no-print-directory
 				@printf "$(RED)"
 				@printf "Binary and object files removed\n"
 				@printf "$(RESET)"

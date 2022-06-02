@@ -1,6 +1,6 @@
 miniRT
+bonus/miniRT_bonus
 *.o
 *.a
 .DS_Store
 *.d
-miniRT_bonus/miniRT_bonus

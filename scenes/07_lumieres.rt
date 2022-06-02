@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 09:45:37 by cmariot           #+#    #+#              #
-#    Updated: 2022/06/01 18:42:47 by cmariot          ###   ########.fr        #
+#    Updated: 2022/06/02 10:54:56 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@
 C 0,0,0 0,0,-1 60
 
 # Lumière ambiante cyan 
-#A 0.4 0,150,150
+A 0.4 0,150,150
 
 # Lumiere ambiante cyan (moins intense)
 #A 0.2 0,150,150
 
 # Lumiere ambiante magenta (moins intense)
-A 0.2 150,0,150
+#A 0.2 150,0,150
 
 # Spot lumineux
 L 0,0,-60 0.3
