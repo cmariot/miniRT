@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 /* This function check if the file given as argument can be open and 
  * if we can read its content. If an error occurs, the program will stop. */

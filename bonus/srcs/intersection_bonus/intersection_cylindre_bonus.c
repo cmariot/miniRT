@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 static bool	get_cyl_normale(t_obj *cyl, t_ray *ray)
 {

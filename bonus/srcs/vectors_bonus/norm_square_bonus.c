@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 /* Return the square of a vector norm */
 extern inline double	norm_square(const t_v3 a)

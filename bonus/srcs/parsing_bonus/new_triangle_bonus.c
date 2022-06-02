@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 void	translate_triangle(t_obj *triangle, t_v3 cam_position)
 {

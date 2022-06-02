@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 //Produit scalaire entre la lumiere et le rayon permet de voir si les angles
 //se croisent

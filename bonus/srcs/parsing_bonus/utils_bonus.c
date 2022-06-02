@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 int	set_double(double *dbl, char *str, double min_limit, double max_limit)
 {
