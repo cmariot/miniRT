@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 static bool	pts_lies_in_triangle(t_ray *ray, t_obj *obj)
 {

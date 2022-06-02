@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 void	mlx_putpixel(t_img *data, double *x, double *y, int *color)
 {

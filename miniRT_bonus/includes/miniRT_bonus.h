@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   miniRT_bonus.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,10 +14,10 @@
 # define MINIRT_BONUS_H
 
 # include "libft.h"
-# include "vector3.h"
-# include "structure.h"
+# include "vector3_bonus.h"
+# include "structure_bonus.h"
 # include "mlx.h"
-# include "keycodes.h"
+# include "keycodes_bonus.h"
 
 # include <time.h>
 

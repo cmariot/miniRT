@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 /* This function check if the filename given as argument has the correct
  * extension, the miniRT scene file must have the '.rt' extension */

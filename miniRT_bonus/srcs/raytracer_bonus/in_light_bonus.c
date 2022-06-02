@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 /*
  * Opti : pour eviter calcul de racine carre, comparer si la distance entre 

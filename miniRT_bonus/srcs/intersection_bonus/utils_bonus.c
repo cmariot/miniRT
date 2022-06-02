@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 /* Solution 1 : (-b - racine(delta)) / 2a */
 extern inline double	t1(double delta, double *abc)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 /* This functions file counts the elements to display on the screen.
  * The file is open and the structure variables are set to default,

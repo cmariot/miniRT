@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 /* A surface normal from a surface at P,
  * is a vector perpendicular to the tangent plane to that surface at P. */
