@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 14:18:47 by cmariot           #+#    #+#             */
-/*   Updated: 2022/05/11 11:32:49 by cmariot          ###   ########.fr       */
+/*   Updated: 2022/06/14 13:19:01 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ char	*get_next_line(int fd)
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
-	read_return = 1;
-	while (read_return)
+	while (1)
 	{
 		read_return = read(fd, buf, BUFFER_SIZE);
 		if (read_return == -1)
